@@ -1,0 +1,47 @@
+<div class="loginPage">
+
+  <!-- LOGIN / REGISTER -->
+  <div class="loginRegisterGroup">
+
+    <!-- LOGIN -->
+    <div class="loginGroup" [formGroup]="this.loginForm">
+
+      <!-- TITLE -->
+      <h4 class="loginTitleClass">Welcome!</h4>
+
+      <!-- SEPARATOR -->
+      <hr class="separator">
+
+      <!-- USERNAME -->
+      <div class="usernameClass">
+        <input class="usernameInputClass" type="text" placeholder="Username" formControlName="username" (keyup.enter)="login()">
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="passwordClass">
+        <input class="passwordTextClass" type="password" placeholder="Password" formControlName="password" #pwdInput (keyup.enter)="login()">
+        <button class="fa fa-eye passwordIconClass" (click)="toggleVisibility(pwdInput, pwdIcon)" #pwdIcon></button>
+      </div>
+
+      <!-- ERROR MESSAGE -->
+      <p class="errorMessageClass" [hidden] = "!this.showError || !this.loginForm.pristine">
+        {{this.errorMessage}}
+      </p>
+
+      <!-- LOGIN BUTTON -->
+      <button class="loginButtonClass" (click)="login()">Login</button>
+
+    </div>
+
+    <!-- REGISTER -->
+    <div class="registerGroup">
+
+      <p class="registerClass">New user? <a routerLink="/register">Sign-Up</a></p>
+      <p class="continueAsGuestClass"><a routerLink="/browse">Continue as guest</a></p>
+
+    </div>
+
+
+  </div>
+
+</div>

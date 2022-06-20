@@ -1,0 +1,16 @@
+<div class="geoClass">
+
+  <input id="address" class="inputClass form-control" type="text" [formControl]="this.locationField"
+         [matAutocomplete]="inputText" (keyup.enter)="updateMap(-1)"
+         (keyup)="getSuggestedLocations($event)">
+
+  <mat-autocomplete #inputText="matAutocomplete">
+    <!-- [value] = Autocomplete's input value -->
+    <mat-option *ngFor="let address of suggestedAddresses ; index as i" [value]="address" (click)="updateMap(i)">
+      <!-- Dropdown's values -->
+      {{address}}
+    </mat-option>
+  </mat-autocomplete>
+
+</div>
+

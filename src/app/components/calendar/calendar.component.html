@@ -1,0 +1,10 @@
+
+<div class="calendarClass">
+  <div [formGroup]="dateGroup">
+    <mat-form-field appearance="fill">
+      <input matInput formControlName="date" [matDatepicker]="picker" readonly placeholder="{{defaultDate}}">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>

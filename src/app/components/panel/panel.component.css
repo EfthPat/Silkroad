@@ -1,0 +1,148 @@
+*{
+  box-sizing: border-box;
+}
+
+
+.tabGroup{
+
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.activityGroup{
+  display: flex;
+  flex-direction: row;
+  min-height: 93vh;
+}
+
+.activityCategoriesGroup{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 16%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.bidsCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+
+}
+
+.purchasesCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+  min-height: 100%;
+}
+
+.auctionsCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+  min-height: 100%;
+}
+
+.activityContentClass{
+  height: 100%;
+  width: 84%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.messagesGroup{
+  display: flex;
+  flex-direction: row;
+  min-height: 93vh;
+}
+
+.messageCategoriesGroup{
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  min-height: 100%;
+}
+
+.inboxCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+}
+
+.outboxCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+}
+
+
+.newMessageCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+}
+
+.messageContentClass{
+  min-height: 100%;
+  width: 85%;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.administrationGroup{
+  display: flex;
+  flex-direction: row;
+  min-height: 93vh;
+}
+
+.administrationCategoriesGroup{
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  min-height: 100%;
+}
+
+.administrationContentClass{
+  min-height: 100%;
+  width: 85%;
+}
+
+.usersCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.exportCategoryClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+  border: none;
+  outline: none;
+}
+
+.activeElement{
+  background: #d5e7ee;
+  border: rgba(128, 128, 128, 0.45) 1px solid;
+}
+

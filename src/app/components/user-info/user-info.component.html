@@ -1,0 +1,96 @@
+
+<app-search></app-search>
+
+<div class="userForm column">
+
+  <!-- DETAILS -->
+  <form class="userDetails column" [formGroup]="this.userForm">
+
+    <!-- USERNAME -->
+    <div class="username column spread">
+      <label for="username" class="userLabel">Username</label>
+      <input id="username" class="userField" formControlName="username">
+    </div>
+
+    <!-- FIRSTNAME - LASTNAME -->
+    <div class="firstLast row spread">
+
+      <!-- FIRSTNAME -->
+      <div class="firstname column">
+        <label for="firstname" class="userLabel">Firstname</label>
+        <input id="firstname" class="userField" formControlName="firstname">
+      </div>
+
+      <!-- LASTNAME -->
+      <div class="lastname column">
+        <label for="lastname" class="userLabel">Lastname</label>
+        <input id="lastname" class="userField" formControlName="lastname">
+      </div>
+
+
+    </div>
+
+
+    <!-- EMAIL - PHONE -->
+    <div class="emailPhone row spread">
+
+      <!-- EMAIL -->
+      <div class="email column">
+        <label for="email" class="userLabel">E-mail</label>
+        <input id="email" class="userField" formControlName="email">
+      </div>
+
+      <!-- PHONE -->
+      <div class="phone column">
+        <label for="phone" class="userLabel">Phone</label>
+        <input id="phone" class="userField" formControlName="phone">
+      </div>
+
+    </div>
+
+    <!-- STREET NAME - STREET NUMBER -->
+    <div class="addrNum row spread">
+
+      <!-- STREET NAME -->
+      <div class="streetName column">
+        <label for="streetName" class="userLabel">Street</label>
+        <input id="streetName" class="userField" formControlName="streetName">
+      </div>
+
+      <!-- STREET NUMBER -->
+      <div class="streetNumber column">
+        <label for="streetNumber" class="userLabel">Number</label>
+        <input id="streetNumber" class="userField" formControlName="streetNumber">
+      </div>
+
+    </div>
+
+    <!-- ZIP - TIN -->
+    <div class="zipTin row spread">
+
+      <!-- ZIP CODE -->
+      <div class="zipCode column">
+        <label for="zipCode" class="userLabel">Zip Code</label>
+        <input id="zipCode" class="userField" formControlName="zipCode">
+      </div>
+
+      <!-- TIN -->
+      <div class="tin column">
+        <label for="tin" class="userLabel">TIN</label>
+        <input id="tin" class="userField" formControlName="tin">
+      </div>
+
+    </div>
+
+
+    <!-- APPROVE USER -->
+    <div class="approveUser row spread" [hidden]="!this.showApproval" (click)="approveUser()">
+      <button class="button btn-outline-primary approveButton" >Approve</button>
+    </div>
+
+  </form>
+
+
+
+
+</div>

@@ -1,0 +1,26 @@
+
+.deleteDialogClass{
+  display: flex;
+  flex-direction: column;
+}
+
+.messageClass{
+
+}
+
+.buttonsClass{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.approveClass{
+  border-radius: 10px;
+  width: 30%;
+}
+
+.rejectClass{
+  border-radius: 10px;
+  width: 30%;
+
+}

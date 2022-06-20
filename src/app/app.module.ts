@@ -29,8 +29,8 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
 import {AuthService} from "./services/auth.service";
-import {TokenInterceptor} from "./Interceptors/token.interceptor";
-import {ErrorInterceptor} from "./Interceptors/error.interceptor";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {ErrorInterceptor} from "./interceptors/error.interceptor";
 import {CalendarComponent} from './components/calendar/calendar.component';
 import {MyMessagesComponent} from "./components/my-messages/my-messages.component";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
@@ -113,4 +113,4 @@ import {ImageSliderComponent} from "./components/image-slider/image-slider.compo
 })
 export class AppModule {}
 
-// ng serve --ssl true --ssl-key localhost-key.pem --ssl-cert localhost.pem
+// ng serve --ssl true --ssl-key ./ssl/localhost-key.pem --ssl-cert ./ssl/localhost.pem

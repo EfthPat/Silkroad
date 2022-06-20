@@ -1,0 +1,123 @@
+<div class="registerClass">
+
+  <!-- REGISTER FORM -->
+  <div class="registerFormClass" [formGroup]="registerForm">
+
+    <!-- MAIN INFO -->
+    <div class="mainInfoClass">
+
+      <!-- USERNAME -->
+      <div class="usernameClass">
+        <label for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
+        <input class="form-control" type="text" id="username" formControlName="username">
+      </div>
+
+    </div>
+
+
+    <!-- ADDITIONAL INFO -->
+    <div class="additionalInfoClass">
+      <!-- TIN -->
+      <div class="tinClass">
+        <label for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
+        <input class="form-control" type="text" id="tin" formControlName="tin">
+      </div>
+    </div>
+
+    <!-- RESIDENCE -->
+    <div class="residenceClass">
+
+      <!-- STREET NAME -->
+      <div class="streetNameClass">
+        <label for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street</label>
+        <app-geo-location id="address" [addressName]="extractAddressName()"
+                          (geoAddress)="getGeolocationAddress($event)"
+                          (geoState)="updateBarsState($event)"></app-geo-location>
+      </div>
+
+
+      <!-- STREET NUMBER -->
+      <div class="streetNumberClass">
+        <label for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
+        <input class="form-control" type="text" id="streetNumber" formControlName="streetNumber" >
+      </div>
+
+    </div>
+
+    <!-- EXTENDED RESIDENCE -->
+    <div class="extendedResidenceClass">
+
+      <!-- COUNTRY -->
+      <div class="countryClass">
+        <label for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
+        <input class="form-control" type="text" id="country" formControlName="country" >
+      </div>
+
+      <!-- ZIP CODE -->
+      <div class="zipCodeClass">
+        <label for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
+        <input class="form-control" type="text" id="zip" formControlName="zipCode" >
+      </div>
+    </div>
+
+    <!-- FIRSTNAME / LASTNAME -->
+    <div class="firstLastClass">
+
+      <!-- FIRSTNAME -->
+      <div class="firstnameClass">
+        <label for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
+        <input class="form-control" type="text" id="firstname" formControlName="firstname" >
+      </div>
+
+      <!-- LASTNAME -->
+      <div class="lastnameClass">
+        <label for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
+        <input class="form-control" type="text" id="lastname" formControlName="lastname" >
+      </div>
+
+    </div>
+
+    <!-- PASSWORDS -->
+    <div class="passwordsClass">
+
+      <!-- PASSWORD -->
+      <div class="passwordClass">
+        <label for="password" [ngClass]="{errorClass:showError && invalidField('password')}">Password</label>
+        <input class="form-control" type="text" id="password" formControlName="password" >
+      </div>
+
+      <!-- CONFIRM PASSWORD -->
+      <div class="confirmPasswordClass">
+        <label for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
+        <input class="form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
+      </div>
+
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="contactInfoClass">
+
+      <!-- EMAIL -->
+      <div class="emailClass">
+        <label for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
+        <input class="form-control" type="text" id="email" formControlName="email" >
+      </div>
+
+      <!-- PHONE NUMBER -->
+      <div class="phoneNumberClass">
+        <label for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
+        <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
+      </div>
+
+    </div>
+
+    <button class="btn btn-outline-primary submitClass" (click)="submitForm()">Sign-Up</button>
+
+  </div>
+
+  <!-- MAP -->
+  <app-map class="mapClass" [isInteractive]="true" [latitude]="extractLatitude()" [longitude]="extractLongitude()"
+           (mapAddress)="getMapsAddress($event)"></app-map>
+
+
+</div>

@@ -1,0 +1,15 @@
+<div class="messageDialogClass">
+
+  <p *ngIf="!this.sent">From</p>
+  <p *ngIf="this.sent">To</p>
+
+  <h1 class="sender" mat-card-title *ngIf="!this.sent">{{this.sender}}</h1>
+  <h1 mat-card-title class="receiver" *ngIf="this.sent">{{this.receiver}}</h1>
+  <hr>
+
+
+  <p>Subject</p>
+  <h2 mat-card-title class="subject">{{this.subject}}</h2>
+  <hr>
+  <mat-dialog-content class="body">{{this.paragraph}}</mat-dialog-content>
+</div>

@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+.searchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.home{
+  display: flex;
+  flex-direction: row;
+  padding: 0 1%;
+  margin: 1% 8% 0;
+  width: fit-content;
+  border: black solid 1px;
+  cursor: pointer;
+  background: radial-gradient(circle, white 1%, #eaf6fa);
+}
+
+
+
+
+
+
+.hideSection{
+  visibility: hidden;
+}
+
+
+.homeText{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homeButton{
+  padding: 0;
+  margin: 0 0 0 15px;
+  color: blue;
+  outline: none;
+}
+
+.homeButton:focus, .homeButton:active{
+  outline: none;
+  box-shadow: none;
+}
+
+.shopByCategoryDropdownClass{
+  margin: 1% 0 0 0;
+  outline: none;
+  transition: none;
+}
+
+.dropdownButtonClass{
+
+}
+
+.textCategoriesSearchClass{
+  margin: 1% 8% 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.searchTextClass{
+  height: 100%;
+}
+
+.textClass{
+  height: 100%;
+  outline: none !important;
+  transition: none !important;
+  border: black solid 1px;
+  border-right: none;
+  min-width: 20vw;
+  text-align: center;
+}
+
+.categoriesDropdownClass{
+  height: 100%;
+  outline: none !important;
+  transition: none !important;
+  border: black solid 1px;
+  border-right: none;
+  background: linear-gradient(180deg, #d5d5e3,white);
+
+}
+
+.categoriesButtonClass{
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+  height: 100%;
+  outline: none !important;
+  box-shadow: none !important;
+  border: blue !important;
+}
+
+.searchButtonClass{
+  height: 100%;
+  outline: none !important;
+  border: black solid 1px;
+}
+
+.srchbtnClass{
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+
+}
+
+.dynamicCategoryClass{
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  border: black solid 1px;
+}
+
+.optionsClass{
+
+}
+
+.optionsButtonClass{
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+
+}
+
+.sellButton{
+  border: none;
+  border-right: black solid 1px;
+  border-left: black solid 1px;
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+}
+
+.logoutClass{
+
+}
+
+.logoutButtonClass{
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+}
+
+.loginClass{
+
+}
+
+.loginButtonClass{
+  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+}
+
+.ddmClass{
+
+}
+

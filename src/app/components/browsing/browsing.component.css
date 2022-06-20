@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+
+}
+
+body{
+
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.browse{
+  /* BROWSE HEIGHT + SEARCH BAR HEIGHT = 100VH */
+  min-height: 93vh;
+  margin: 1% 0 0;
+  background: linear-gradient(white, rgba(222, 245, 240, 0.2),white);
+}
+
+.filters{
+  align-items: center;
+  min-height: 100%;
+  width: 20%;
+  margin: 0;
+}
+
+.buyNow{
+  width: 90%;
+  margin: 25% 0 0;
+  align-items: center;
+}
+
+.checkBox{
+  padding: 0;
+}
+
+.buyNowText{
+  padding: 0;
+  font-weight: bold;
+  font-family: "Yu Gothic", sans-serif;
+}
+
+.priceRange{
+  align-items: start;
+  width: 90%;
+  margin: 12% 0 0;
+}
+
+._label{
+  margin: 0 0 3% 2%;
+}
+
+.range{
+  width: 100%;
+  margin: 1% 0 0;
+}
+
+.minPrice, .maxPrice{
+  border: gray 1.3px solid;
+  height: 30px;
+  width: 40%;
+  margin: 0 0 0 0;
+  border-radius: 4px;
+  text-align: center;
+  outline: none;
+  padding: 0 1%;
+}
+
+.maxPrice{
+  margin-left: 10%;
+}
+
+
+
+.location{
+  width: 90%;
+  margin: 15% 0 0;
+}
+
+.region{
+  border: gray 1.3px solid;
+  height: 30px;
+  width: 90%;
+  margin: 1% 0 0;
+  outline: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.search{
+  width: 90%;
+  margin: 20% 0 0;
+}
+
+.searchButton{
+  background: linear-gradient(white, #f3efef, white);
+  width: 90%;
+  color: black;
+  border: black 1.2px solid;
+  border-radius: 4px;
+}
+
+.searchButton:hover{
+  background: linear-gradient(white, rgba(105, 105, 105, 0.44), white);
+
+}
+
+.cardsPagination{
+  /* HERE */
+  border-left: gray 1px solid;
+  min-height: 100%;
+  width: 80%;
+  padding: 0;
+  margin: 0;
+}
+
+.cards{
+  align-items: center;
+  padding: 1% 0 0 0;
+  margin: 5.5% 0 0;
+  min-height: 80%;
+}
+
+.card{
+  height: 20vh;
+  width: 50%;
+  padding: 0;
+  margin: 0 0 1% 0;
+  border: gray 1px solid;
+  box-shadow: 1.5px 1.5px rgba(128, 128, 128, 0.35);
+}
+
+.cardImage {
+  justify-content: center;
+  border:  rgba(0, 0, 0, 0.17) 1px solid;
+  position: relative;
+  height: 100%;
+  width: 40%;
+  padding: 0;
+  margin: 0;
+}
+
+.image{
+  height: 100%;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+}
+
+.nextImage ,.previousImage{
+  height: 100%;
+  width: 15%;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  background: rgba(168, 165, 165, 0.09);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nextImage{
+  right: 0;
+  border-right: black 1px solid;
+}
+
+.previousImage{
+  left: 0;
+}
+
+.cardContent{
+  height: 100%;
+  width: 60%;
+  justify-content: space-around;
+  padding:0;
+  margin: 0;
+}
+
+.auctionName, .highestBid, .country{
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding: 1% 1% 1% 5%;
+  margin: 0;
+}
+
+.auctionName{
+  font-size: xx-large;
+
+}
+
+.highestBid{
+  font-size: small;
+
+}
+
+.country{
+
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.pagination{
+  justify-content: center;
+  align-items: start;
+  padding: 0;
+  margin: 0;
+}
+
+.paginationBar{
+  justify-content: center;
+  width: 50%;
+  padding: 0;
+  margin: 0.3%;
+}
+
+.previousPage ,.pageValue, .nextPage{
+  background: rgba(168, 165, 165, 0.09);
+  text-align: center;
+  width: 20%;
+  box-shadow: none;
+}
+
+.previousPage, .nextPage{
+  border: gray 1px solid;
+}
+
+.pageValue{
+  border: none;
+  border-top: gray 1px solid;
+  border-bottom: gray 1px solid;
+}

@@ -1,0 +1,91 @@
+
+.newMessageClass{
+  background: #f6fbff;
+  display: flex;
+  flex-direction: column;
+  min-height: 93vh;
+  border-left: rgba(128, 128, 128, 0.58) 1px solid;
+}
+
+.recipientClass{
+  margin-top: 2%;
+  margin-left: 5%;
+  width: 30%;
+  align-self: start;
+}
+
+.subjectClass{
+  margin-top: 1%;
+  margin-left: 5%;
+  width: 30%;
+  align-self: start;
+}
+
+.bodyClass{
+  padding: 1.5%;
+  margin-top: 3%;
+  margin-left: 5%;
+  width: 90%;
+  height: 50vh;
+  align-self: start;
+  resize:none;
+  font-size: large;
+}
+
+.sendButtonClass{
+  position: relative;
+  margin-top: 2%;
+  margin-left: 40%;
+  width: 20%;
+  border-radius: 10px;
+}
+
+.sendButtonClass:hover{
+  background: lightblue;
+}
+
+.sendButtonClass:active{
+  background: blue;
+  outline: none;
+}
+
+.errorClass {
+  color: red;
+}
+
+.errClass {
+  border: red solid 2px;
+}
+
+#alert{
+  --border: rgba(128, 128, 128, 0.47);
+  --bg: lightblue;
+  position: absolute;
+  bottom: 0;
+  right: -25%;
+  border: var(--border) 1px solid;
+  color: rgba(0, 0, 0, 0.49);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  width: 27px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.success{
+  animation: scaleUp 1s ease-out, scaleUp 0.25s 1s reverse;
+}
+
+
+@keyframes scaleUp {
+  100%{
+    opacity: 1;
+    border: var(--border) 1.8px solid;
+    transform: scale(1.2,1.2);
+  }
+}
+

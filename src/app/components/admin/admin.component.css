@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.adminPage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100%;
+}
+
+.filtersGroup {
+  background: #f6fbff;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  min-height: 90%;
+  align-items: center;
+  border-left: rgba(128, 128, 128, 0.58) 1px solid;
+  border-right: rgba(128, 128, 128, 0.58) 1px solid;
+}
+
+.userLabel{
+  align-self: start;
+  margin: 8% 0 1% 16%;
+  padding-left: 1%;
+  font-weight: bolder;
+  font-size: medium;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.userStateClass{
+  background: #f6fbff;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.buttonClass {
+  padding-left: 5%;
+  width: 100%;
+  margin: 2.5% 0 0;
+  color: gray;
+}
+
+.buttonTitle{
+  font-size: small;
+  font-weight: 1;
+  padding: 0;
+  margin:0 !important;
+  font-family: "Century Gothic", cursive, sans-serif;
+}
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+.cpGroup {
+  background: #f6fbff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  min-height: 100%;
+}
+
+.cardsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+}
+
+.cardClass {
+  display: flex;
+  flex-direction: column;
+  height: 18vh;
+  width: 50%;
+  margin: 1%;
+  padding: 1%;
+  box-shadow: 1px 1px black;
+  border: gray 1px solid;
+}
+
+
+.usernameClass, .joinDateClass{
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Garamond", Serif;
+  padding: 1%;
+}
+
+.usernameClass{
+  font-size: xx-large;
+  border-bottom: rgba(128, 128, 128, 0.35) 1px solid;
+}
+
+.joinDateClass{
+ margin-top: 2%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+.paginationClass{
+  background: #f6fbff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  width: 100%;
+}
+
+.paginationBarClass{
+  background-color: #c9d2d2;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.previousPageClass{
+  height: 100%;
+  width: 30%;
+}
+
+.pageValueClass{
+  height: 100%;
+  width: 40%;
+}
+
+.nextPageClass{
+  height: 100%;
+  width: 30%;
+}
+
+
+
+
+
+

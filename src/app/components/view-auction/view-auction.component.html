@@ -1,0 +1,104 @@
+<!-- VIEW AUCTION -->
+<div class="viewAuction">
+
+  <!-- SEARCH BAR-->
+  <app-search></app-search>
+
+  <!-- IMAGES + AUCTION-->
+  <div class="imagesAuction">
+
+    <!-- AUCTION : INFO + BID -->
+    <div class="auction">
+
+      <!-- AUCTION INFO -->
+      <div class="auctionInfo" [formGroup]="this.auctionForm">
+
+        <!-- NAME -->
+        <label class="textLabel" for="name">Name</label>
+        <p id="name" class="text">{{this.auctionForm.get('name')?.value}}</p>
+
+        <!-- DESCRIPTION -->
+        <label class="textLabel" for="description">Description</label>
+        <p id="description" class="text">{{this.auctionForm.get('description')?.value}}</p>
+
+
+        <!-- PRICES -->
+        <div class="group">
+          <!-- HIGHEST BID -->
+          <div class="team">
+            <label class="textLabel" for="highestBid">Highest Bid</label>
+            <p id="highestBid" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('highestBid')?.value)}} $</p>
+          </div>
+          <!-- BUY PRICE -->
+          <div class="team shifted">
+            <label class="textLabel" for="buyPrice">Buy Price</label>
+            <p id="buyPrice" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('buyPrice')?.value)}}
+              <span *ngIf="this.auctionForm.get('buyPrice')?.value!=='N/A'">$</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- SELLER INFO -->
+        <div class="group">
+          <!-- NAME -->
+          <div class="team">
+            <label class="textLabel" for="seller">Seller</label>
+            <p id="seller" class="text">{{this.auctionForm.get('seller')?.value}}</p>
+          </div>
+          <!-- RATING -->
+          <div class="team shifted">
+            <label class="textLabel" for="seller">Seller Rating</label>
+            <p id="sellerRating" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('sellerRating')?.value)}}</p>
+          </div>
+        </div>
+
+        <div class="group">
+          <!-- END DATE -->
+          <div class="team">
+            <label class="textLabel" for="endDate">Due Date</label>
+            <p id="endDate" class="text">{{this.auctionForm.get('endDate')?.value}}</p>
+          </div>
+          <!-- ADDRESS -->
+          <div class="team shifted">
+            <label class="textLabel" for="address">Address</label>
+            <p id="address" class="text">{{this.auctionForm.get('address')?.value}}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BID -->
+      <div class="bid" *ngIf="this.isBiddable" [formGroup]="this.auctionForm" (keyup.enter)="bid()">
+
+        <!-- BID BAR -->
+        <div id="bidBar" class="bidBar" [ngClass]="{'err': this.bidCommitted && this.auctionForm.get('bid')?.invalid}">
+          <input class="bidInput" formControlName="bid" [ngClass]="{'err': this.bidCommitted && this.auctionForm.get('bid')?.invalid}">
+          <button class="bidButton" [ngClass]="{'error': this.bidCommitted && this.auctionForm.get('bid')?.invalid}" (click)="bid()">Bid</button>
+          <i id="alert" class="fa fa-solid fa-check"></i>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <!-- IMAGES -->
+    <div class="images">
+
+      <!-- IMAGE -->
+      <img class="image" src="http://localhost:8081/media/{{auctionID}}/{{images[activeImage]}}">
+
+      <!-- NEXT IMAGE -->
+      <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage()"></button>
+
+      <!-- PREVIOUS IMAGE -->
+      <button class="page-link previousImage fa fa-angle-left" (click)="getPreviousImage()"></button>
+
+    </div>
+
+  </div>
+
+  <!-- MAP -->
+  <app-map class="map" [latitude]="latitude" [longitude]="longitude"></app-map>
+
+</div>

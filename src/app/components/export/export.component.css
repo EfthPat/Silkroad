@@ -1,0 +1,34 @@
+
+.exportClass{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.daterangeClass{
+  margin-top: 12%;
+}
+
+.dividerClass{
+  width: 100%;
+}
+
+.formatClass{
+
+}
+
+#ddm{
+  margin-top:5%;
+  margin-left: 10%;
+}
+
+.exportButtonClass{
+  margin-top:20%;
+  border-radius: 10px;
+  width: 100%;
+}
+
+
+.errorClass {
+  color: red;
+}

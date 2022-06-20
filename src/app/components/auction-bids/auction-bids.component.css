@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+.images{
+  position: relative;
+  border-bottom: gray 1px solid;
+  width: 100%;
+  aspect-ratio: 3;
+  padding: 0;
+  margin: 0;
+}
+
+.image{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.nextImage, .previousImage{
+  position: absolute;
+  font-size: large;
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 40%;
+  box-shadow: none;
+  border: none;
+  background: rgba(168, 165, 165, 0.22);
+}
+
+.nextImage{
+  right: 0.5%;
+}
+
+.previousImage{
+  left: 0.5%;
+}
+
+.nextImage:hover, .previousImage:hover{
+  background: rgba(134, 131, 131, 0.09);
+}
+
+.nextImage:active, .previousImage:active{
+  background: rgba(117, 112, 112, 0.09);
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.auctionBids{
+
+  margin: 0;
+  min-height: 94vh;
+  justify-content: center;
+
+
+}
+
+.sticky{
+  border: gray 3px solid;
+  border-radius: 1px;
+  padding: 0 0 1% 0;
+  margin: 1.5% 1% 1%;
+  height: fit-content;
+  width: 39%;
+}
+
+.group{
+  max-width: 100%;
+  margin: 4% 0 !important;
+}
+
+.team{
+  padding: 0;
+  margin: 0 0 0 2%;
+}
+
+.stickyLabel{
+  margin: 0;
+  font-weight: bolder;
+  font-size: large;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.stickyText{
+
+  padding: 0 0.4%;
+  margin: 0;
+
+  width: fit-content;
+
+  font-weight: 1;
+  font-size: small;
+  font-family: "Century Gothic", sans-serif;
+
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spread{
+  max-width: 98%;
+}
+
+.split{
+  max-width: 46%;
+}
+
+.fix{
+  width: max-content;
+}
+
+.other{
+  border-left: gray 1px solid;
+  position: relative;
+  min-height: 99%;
+  padding: 0.5% 0 0;
+  margin: 1% 1% 0 0;
+  width: 59%;
+  align-items: center;
+
+}
+
+.card{
+  width: 98%;
+  padding: 0;
+  margin: 0 0 2%;
+  background: linear-gradient(20deg, rgba(128, 128, 128, 0.07),transparent);
+  border: gray 1px solid;
+  box-shadow: 1.5px 1.5px rgba(128, 128, 128, 0.55);
+}
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: max-content;
+  margin: 0 0.5%;
+  position: absolute;
+  bottom: -2.5%;
+}
+
+.pageBar{
+  border: rgba(128, 128, 128, 0.59) 1px solid;
+  display: flex;
+  flex-direction: row;
+  height: max-content;
+}
+
+.previousPage, .pageValue, .nextPage{
+  height: 30px;
+  width: 100px;
+  text-align: center;
+  font-size: medium;
+}
+
+
+
+
+
+
+
+
+
+

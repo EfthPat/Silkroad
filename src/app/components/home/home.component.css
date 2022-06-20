@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.homePage{
+  height: 94vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.recommendationTitle{
+  margin-top: -5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  font-family: Dejavu Sans;
+  margin: 0;
+}
+
+.divider{
+  border: solid rgba(0, 0, 0, 0.51) 1px;
+  margin-top: 0;
+}
+
+.slider{
+  border: gray 2px solid;
+  overflow: hidden;
+  position: relative;
+  height: 50%;
+  width: 70%;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 139, 0.09);
+}
+
+.recommendations{
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  height: 90%;
+  width: 100%;
+  padding: 1% 0;
+}
+
+.recommendation{
+  border: gray 1px solid;
+  border-left: gray 2px solid;
+  justify-content: center;
+  align-items: center;
+  height: 97%;
+  width: 45%;
+  margin: 0 2.5%;
+  padding: 0;
+  box-shadow: 1px 1px black;
+}
+
+.images{
+  position: relative;
+  height: 50%;
+  width: 100%;
+  justify-content: center;
+}
+
+.image{
+  height: 100%;
+  width: 80%;
+}
+
+.nextImage, .previousImage{
+  height: 100%;
+  width: 10%;
+  position: absolute;
+  bottom: 0;
+  border: none;
+  background: rgba(168, 165, 165, 0.09);
+  font-size: large;
+  box-shadow: none;
+}
+
+.nextImage{
+  right: 0;
+}
+
+.previousImage{
+  left: 0;
+}
+
+.content{
+  border-top: gray 3px solid;
+  height: 50%;
+  width: 100%;
+}
+
+.slideLeftButton, .slideRightButton{
+  position: absolute;
+  top: 40%;
+  height: 50px;
+  width:50px;
+  z-index: 2;
+  font-size: large;
+  background: rgba(128, 128, 128, 0.76);
+  border-radius: 50%;
+  border: none;
+}
+
+.slideLeftButton:hover, .slideRightButton:hover{
+  background: rgba(128, 128, 128, 0.19);
+}
+
+.slideLeftButton:active, .slideRightButton:active{
+  background: rgba(128, 128, 128, 0.72);
+}
+
+.slideLeftButton{
+  left: 0.2%;
+}
+
+.slideRightButton{
+  right: 0.2%;
+}
+
+.cardName, .highestBid{
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2%;
+  margin: 1% 0;
+}
+
+

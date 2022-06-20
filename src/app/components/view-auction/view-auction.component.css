@@ -1,0 +1,203 @@
+
+.viewAuction{
+  display: flex;
+  flex-direction: column;
+  max-width: 99vw !important;
+}
+
+.imagesAuction{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.images{
+  position: relative;
+  border: gray 3px solid;
+  margin-right: 1%;
+  width: 47%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.image{
+  border: gray 1px solid;
+  border-top: none;
+  border-bottom: none;
+  margin: 0 5%;
+  height: 100%;
+  width: 80%;
+}
+
+.nextImage, .previousImage{
+  position: absolute;
+  font-size: x-large;
+  width: 10%;
+  height: 100%;
+  top: 0;
+  box-shadow: none;
+  background: rgba(168, 165, 165, 0.09);
+  text-align: center;
+}
+
+.nextImage{
+  right: 0;
+}
+
+.previousImage{
+  left: 0;
+}
+
+.auction{
+  border: gray 3px solid;
+  margin-left: 1%;
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.auctionInfo{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1%;
+}
+
+.group{
+  display: flex;
+  flex-direction: row;
+  margin: 2% 0;
+}
+
+.team{
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.textLabel{
+  margin-bottom: 0;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.text{
+  font-size: large;
+  border: none;
+  font-weight: 1;
+  padding: 0 1%;
+  word-break: break-all;
+}
+
+.bid{
+  border-top: gray 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bidBar{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  border: gray 2px solid;
+  min-height: 30px;
+  width: 40%;
+  margin: 2% 0 2% 1%;
+}
+
+/* ------------------------------------------- ANIMATION ------------------------------------------------------------ */
+
+#alert{
+  --border: rgba(128, 128, 128, 0.47);
+  --bg: lightblue;
+  position: absolute;
+  bottom: 0;
+  right: -25%;
+  border: var(--border) 1px solid;
+  color: rgba(0, 0, 0, 0.49);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  width: 27px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.success{
+  animation: scaleUp 0.8s ease-out, scaleUp 0.25s 0.8s reverse;
+}
+
+@keyframes scaleUp {
+  100%{
+    opacity: 1;
+    border: var(--border) 1.8px solid;
+    transform: scale(1.35,1.35);
+  }
+}
+
+/* ------------------------------------------- ANIMATION END -------------------------------------------------------- */
+
+
+.bidInput{
+  width: 75%;
+  border: none;
+  border-right: gray 1px solid;
+  padding: 1% 2%;
+}
+
+.bidInput:focus, .bidInput:active{
+  outline: none;
+
+}
+
+.bidButton{
+  width: 25%;
+  mn-height: 100%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.bidButton:hover{
+  background: rgba(128, 128, 128, 0.15);
+}
+
+.bidButton:active{
+  background: rgba(128, 128, 128, 0.45);
+}
+
+.shifted{
+  margin-left: 4%;
+}
+
+.error {
+  color: red;
+}
+
+.err{
+  border-color: red;
+}
+
+.map{
+  margin-left: 1%;
+  margin-top: 1%;
+  height: 30vh;
+  width: 51.5vw;
+}
+
+
+.invisible{
+  visibility: hidden;
+}

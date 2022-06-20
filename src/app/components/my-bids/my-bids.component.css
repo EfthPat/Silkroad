@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+.myBidsClass{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.bpGroup{
+  background: #f6fbff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 93vh;
+  border-left: rgba(128, 128, 128, 0.58) 1px solid;
+}
+
+.cardsGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.cardClass{
+  height: 20vh;
+  width: 70%;
+  margin: 0.5%;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  border: rgba(128, 128, 128, 0.59) 1px solid;
+  box-shadow: 1px 1px black;
+}
+
+
+.slider{
+  height: 100px;
+  width: 100px;
+}
+
+.cardImageClass {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border:  rgba(0, 0, 0, 0.17) 1px solid;
+  position: relative;
+  height: 100%;
+  width: 40%;
+}
+
+.imageClass{
+  height: 100%;
+  width: 70%;
+}
+
+.nextImageClass{
+  height: 100%;
+  width: 15%;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(168, 165, 165, 0.09);
+  border: none;
+}
+
+.previousImageClass{
+  height: 100%;
+  width: 15%;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(168, 165, 165, 0.09);
+  border: none;
+}
+
+.cardContentClass{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.auctionNameClass, .submissionDateClass, .amountClass{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1% 3%;
+  justify-content: space-evenly;
+  margin: 0 !important;
+}
+
+.auctionNameClass{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.submissionDateClass{
+}
+
+.amountClass{
+  margin-top: 1%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+.paginationClass{
+  background: #f6fbff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  width: 100%;
+}
+
+.paginationBarClass{
+  background-color: lightblue;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.previousPageClass{
+  height: 100%;
+  width: 30%;
+}
+
+.pageValueClass{
+  height: 100%;
+  width: 40%;
+}
+
+.nextPageClass{
+  height: 100%;
+  width: 30%;
+}

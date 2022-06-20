@@ -1,0 +1,104 @@
+<!-- SEARCH BAR -->
+<div class="searchBar">
+
+  <!-- HOME BUTTON -->
+  <div class="home" (click)="tabRedirect('home')" [ngClass]="{'hideSection': this.invisible}">
+    <span class="homeText">Home</span>
+    <button class="btn fa fa-home homeButton"></button>
+  </div>
+
+
+
+  <!-- SHOP BY CATEGORY -->
+  <div class="dropdown shopByCategoryDropdownClass">
+
+    <button class="btn btn-link dropdown-toggle dropdownButtonClass" data-toggle="dropdown">
+      {{this.shopByCategory}}
+    </button>
+
+    <div class="dropdown-menu">
+      <div class="dropdown-item" *ngFor="let category of this.categories" (click)="this.categoryShopping(category)">
+        {{category}}
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-item" (click)="this.categoryShopping('Any')">Any</div>
+    </div>
+
+  </div>
+
+  <!-- TEXT - CATEGORIES - SEARCH -->
+  <div class="textCategoriesSearchClass">
+
+    <!-- TEXT -->
+    <div class="searchTextClass">
+      <input class="textClass" type="text" #auctionText placeholder="Find an auction now!" [(ngModel)]="this.query"
+             (keyup.enter)="search(auctionText.value)">
+    </div>
+
+    <!-- CATEGORIES DDM -->
+    <div class="dropdown categoriesDropdownClass" type="submit">
+      <button class="btn btn-light dropdown-toggle categoriesButtonClass" data-toggle="dropdown">
+        {{this.category}}
+      </button>
+      <div class="dropdown-menu">
+        <div class="dropdown-item" *ngFor="let category of this.categories" (click)="updateCategory(category)">
+          {{category}}
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-item" (click)="updateCategory('Any')">Any</div>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="searchButtonClass">
+      <input class="btn btn-light srchbtnClass" type="submit" value="Search" (click)="search(auctionText.value)">
+    </div>
+
+  </div>
+
+  <!-- DYNAMIC CATEGORY -->
+  <div class="dynamicCategoryClass">
+
+
+    <!-- OPTIONS -->
+    <div class="dropdown optionsClass" *ngIf="this.userRole!=='GUEST'">
+      <button class="btn btn-light dropdown-toggle optionsButtonClass" data-toggle="dropdown">{{this.dynamicButtonTitle}}</button>
+      <div class="dropdown-menu ddmClass">
+        <div class="dropdown-item" *ngFor="let option of this.dynamicButtonOptions ; let i=index" (click)="tabRedirect(option)">
+          {{option}}
+        </div>
+        <div *ngIf="this.userRole==='ADMIN'">
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" (click)="tabRedirect('Administration')" >{{this.adminOption}}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELL -->
+    <button class="btn-light sellButton" *ngIf="this.userRole!=='GUEST'" (click)="tabRedirect('sell')">Sell</button>
+
+    <!-- LOGOUT -->
+    <div class="logoutClass" *ngIf="this.userRole!=='GUEST'">
+      <button class="btn btn-light logoutButtonClass" (click)="tabRedirect('logout')">
+        Logout
+      </button>
+    </div>
+
+
+    <!-- LOGIN -->
+    <div class="loginClass" *ngIf="this.userRole==='GUEST'">
+      <button class="btn btn-light loginButtonClass" (click)="tabRedirect('login')">
+        {{this.dynamicButtonTitle}}
+      </button>
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+
+
+

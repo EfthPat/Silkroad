@@ -1,0 +1,56 @@
+<div class="inboxGroup">
+  <!-- INBOX + PAGINATION -->
+  <div class="ipGroup">
+
+    <!-- CARDS -->
+    <div class="cardsGroup">
+
+      <mat-card class="stickyCardClass">
+        <p *ngIf="!sent" class="messageSenderClass"><b>From</b></p>
+        <p *ngIf="sent" class="messageSenderClass"><b>To</b></p>
+        <p class="messageSubjectClass"><b>Subject</b></p>
+        <button class="btn btn-link" (click)="deleteMessages()">Delete</button>
+      </mat-card>
+
+      <!-- CARD -->
+      <mat-card class="cardClass" *ngFor="let thumbnail of this.messageThumbnails; let i=index">
+
+        <p class="messageSenderClass" *ngIf="!sent" [class.notReadClass]="!thumbnail.read" (click)="viewMessage(i)">{{thumbnail.sender}}</p>
+        <p class="messageRecipientClass" *ngIf="sent" (click)="viewMessage(i)">{{thumbnail.recipient}}</p>
+        <p class="messageSubjectClass" [class.notReadClass]="!thumbnail.read &&!sent" (click)="viewMessage(i)">{{thumbnail.title}}</p>
+        <input class="cardButtonClass" type="checkbox" (click)="markMessage(i)">
+
+      </mat-card>
+
+
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="paginationClass">
+
+      <div class="paginationBarClass">
+
+        <!-- PREVIOUS PAGE BUTTON -->
+        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex<=1">&laquo;
+        </button>
+
+        <!-- PAGE VALUE BUTTON -->
+        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}}
+          / {{this.totalPages}}</div>
+
+        <!-- NEXT PAGE BUTTON -->
+        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex>=this.totalPages">
+          &raquo;
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+

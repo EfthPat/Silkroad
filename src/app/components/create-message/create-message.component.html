@@ -1,0 +1,27 @@
+
+<div class="newMessageClass" [formGroup]="this.messageForm">
+
+  <!-- RECIPIENT -->
+  <div class="recipientClass">
+    <label for="rcp" [ngClass]="{'errorClass': this.submitCommitted && this.messageForm.get('recipient')?.invalid}">Recipient</label>
+    <input id="rcp" class="form-control" formControlName="recipient">
+  </div>
+
+  <!-- SUBJECT -->
+  <div class="subjectClass">
+    <label for="sbj" [ngClass]="{'errorClass': this.submitCommitted && this.messageForm.get('title')?.invalid}">Subject</label>
+    <input id="sbj" class="form-control" formControlName="title">
+  </div>
+
+  <!-- BODY -->
+
+  <textarea class="bodyClass form-control" formControlName="body"
+            [ngClass]="{'errClass': this.submitCommitted && this.messageForm.get('body')?.invalid}"></textarea>
+
+  <button id="sendButton" class="btn btn-outline-primary sendButtonClass" (click)="sendMessage()">Send
+    <i id="alert" class="fa fa-solid fa-check"></i>
+  </button>
+
+
+
+</div>

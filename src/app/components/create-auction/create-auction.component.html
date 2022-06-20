@@ -1,0 +1,113 @@
+<div class="createAuctionClass">
+
+  <div class="auctionClass">
+
+    <!-- AUCTION'S FORM -->
+    <div class="auctionFormClass" [formGroup]="auctionForm">
+
+      <!-- NAME -->
+      <div class="nameClass">
+        <label for="name" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('name')?.invalid}">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="descriptionClass">
+        <label for="description" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('description')?.invalid}">Description</label>
+        <input type="text" id="description" class="form-control" formControlName="description">
+      </div>
+
+      <!-- FIRST BID -->
+      <div class="firstBidClass">
+        <label for="firstBid" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('firstBid')?.invalid}">First Bid</label>
+        <input type="text" id="firstBid" class="form-control" formControlName="firstBid" >
+      </div>
+
+      <!-- BUY NOW -->
+      <div class="buyNowClass">
+        <label for="buyNow" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('buyNow')?.invalid}">Buy Now</label>
+        <input type="text" id="buyNow" class="form-control" formControlName="buyNow" >
+      </div>
+
+      <!-- GEOLOCATION BAR - [addressName] = MAP->PARENT->BAR - (geoAddress) = BAR->PARENT -->
+      <div class="addressBarClass">
+        <label for="address" [ngClass]="{'errorClass': this.submitCommitted && !this.geolocationValid}">Address</label>
+        <app-geo-location id="address"  [addressName]="extractAddressName()"
+                          (geoAddress)="getGeolocationAddress($event)"
+                          (geoState)="updateBarsState($event)"></app-geo-location>
+      </div>
+
+      <!-- LOCATION -->
+      <div class="locationClass">
+
+        <!-- STREET NUMBER -->
+        <div class="streetNumberClass">
+          <label for="streetNumber" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('streetNumber')?.invalid}">Street Number</label>
+          <input type="text" id="streetNumber" class="form-control" formControlName="streetNumber" >
+        </div>
+
+        <!-- ZIP CODE -->
+        <div class="zipCodeClass">
+          <label for="zipCode" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('zipCode')?.invalid}">Postal Code</label>
+          <input type="text" id="zipCode" class="form-control" formControlName="zipCode" >
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="countryClass">
+          <label for="country" [ngClass]="{'errorClass': this.submitCommitted && this.auctionForm.get('country')?.invalid}">Country</label>
+          <input type="text" id="country" class="form-control" formControlName="country" >
+        </div>
+
+
+      </div>
+
+      <!-- DATEPICKER - IMAGES -->
+      <div class="dateImagesClass">
+
+        <!-- DATE PICKER -->
+        <div class="datePickerClass">
+          <label for="dt" [ngClass]="{'errorClass': this.submitCommitted && !this.dateValid}">End Date</label>
+          <app-calendar [defaultDate]="dateHint" id="dt" (emitDate)="getDate($event)"></app-calendar>
+        </div>
+
+        <!-- IMAGE FILES -->
+        <div class="imageFilesClass">
+          <label for="fl" [ngClass]="{'errorClass': this.submitCommitted && this.imageFiles.length==0}">Images</label>
+          <input id="fl" type="file" accept="image/png,image/jpeg" (change)="fileUpload($event)" multiple>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+    <div class="csClass">
+
+      <!-- CATEGORIES DROPDOWN-MENU -->
+      <div class="categoriesClass">
+        <label for="ddm" [ngClass]="{'errorClass': this.submitCommitted && this.selectedCategories.length==0}">Categories</label>
+
+        <ng-select id="ddm" class="dropdownClass" [multiple]="true" [(ngModel)]="selectedCategories">
+
+          <ng-option *ngFor="let category of categories" [value]="category">
+            <span class="ddmOption">{{category}}</span>
+          </ng-option>
+
+        </ng-select>
+
+      </div>
+
+      <button class="btn btn-outline-primary submitClass" (click)="submitForm()">Submit</button>
+
+    </div>
+
+
+  </div>
+
+  <!-- MAP - [latitude] , [longitude] = Parent to Map  - (mapAddress) = Map to Parent  -->
+  <app-map class="auctionMap" [latitude]="extractLatitude()" [longitude]="extractLongitude()" [isInteractive]="true"
+           (mapAddress)="getMapsAddress($event)"></app-map>
+
+
+</div>

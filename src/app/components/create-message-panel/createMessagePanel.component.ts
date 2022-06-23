@@ -6,9 +6,9 @@ import {CustomMessage} from "../../interfaces/CustomMessage";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-create-message',
-  templateUrl: './create-message.component.html',
-  styleUrls: ['./create-message.component.css']
+  selector: 'app-create-message-panel',
+  templateUrl: './createMessagePanel.component.html',
+  styleUrls: ['./createMessagePanel.component.css']
 })
 export class CreateMessageComponent implements OnInit {
 

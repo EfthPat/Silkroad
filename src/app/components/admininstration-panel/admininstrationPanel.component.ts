@@ -6,10 +6,10 @@ import {UtilService} from "../../services/util.service";
 
 @Component({
   selector: 'app-admin-navigation-panel',
-  templateUrl: './adminPanel.component.html',
-  styleUrls: ['./adminPanel.component.css']
+  templateUrl: './admininstrationPanel.component.html',
+  styleUrls: ['./admininstrationPanel.component.css']
 })
-export class AdminPanelComponent implements OnInit {
+export class AdmininstrationPanelComponent implements OnInit {
 
   userThumbnails: UserThumbnail[]
 

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
-import {AdminPanelComponent} from "./components/admin-panel/adminPanel.component";
+import {AdmininstrationPanelComponent} from "./components/admininstration-panel/admininstrationPanel.component";
 import {AuctionBrowsingPanelComponent} from "./components/auction-browsing-panel/auctionBrowsingPanel.component";
 import {UserInformationPanel} from "./components/user-information-panel/userInformationPanel";
 import {MyAuctionsTabComponent} from "./components/my-auctions-tab/myAuctionsTab.component";
@@ -14,10 +14,10 @@ import {HomePanelComponent} from "./components/home-panel/homePanel.component";
 import {GuestGuard} from "./guards/guest.guard";
 import {AuthGuard} from "./guards/auth.guard";
 import {AdminGuard} from "./guards/admin.guard";
-import {CreateAuctionComponent} from "./components/create-auction/create-auction.component";
+import {CreateAuctionPanelComponent} from "./components/create-auction-panel/createAuctionPanel.component";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
 import {MessagePanelComponent} from "./components/message-panel/messagePanel.component";
-import {CreateMessageComponent} from "./components/create-message/create-message.component";
+import {CreateMessageComponent} from "./components/create-message-panel/createMessagePanel.component";
 import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
 import {endpoints} from "./constants/pageLinks";
 
@@ -31,7 +31,7 @@ const routes: Routes = [
   // PANEL/ADMINISTRATION/USERS
   {path: endpoints.users, component: NavigationPanelComponent, canActivate: [AdminGuard],
     children: [
-      {path: '', component: AdminPanelComponent, outlet: 'administration'}
+      {path: '', component: AdmininstrationPanelComponent, outlet: 'administration'}
     ]
   },
 
@@ -91,8 +91,8 @@ const routes: Routes = [
 
   //---------------------------- CREATE / UPDATE / AUCTION BIDS / VIEW AUCTION ---------------------------------------//
 
-  {path: endpoints.createAuction, component: CreateAuctionComponent, canActivate: [AuthGuard]},
-  {path: 'auctions/:auctionID/update', component: CreateAuctionComponent, canActivate: [AuthGuard]},
+  {path: endpoints.createAuction, component: CreateAuctionPanelComponent, canActivate: [AuthGuard]},
+  {path: 'auctions/:auctionID/update', component: CreateAuctionPanelComponent, canActivate: [AuthGuard]},
   {path: 'auctions/:auctionID/bids', component: AuctionBidsPanelComponent, canActivate: [AuthGuard]},
   {path: 'auctions/:auctionID/view', component: ViewAuctionComponent},
 

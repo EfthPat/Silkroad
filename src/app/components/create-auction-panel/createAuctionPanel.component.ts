@@ -12,11 +12,11 @@ import {endpoints} from "../../constants/pageLinks";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-create-auction',
-  templateUrl: './create-auction.component.html',
-  styleUrls: ['./create-auction.component.css']
+  selector: 'app-create-auction-panel',
+  templateUrl: './createAuctionPanel.component.html',
+  styleUrls: ['./createAuctionPanel.component.css']
 })
-export class CreateAuctionComponent implements OnInit {
+export class CreateAuctionPanelComponent implements OnInit {
 
   auctionID: number
   updateAuction: boolean

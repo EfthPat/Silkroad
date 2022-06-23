@@ -8,13 +8,13 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {SearchBarComponent} from './components/search-bar/searchBar.component';
-import {CreateAuctionComponent} from './components/create-auction/create-auction.component';
+import {CreateAuctionPanelComponent} from './components/create-auction-panel/createAuctionPanel.component';
 import {MapComponent} from './components/map/map.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {GeoLocationComponent} from './components/geo-location/geo-location.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {AdminPanelComponent} from './components/admin-panel/adminPanel.component';
+import {AdmininstrationPanelComponent} from './components/admininstration-panel/admininstrationPanel.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
@@ -37,7 +37,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {MessagePanelComponent} from "./components/message-panel/messagePanel.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MessageDialogComponent} from "./components/message-dialog/message-dialog.component";
-import {CreateMessageComponent} from "./components/create-message/create-message.component";
+import {CreateMessageComponent} from "./components/create-message-panel/createMessagePanel.component";
 import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
 import {AuctionExportDialogComponent} from "./components/auction-export-dialog/auctionExportDialog.component";
 import {UtilService} from "./services/util.service";
@@ -61,10 +61,10 @@ import {
     AppComponent,
     AuctionBrowsingPanelComponent,
     SearchBarComponent,
-    CreateAuctionComponent,
+    CreateAuctionPanelComponent,
     MapComponent,
     GeoLocationComponent,
-    AdminPanelComponent,
+    AdmininstrationPanelComponent,
     UserInformationPanel,
     MyAuctionsTabComponent,
     MyPurchasesTabComponent,

@@ -1,0 +1,45 @@
+
+
+
+.alertDialog{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: rgba(128, 128, 128, 0.58) 1px solid;
+  width: 55vh;
+  height: 25vh;
+  margin: 0;
+}
+
+.alertMessage{
+  font-family: "Yu Gothic", sans-serif;
+  font-size: large;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding: 0 1%;
+  margin: 10% 0 0 0;
+}
+
+
+.acceptButton{
+  border-radius: 20px;
+  height: 15%;
+  width: 50%;
+  margin: 0 0 10% 0;
+  background: rgba(135, 189, 189, 0.62);
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.acceptButton:active, .acceptButton:hover{
+  background: #4d8d8d;
+}
+
+.acceptButtonText{
+  margin: 0;
+  padding: 0;
+  font-weight: bolder;
+  font-size: medium;
+}

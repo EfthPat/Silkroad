@@ -20,7 +20,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
       if(error.status==500)
       {
-
       }
 
       return throwError(error);

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RequestService} from "../../services/request.service";
+import {MatDialogRef} from "@angular/material/dialog";
+import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker";
 
 @Component({
   selector: 'app-export',
@@ -13,14 +15,22 @@ export class ExportComponent implements OnInit {
   exportFormat: string
   startDate: string
   endDate: string
+  startDateValues: number[]
+  endDateValues: number[]
+  startDateValid: boolean
+  endDateValid: boolean
 
 
-  constructor( private requestService: RequestService) {
+  constructor(private dialogRef: MatDialogRef<ExportComponent>, private requestService: RequestService) {
     this.submitCommitted = false
     this.inJSONformat = true
     this.exportFormat = "JSON"
     this.startDate = ""
     this.endDate = ""
+    this.startDateValues = []
+    this.endDateValues = []
+    this.startDateValid = false
+    this.endDateValid = false
   }
 
   setExportFormat(format: string)
@@ -29,11 +39,18 @@ export class ExportComponent implements OnInit {
   }
 
 
-  exportAuctions(exportFormat: string, startDate: string, endDate: string): void {
+  exportAuctions(exportFormat: string): void {
+
+    this.submitCommitted = true
+
+    if(!(this.startDateValid && this.endDateValid))
+      return
+
+    this.swapDateTimes()
 
     let inJSONformat : boolean = (exportFormat==="JSON")
 
-    this.requestService.exportAuctions(inJSONformat, startDate, endDate).subscribe(
+    this.requestService.exportAuctions(inJSONformat, this.startDate, this.endDate).subscribe(
       // if auctions were fetched successfully
       response => {
 
@@ -49,21 +66,94 @@ export class ExportComponent implements OnInit {
       error => {}
     )
 
+    // close dialog
+    this.dialogRef.close()
+
+    //
+
   }
 
   ngOnInit(): void {}
 
-  getDates(dates: any): void {
-    this.startDate = dates[0]
-    this.endDate = dates[1]
+  getDateTime(dateTime: any,startDate: boolean): void {
+
+    let newDate = this.formatDateTime(dateTime)
+
+
+    if(startDate)
+    {
+      this.startDateValues = dateTime
+      this.startDate = newDate
+      this.startDateValid = true
+    }
+    else
+    {
+      this.endDateValues = dateTime
+      this.endDate = newDate
+      this.endDateValid = true
+    }
+
   }
 
   submit(): void {
-    this.exportAuctions(this.exportFormat,this.startDate,this.endDate)
+    this.exportAuctions(this.exportFormat)
   }
 
 
+  formatDateTime(dateTime: number[]) : string {
 
+    let newDateTime = ""
+
+    if(dateTime[2]<10)
+      newDateTime+= "0"
+    newDateTime+= dateTime[2].toString()+"/"
+    dateTime[1]+=1
+    if(dateTime[1]<10)
+      newDateTime+= "0"
+    newDateTime+= (dateTime[1]).toString()+"/"
+    newDateTime+= dateTime[0].toString()+" "
+
+    if(dateTime[3]<10)
+      newDateTime+= "0"
+    newDateTime+= dateTime[3].toString()+":"
+    if(dateTime[4]<10)
+      newDateTime+= "0"
+    newDateTime+= dateTime[4].toString()+":"
+    if(dateTime[5]<10)
+      newDateTime+= "0"
+    newDateTime+= dateTime[5].toString()
+
+    return newDateTime
+  }
+
+  swapDateTimes() : void {
+
+
+    if(this.startDateValues && this.endDateValues)
+    {
+      for(let i=0; i<this.startDateValues.length;i++)
+      {
+        if(this.startDateValues[i]>this.endDateValues[i])
+        {
+          let tempValue
+          tempValue = this.startDateValues
+          this.startDateValues = this.endDateValues
+          this.endDateValues = tempValue
+
+          tempValue = this.startDate
+          this.startDate = this.endDate
+          this.endDate = tempValue
+          break
+        }
+        else if(this.startDateValues[i]<this.endDateValues[i])
+          break
+      }
+
+    }
+
+  }
 
 
 }
+
+

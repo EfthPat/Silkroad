@@ -5,7 +5,8 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  api: string = 'http://api.positionstack.com'
+  api: string = 'https://eu1.locationiq.com'
+  api_: string = 'https://api.locationiq.com'
 
   constructor() {
   }
@@ -14,8 +15,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
     // get JWT from local storage
     let jwt = localStorage.getItem('jwt')
-    // if JWT exists
-    if (jwt && !request.url.includes(this.api)) {
+    // if JWT exists and the request is not destined to the geocoding API
+    if (jwt && !request.url.includes(this.api)  && !request.url.includes(this.api_)) {
 
       // add the JWT to the header of the outgoing server request
       request = request.clone({

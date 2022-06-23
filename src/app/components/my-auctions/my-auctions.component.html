@@ -27,7 +27,7 @@
         <div class="cardImageClass">
           <!-- IMAGE -->
           <img class="imageClass" (click)="auctionInfo(i)"
-               src="http://localhost:8081/media/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
+               src="https://localhost:8443/media/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
           <button class="page-link nextImageClass fa fa-angle-right" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
@@ -39,7 +39,9 @@
 
           <mat-card-title class="auctionNameClass" (click)="auctionInfo(i)">{{thumbnail.name}}</mat-card-title>
           <mat-card-subtitle class="endDateClass" (click)="auctionInfo(i)">Expiration on {{utilService.reformatDate(thumbnail.endDate)}}!</mat-card-subtitle>
-
+          <mat-card-subtitle class="locationClass">Highest Bid at
+            {{thumbnail.highestBid>thumbnail.firstBid ? thumbnail.highestBid : thumbnail.firstBid}}
+            $!</mat-card-subtitle>
           <div class="cardButtonsClass">
 
             <!-- IF THE AUCTION IS EXPIRED AND THERE'S A BUYER-->

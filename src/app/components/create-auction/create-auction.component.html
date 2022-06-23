@@ -31,7 +31,7 @@
 
       <!-- GEOLOCATION BAR - [addressName] = MAP->PARENT->BAR - (geoAddress) = BAR->PARENT -->
       <div class="addressBarClass">
-        <label for="address" [ngClass]="{'errorClass': this.submitCommitted && !this.geolocationValid}">Address</label>
+        <label for="address" [ngClass]="{'errorClass': this.submitCommitted && !this.geolocationValid}">Street Name</label>
         <app-geo-location id="address"  [addressName]="extractAddressName()"
                           (geoAddress)="getGeolocationAddress($event)"
                           (geoState)="updateBarsState($event)"></app-geo-location>
@@ -67,12 +67,12 @@
         <!-- DATE PICKER -->
         <div class="datePickerClass">
           <label for="dt" [ngClass]="{'errorClass': this.submitCommitted && !this.dateValid}">End Date</label>
-          <app-calendar [defaultDate]="dateHint" id="dt" (emitDate)="getDate($event)"></app-calendar>
+          <date-time id="dt" (dateTimeEmitter)="getDateTime($event)"></date-time>
         </div>
 
         <!-- IMAGE FILES -->
         <div class="imageFilesClass">
-          <label for="fl" [ngClass]="{'errorClass': this.submitCommitted && this.imageFiles.length==0}">Images</label>
+          <label for="fl">Images</label>
           <input id="fl" type="file" accept="image/png,image/jpeg" (change)="fileUpload($event)" multiple>
         </div>
 

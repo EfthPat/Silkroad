@@ -4,7 +4,9 @@ import {MapService} from "../../services/map.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {RequestService} from "../../services/request.service";
+import {DateTimeComponent} from "../date-time/date-time.component";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
@@ -26,8 +28,6 @@ export class CreateAuctionComponent implements OnInit {
   imageFiles: File[]
   categories: Category[]
   selectedCategories: string[]
-  // UI variables
-  dateHint: string
 
   constructor(private mapService: MapService, private requestService: RequestService, private router: Router,
               private route: ActivatedRoute, private authService: AuthService, private dialog: MatDialog) {
@@ -39,23 +39,23 @@ export class CreateAuctionComponent implements OnInit {
     this.dateValid = false
     // updated by MAP and GEO-LOCATION ADDRESS BAR
     this.address = null
-    this.dateHint = "DD/MM/YY"
     this.imageFiles = []
     this.categories = []
     this.selectedCategories = []
 
     this.auctionForm = new FormGroup(
       {
+
         name: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
         firstBid: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*(.?[0-9]{1,2})$")]),
         buyNow: new FormControl('', [Validators.pattern("^[0-9]*(.?[0-9]{1,2})?$")]),
-        zipCode: new FormControl('', [Validators.required, Validators.pattern("^\\d{5}(?:[-\\s]\\d{4})?$")]),
-        endDate: new FormControl('', [Validators.required]),
-        streetNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
 
-        // exclude special characters
-        country: new FormControl('', [Validators.required, Validators.pattern('^[^0-9!@#$%^*()_+=?><`~]+$')]),
+        zipCode: new FormControl('', [Validators.required]),
+        endDate: new FormControl('', [Validators.required]),
+        streetNumber: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
+
       },
       {validators: this.buyNowValidator}
     )
@@ -90,9 +90,9 @@ export class CreateAuctionComponent implements OnInit {
 
           // store LAT, LONG and NAME of the address to forward them to Map and GeoLocation components respectively
           this.address = {
-            latitude: response.address.coordinates.latitude,
-            longitude: response.address.coordinates.longitude,
-            label: response.address.streetName
+            lat: response.address.coordinates.latitude,
+            lon: response.address.coordinates.longitude,
+            address: {name: response.address.streetName}
           }
 
           // forward LAT, LONG to MAP
@@ -108,7 +108,6 @@ export class CreateAuctionComponent implements OnInit {
           month = month.toString()
           let year = date.getFullYear().toString()
 
-          this.dateHint = day + "/" + month + "/" + year
 
           // fill the form with the preexistent values
           this.auctionForm.get('name')?.setValue(response.name)
@@ -140,10 +139,11 @@ export class CreateAuctionComponent implements OnInit {
     this.requestService.getCategories().subscribe(
       // if server responded successfully
       response => {
+
         for (let category of response)
           this.categories.push(category)
       },
-      // if an error occurred
+      // if categories couldn't be fetched
       error => {
         console.log("CATEGORIES COULDN'T BE FETCHED!", error)
         this.redirectUser()
@@ -174,16 +174,27 @@ export class CreateAuctionComponent implements OnInit {
     // store the whole address the MAP sent you
     this.address = address
 
+
+    console.log("CAUGHT :",this.address)
+
     if (this.address) {
+
       this.auctionForm.get('streetNumber')?.reset()
-      this.auctionForm.get('country')?.reset()
       this.auctionForm.get('zipCode')?.reset()
-      if (this.address.number)
-        this.auctionForm.get('streetNumber')?.setValue(this.address.number)
-      if (this.address.country)
-        this.auctionForm.get('country')?.setValue(this.address.country)
-      if (this.address.postal_code)
-        this.auctionForm.get('zipCode')?.setValue(this.address.postal_code)
+      this.auctionForm.get('country')?.reset()
+
+      if (this.address.address.house_number)
+        this.auctionForm.get('streetNumber')?.setValue(this.address.address.house_number)
+
+      if (this.address.address.country)
+        this.auctionForm.get('country')?.setValue(this.address.address.country)
+      else if (this.address.address.state)
+        this.auctionForm.get('country')?.setValue(this.address.address.state)
+
+      if (this.address.address.postcode)
+        this.auctionForm.get('zipCode')?.setValue(this.address.address.postcode)
+
+
     }
 
     // extract the name from the address object and send it to geolocation-bar in HTML
@@ -195,7 +206,24 @@ export class CreateAuctionComponent implements OnInit {
     let addressName: string = ""
 
     if (this.address) {
-      addressName = this.address.label
+      if (this.address.address.road) {
+        addressName = this.address.address.road
+      } else if (this.address.address.name) {
+        addressName = this.address.address.name
+      }
+      else if (this.address.address.town) {
+        addressName = this.address.address.town
+      }
+      else if (this.address.address.city) {
+        addressName = this.address.address.city
+      }
+      else if (this.address.address.municipality) {
+        addressName = this.address.address.municipality
+      }
+      else
+      {
+        addressName = this.address.display_name
+      }
     }
 
     return addressName
@@ -204,7 +232,7 @@ export class CreateAuctionComponent implements OnInit {
   // GEO LISTENER
   getGeolocationAddress(address: any): void {
 
-    // store the whole address label
+    // store the whole address
     this.address = address
     this.geolocationValid = true
 
@@ -212,12 +240,17 @@ export class CreateAuctionComponent implements OnInit {
       this.auctionForm.get('streetNumber')?.reset()
       this.auctionForm.get('country')?.reset()
       this.auctionForm.get('zipCode')?.reset()
-      if (this.address.number)
-        this.auctionForm.get('streetNumber')?.setValue(this.address.number)
-      if (this.address.country)
-        this.auctionForm.get('country')?.setValue(this.address.country)
-      if (this.address.postal_code)
-        this.auctionForm.get('zipCode')?.setValue(this.address.postal_code)
+
+      if (this.address.address.house_number)
+        this.auctionForm.get('streetNumber')?.setValue(this.address.address.house_number)
+
+      if (this.address.address.country)
+        this.auctionForm.get('country')?.setValue(this.address.address.country)
+      else if (this.address.address.state)
+        this.auctionForm.get('country')?.setValue(this.address.address.state)
+
+      if (this.address.address.postcode)
+        this.auctionForm.get('zipCode')?.setValue(this.address.address.postcode)
     }
 
 
@@ -230,7 +263,7 @@ export class CreateAuctionComponent implements OnInit {
     let latitude = 37.9838
 
     if (this.address) {
-      latitude = this.address.latitude
+      latitude = this.address.lat
     }
 
     return latitude
@@ -241,7 +274,7 @@ export class CreateAuctionComponent implements OnInit {
     let longitude = 23.7275
 
     if (this.address)
-      longitude = this.address.longitude
+      longitude = this.address.lon
 
     return longitude
   }
@@ -251,12 +284,17 @@ export class CreateAuctionComponent implements OnInit {
     this.geolocationValid = state
   }
 
-  // DATE LISTENER
-  getDate(date: any): void {
-    this.auctionForm.get('endDate')?.setValue(date)
+  // DATETIME LISTENER
+  getDateTime(dateTime: any): void {
+
+    let newDate = new Date(dateTime[0],dateTime[1],dateTime[2],dateTime[3],dateTime[4],dateTime[5],dateTime[6])
+
+    this.auctionForm.get('endDate')?.setValue(newDate.toISOString())
+
 
     // check if the selected date is valid
     this.dateValid = this.auctionForm.get('endDate')?.value >= new Date().toISOString();
+
 
   }
 
@@ -264,7 +302,10 @@ export class CreateAuctionComponent implements OnInit {
 
     // store all the user-selected images in an image array
     for (let imageFile of event.target.files)
-      this.imageFiles.push(imageFile)
+    {
+      if(imageFile.type==="image/png" || imageFile.type==="image/jpeg")
+        this.imageFiles.push(imageFile)
+    }
 
   }
 
@@ -272,15 +313,17 @@ export class CreateAuctionComponent implements OnInit {
 
     this.submitCommitted = true
 
-    if (!(this.auctionForm.valid && this.geolocationValid && this.dateValid && this.imageFiles.length && this.selectedCategories.length))
+    if (!(this.auctionForm.valid && this.geolocationValid && this.dateValid && this.selectedCategories.length))
       return
 
     // if user wants to update an old auction or create a new one, create a confirmation dialog
     let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
 
+    let submit : string = this.updateAuction ? "update" : "create"
+
     dialogConfig.data = {
-      message: "Do you want to submit this auction?"
+      message: "Do you want to "+submit+" this auction?"
     }
 
     // open the dialog
@@ -295,33 +338,46 @@ export class CreateAuctionComponent implements OnInit {
 
           let fullAuction: FormData = new FormData()
 
-
           // function that extracts street name
           let getStreetName = (address: any) => {
-            if (address.street)
-              return address.street
-            if (address.name)
-              return address.name
-            return address.label
+            if (address.address.road)
+              return address.address.road
+
+            if (address.address.name)
+              return address.address.name
+
+            if (address.address.town)
+              return address.address.town
+
+            if (address.address.city)
+              return address.address.city
+
+            if (address.address.municipality)
+              return address.address.municipality
+
+            return address.address.diplay_name
           }
 
           // function that extracts location
           let getLocation = (address: any, defaultValue: any) => {
-            if (address.locality)
-              return address.locality
-            if (address.neighbourhood)
-              return address.neighbourhood
-            if (address.region)
-              return address.region
-            if (address.county)
-              return address.county
-            if (address.continent)
-              return address.continent
+
+            if (address.address.neighbourhood)
+              return address.address.neighbourhood
+
+            if (address.address.city)
+              return address.address.city
+
+            if (address.address.town)
+              return address.address.town
+
+            if (address.address.region)
+              return address.address.region
+
+            if (address.address.county)
+              return address.address.county
+
             return defaultValue
           }
-
-          console.log("ADDRESS :")
-          console.table(this.address)
 
           // create the body of the auction
           let auction = {
@@ -334,12 +390,11 @@ export class CreateAuctionComponent implements OnInit {
 
             address: {
               coordinates: {
-                latitude: this.address.latitude,
-                longitude: this.address.longitude
+                latitude: this.address.lat,
+                longitude: this.address.lon
               },
 
               country: this.auctionForm.get('country')?.value,
-              // if NULL -> DEFAULT VALUE
               location: getLocation(this.address, this.auctionForm.get('country')?.value),
               streetName: getStreetName(this.address),
               streetNumber: this.auctionForm.get('streetNumber')?.value,
@@ -347,51 +402,96 @@ export class CreateAuctionComponent implements OnInit {
             }
           }
 
-          console.log("AUCTION :")
-          console.table(auction)
 
           // insert the auction body as a string
           fullAuction.append('auction', new Blob([JSON.stringify(auction)], {type: "application/json"}))
 
-          // insert the images
-          for (let imageFile of this.imageFiles)
-            fullAuction.append('images', imageFile)
+          if(this.imageFiles.length>0)
+          {
+            for (let imageFile of this.imageFiles)
+              fullAuction.append('images', imageFile)
+          }
 
           if (this.updateAuction) {
             this.requestService.updateAuction(fullAuction, this.auctionID).subscribe(
-              // if the auction was created
-              () => {
-                this.redirectUser()
+
+              // if the auction was updated successfully
+              (response) => {
+
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: "Auction was updated successfully! Continue .."
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                  ()=>{
+                    this.redirectUser()
+                    return
+                  }
+                )
+
               },
-              // if the auction wasn't created
+
+              // if the auction wasn't updated
               error => {
                 console.log("AUCTION-UPDATE FAILED :", error)
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: "Auction failed to be updated .."
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
               }
             )
           } else {
             this.requestService.createAuction(fullAuction).subscribe(
-              // if the auction was created
-              () => {
+
+              // if the auction was created successfully
+              (response) => {
+
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: "Auction was created successfully! Continue .."
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                  ()=>{
+                    this.redirectUser()
+                    return
+                  }
+                )
+
                 this.redirectUser()
               },
               // if the auction wasn't created
               error => {
+
                 console.log("AUCTION-CREATION FAILED :", error)
+
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: "Auction creation failed! Continue .."
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
+
               }
             )
           }
-
-
         }
-
       }
     )
-
   }
 
   redirectUser(): void {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || 'browse';
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || 'panel/activity/my-auctions';
     this.router.navigate([returnUrl])
     return
   }
 }
+
+

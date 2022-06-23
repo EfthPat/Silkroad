@@ -23,6 +23,7 @@ export class MessageDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

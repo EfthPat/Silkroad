@@ -15,13 +15,19 @@
 
   <hr class="dividerClass">
 
-  <!-- DATE RANGE -->
-  <div class="daterangeClass">
-    <label for="dr">Date range</label>
-    <app-daterange id="dr" (emitDates)="getDates($event)"></app-daterange>
+  <!-- START DATE -->
+  <div class="dateTime">
+    <label for="sd" [ngClass]="{'errorClass': this.submitCommitted && !this.startDateValid}">Start Date</label>
+    <date-time id="sd" (dateTimeEmitter)="getDateTime($event,true)"></date-time>
   </div>
 
-  <hr class="dividerClass">
+
+  <!-- END DATE -->
+  <div class="dateTime">
+    <label for="ed" [ngClass]="{'errorClass': this.submitCommitted  && !this.endDateValid}">End Date</label>
+    <date-time id="ed" (dateTimeEmitter)="getDateTime($event,false)"></date-time>
+  </div>
+
 
   <!-- EXPORT BUTTON-->
   <button class="btn btn-dark exportButtonClass" (click)="submit()">Export</button>

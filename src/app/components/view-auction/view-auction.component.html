@@ -29,12 +29,12 @@
             <label class="textLabel" for="highestBid">Highest Bid</label>
             <p id="highestBid" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('highestBid')?.value)}} $</p>
           </div>
+
+
           <!-- BUY PRICE -->
-          <div class="team shifted">
+          <div class="team shifted" *ngIf="this.auctionForm.get('buyPrice')?.value!=='N/A'">
             <label class="textLabel" for="buyPrice">Buy Price</label>
-            <p id="buyPrice" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('buyPrice')?.value)}}
-              <span *ngIf="this.auctionForm.get('buyPrice')?.value!=='N/A'">$</span>
-            </p>
+            <p id="buyPrice" class="text">{{this.utilService.reformatNumber(this.auctionForm.get('buyPrice')?.value)}} $</p>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
     <div class="images">
 
       <!-- IMAGE -->
-      <img class="image" src="http://localhost:8081/media/{{auctionID}}/{{images[activeImage]}}">
+      <img class="image" src="https://localhost:8443/media/{{auctionID}}/{{images[activeImage]}}">
 
       <!-- NEXT IMAGE -->
       <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage()"></button>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RequestService} from "../../services/request.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   showError: boolean
 
-  constructor(private router: Router, private requestService: RequestService) {
+  constructor(private router: Router, private requestService: RequestService, private dataService : DataService) {
 
     this.registerForm = new FormGroup({
 
@@ -31,9 +32,9 @@ export class RegisterComponent implements OnInit {
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
       // residence
       addressStreet: new FormControl('', [Validators.required]),
-      streetNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
-      country: new FormControl('', [Validators.required, Validators.pattern('^[^09!@#$%^&*()_+=?><`~]+$')]),
-      zipCode: new FormControl('', [Validators.required, Validators.pattern('^\\d{5}(?:[-\\s]\\d{4})?$')]),
+      streetNumber: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required]),
+      zipCode: new FormControl('', [Validators.required]),
 
       // other info
       tin: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9]*$')]),
@@ -76,12 +77,17 @@ export class RegisterComponent implements OnInit {
       // pack user's data
       let userInfo = this.extractUserInfo()
 
+      console.log("INFO : ",userInfo)
+
       // send a signup request to the server with user's data
       this.requestService.registerUser(userInfo).subscribe(
         // if the server responded successfully
         response => {
+
           // then, the signup request was accepted and the user is redirected to home page
+          this.dataService.setException("Sign-up completed! Approval pending ..")
           this.router.navigate(['/browse'])
+          return
         },
 
         // if the signup request failed
@@ -112,29 +118,44 @@ export class RegisterComponent implements OnInit {
 
   extractUserInfo(): any {
 
-
-    // function that extracts street name
-    let getStreetName = (address: any) => {
-      if (address.street)
-        return address.street
-      if(address.name)
-        return address.name
-      return address.label
-    }
-
     // function that extracts location
     let getLocation = (address: any, defaultValue : any) => {
-      if (address.locality)
-        return address.locality
-      if (address.neighbourhood)
-        return address.neighbourhood
-      if (address.region)
-        return address.region
-      if(address.county)
-        return address.county
-      if(address.continent)
-        return address.continent
+
+      if (address.address.neighbourhood)
+        return address.address.neighbourhood
+
+      if (address.address.city)
+        return address.address.city
+
+      if (address.address.town)
+        return address.address.town
+
+      if(address.address.region)
+        return address.address.region
+
+      if(address.address.county)
+        return address.address.county
+
       return defaultValue
+    }
+
+    let getAddressName = (address: any) =>{
+      if (address.address.road)
+        return address.address.road
+
+      if (address.address.name)
+        return address.address.name
+
+      if (address.address.town)
+        return address.address.town
+
+      if (address.address.city)
+        return address.address.city
+
+      if (address.address.municipality)
+        return address.address.municipality
+
+      return address.address.diplay_name
     }
 
     let  userInfo =  {
@@ -147,13 +168,13 @@ export class RegisterComponent implements OnInit {
       tin: this.registerForm.get('tin')?.value,
       address: {
         coordinates  : {
-          latitude: this.address.latitude,
-          longitude: this.address.longitude
-        }
-        , country: this.registerForm.get('country')?.value,
+          latitude: this.address.lat,
+          longitude: this.address.lon
+        },
+        country: this.registerForm.get('country')?.value,
         // if NULL -> DEFAULT VALUE
         location: getLocation(this.address, this.registerForm.get('country')?.value),
-        streetName: getStreetName(this.address),
+        streetName: getAddressName(this.address),
         streetNumber: this.registerForm.get('streetNumber')?.value,
         zipCode: this.registerForm.get('zipCode')?.value
       }
@@ -164,22 +185,29 @@ export class RegisterComponent implements OnInit {
 
   getGeolocationAddress(address: any): void {
 
-    console.table(address)
 
     // store the whole address the geolocation sent you
     this.address = address
+
     this.registerForm.get('addressStreet')?.setErrors(null)
 
     if (this.address) {
+
       this.registerForm.get('streetNumber')?.reset()
       this.registerForm.get('country')?.reset()
       this.registerForm.get('zipCode')?.reset()
-      if (this.address.number)
-        this.registerForm.get('streetNumber')?.setValue(this.address.number)
-      if (this.address.country)
-        this.registerForm.get('country')?.setValue(this.address.country)
-      if (this.address.postal_code)
-        this.registerForm.get('zipCode')?.setValue(this.address.postal_code)
+
+      if (this.address.address.house_number)
+        this.registerForm.get('streetNumber')?.setValue(this.address.address.house_number)
+
+      if (this.address.address.country)
+        this.registerForm.get('country')?.setValue(this.address.address.country)
+      else if (this.address.address.state)
+        this.registerForm.get('country')?.setValue(this.address.address.state)
+
+      if (this.address.address.postcode)
+        this.registerForm.get('zipCode')?.setValue(this.address.address.postcode)
+
     }
 
     // extract the coordinates from the address object and send them to MAP in HTML
@@ -195,23 +223,28 @@ export class RegisterComponent implements OnInit {
 
   getMapsAddress(address: any): void {
 
-    console.table( address)
-
     // store the whole address the MAP sent you
     this.address = address
     this.registerForm.get('addressStreet')?.setErrors(null)
 
-
     if (this.address) {
+
       this.registerForm.get('streetNumber')?.reset()
       this.registerForm.get('country')?.reset()
       this.registerForm.get('zipCode')?.reset()
-      if (this.address.number)
-        this.registerForm.get('streetNumber')?.setValue(this.address.number)
-      if (this.address.country)
-        this.registerForm.get('country')?.setValue(this.address.country)
-      if (this.address.postal_code)
-        this.registerForm.get('zipCode')?.setValue(this.address.postal_code)
+
+
+      if (this.address.address.house_number)
+        this.registerForm.get('streetNumber')?.setValue(this.address.address.house_number)
+
+      if (this.address.address.country)
+        this.registerForm.get('country')?.setValue(this.address.address.country)
+      else if (this.address.address.state)
+        this.registerForm.get('country')?.setValue(this.address.address.state)
+
+      if (this.address.address.postcode)
+        this.registerForm.get('zipCode')?.setValue(this.address.address.postcode)
+
     }
 
     // extract the name from the address object and send it to geolocation-bar in HTML
@@ -223,7 +256,7 @@ export class RegisterComponent implements OnInit {
     let latitude = 37.9838
 
     if (this.address)
-      latitude = this.address.latitude
+      latitude = this.address.lat
 
     return latitude
   }
@@ -233,7 +266,7 @@ export class RegisterComponent implements OnInit {
     let longitude = 23.7275
 
     if (this.address)
-      longitude = this.address.longitude
+      longitude = this.address.lon
 
     return longitude
   }
@@ -243,13 +276,29 @@ export class RegisterComponent implements OnInit {
     let addressName: string = ""
 
     if (this.address) {
-      addressName = this.address.label
+      if (this.address.address.road) {
+        addressName = this.address.address.road
+      } else if (this.address.address.name) {
+        addressName = this.address.address.name
+      }
+      else if (this.address.address.town) {
+        addressName = this.address.address.town
+      }
+      else if (this.address.address.city) {
+        addressName = this.address.address.city
+      }
+      else if (this.address.address.municipality) {
+        addressName = this.address.address.municipality
+      }
+      else
+      {
+        addressName = this.address.display_name
+      }
     }
 
     return addressName
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

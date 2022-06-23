@@ -133,14 +133,16 @@
   right: 0.2%;
 }
 
-.cardName, .highestBid{
+.cardName, .highestBid, .location{
   width: 100%;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 2%;
+  padding: 1%;
   margin: 1% 0;
 }
 
-
+.location{
+  font-weight: bold;
+}

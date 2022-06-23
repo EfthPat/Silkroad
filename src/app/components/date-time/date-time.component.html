@@ -1,0 +1,15 @@
+
+
+<mat-form-field class="datetime">
+
+  <input matInput readonly [ngxMatDatetimePicker]="picker"
+         (ngModelChange)="updateDateTime()"
+         placeholder="Date & Time" [formControl]="dateControl">
+
+  <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+
+  <ngx-mat-datetime-picker #picker [showSeconds]="true"></ngx-mat-datetime-picker>
+
+</mat-form-field>
+
+

@@ -66,6 +66,7 @@ export class MapComponent implements OnInit {
         this.longitude = event.latlng.lng
         // update the current address and emit it
         this.updateAddress(event.latlng.lat, event.latlng.lng)
+
       })
 
     }
@@ -75,8 +76,10 @@ export class MapComponent implements OnInit {
   ngOnChanges(): void {
 
     this.marker.setLatLng([this.latitude, this.longitude])
-    if (this.map != undefined)
+
+    if (this.map !== undefined)
       this.map.setView([this.latitude, this.longitude])
+
   }
 
   // given a (LAT,LON) pair, update the address
@@ -86,12 +89,9 @@ export class MapComponent implements OnInit {
     this.mapService.getReverseLocation(lat, lon).subscribe(
       // get server's response
       response => {
-
-        // get the single address object from the response
-        let address = response.data[0]
-
         // emit the new address to any interested parent component
-        this.mapAddress.emit(address)
+        this.mapAddress.emit(response)
+
       }
     )
   }

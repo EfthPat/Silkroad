@@ -8,7 +8,6 @@
     <hr class="divider">
   </div>
 
-
   <!-- SLIDER -->
   <div class="slider row" *ngIf="showRecommendations">
 
@@ -29,7 +28,7 @@
 
           <!-- IMAGE -->
           <img class="image" (click)="viewRecommendation(i)"
-               src="http://localhost:8081/media/{{recommendation.id}}/{{recommendation.images[activeImages[i]]}}">
+               src="https://localhost:8443/media/{{recommendation.id}}/{{recommendation.images[activeImages[i]]}}">
 
           <!-- NEXT IMAGE -->
           <button class="page-link next nextImage fa fa-angle-right" (click)="getNextImage(i)"></button>
@@ -51,7 +50,10 @@
             {{this.utilService.reformatNumber((recommendation.highestBid>recommendation.firstBid ? recommendation.highestBid : recommendation.firstBid))}}
             $</mat-card-subtitle>
 
-
+          <!-- LOCATION -->
+          <mat-card-subtitle class="location">
+            Located in {{recommendation.country}} !
+          </mat-card-subtitle>
 
         </div>
 

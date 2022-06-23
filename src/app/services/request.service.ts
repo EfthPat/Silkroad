@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Observable, pipe} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {UserInfo} from "../interfaces/UserInfo";
-import {UserSignup} from "../interfaces/UserSignup";
 import {ServerExceptionResponse} from "../interfaces/ServerExceptionResponse";
 import {Bid} from "../interfaces/Bid";
 import {CustomMessage} from "../interfaces/CustomMessage";
@@ -29,7 +28,7 @@ export class RequestService {
   constructor(private httpClient: HttpClient) {
 
     // server URL
-    this.serverUrl = "http://localhost:8081"
+    this.serverUrl = "https://localhost:8443"
 
     // server path variables
     this.categoriesParameter = "/categories"
@@ -92,7 +91,6 @@ export class RequestService {
     if(buyNow)
       completeUrl += "&buy-now=true"
 
-    console.log("REQUEST :",completeUrl)
 
     return this.httpClient.get<any>(completeUrl)
 
@@ -272,7 +270,12 @@ export class RequestService {
   // http://localhost:8081
   // /auctions
 
-  createAuction(auction: FormData): Observable<ServerExceptionResponse | null> {
+  createAuction(auction: FormData): Observable<any> {
+
+    auction.forEach(x=>{
+      console.log(x)
+    })
+
 
     let completeUrl = this.serverUrl + this.auctionsParameter
 
@@ -288,7 +291,7 @@ export class RequestService {
   // /auctions
   // /{auctionID}
 
-  updateAuction(auction: FormData, auctionID: number): Observable<ServerExceptionResponse | null> {
+  updateAuction(auction: FormData, auctionID: number): Observable<any> {
 
     let completeUrl = this.serverUrl + this.auctionsParameter + "/" + auctionID.toString()
 
@@ -490,6 +493,9 @@ export class RequestService {
       headers = new HttpHeaders({'Content-Type': 'text/json'})
     else
       headers = new HttpHeaders({'Content-Type': 'text/xml'})
+
+    console.log(completeUrl)
+
 
     return this.httpClient.get(completeUrl, {headers, responseType: 'text'})
 

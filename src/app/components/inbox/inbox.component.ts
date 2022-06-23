@@ -31,7 +31,7 @@ export class InboxComponent implements OnInit {
     this.username = this.authService.getUsername()!
     this.messageThumbnails = []
 
-    // if we 're in outbox, in data parameter is passed 'true', and for inbox 'false'
+    // if we 're in outbox,'true' is passed as a parameter, and for inbox 'false'
     this.sent = this.route.snapshot.data[0]
 
     // pagination

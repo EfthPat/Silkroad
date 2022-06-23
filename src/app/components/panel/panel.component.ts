@@ -33,9 +33,9 @@ export class PanelComponent implements OnInit, OnChanges {
       this.tabIndex = 0
       this._activeElement = 1
 
-      if (splitUrl[3] === "my-bids")
+      if (splitUrl[3].startsWith("my-bids"))
         this.activeElement = 1
-      else if (splitUrl[3] === "my-purchases")
+      else if (splitUrl[3].startsWith("my-purchases"))
         this.activeElement = 2
       else
         this.activeElement = 3
@@ -45,9 +45,9 @@ export class PanelComponent implements OnInit, OnChanges {
       this.tabIndex = 1
       this.activeElement = 1
 
-      if (splitUrl[3] === "send")
+      if (splitUrl[3].startsWith("send"))
         this._activeElement = 1
-      else if (splitUrl[3] === "inbox")
+      else if (splitUrl[3].startsWith("inbox"))
         this._activeElement = 2
       else
         this._activeElement = 3

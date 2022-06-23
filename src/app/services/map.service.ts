@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
@@ -16,11 +16,9 @@ export class MapService {
 
   constructor(private httpClient: HttpClient) {
 
-    // geolocation variables
-    this.forwardUrl = "http://api.positionstack.com/v1/forward"
-    this.reverseUrl = "http://api.positionstack.com/v1/reverse"
-    this.APIkey = "00d443359dfc3ade317d4bdcaca48374"
-
+    this.forwardUrl = "https://api.locationiq.com/v1/autocomplete.php"
+    this.reverseUrl = "https://eu1.locationiq.com/v1/reverse.php"
+    this.APIkey = "pk.2191e0641f3fafa3e3cce39591faf310"
 
   }
 
@@ -29,12 +27,11 @@ export class MapService {
 
     let completeUrl =
       this.reverseUrl +
-      "?limit=1" +
-      "&access_key=" + this.APIkey +
-      "&query=" + lat.toString() + "," + lon.toString()
+      "?key=" + this.APIkey +
+      "&lat=" + lat.toString() +
+      "&lon=" + lon.toString() +
+      "&format=json"
 
-
-    // return an observable containing a single address in an array
     return this.httpClient.get<any>(completeUrl)
   }
 
@@ -42,22 +39,14 @@ export class MapService {
 
     let completeUrl =
       this.forwardUrl +
-      "?limit=" + limit.toString() +
-      "&access_key=" + this.APIkey +
-      "&query=" + address
+      "?key=" + this.APIkey +
+      "&q=" + address +
+      "&limit=" + limit.toString() +
+      "&dedupe=1"
 
     return this.httpClient.get<any>(completeUrl)
   }
 
-
-  // Get a Location Object and make a string-typed address from its components
-  extractAddress(location: any): string {
-    // pick specific fields here and concat them ...
-
-    console.log("extracting address from object :",location)
-
-    return location.label
-  }
 
 
 }

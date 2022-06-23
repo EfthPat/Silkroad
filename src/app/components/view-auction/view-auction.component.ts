@@ -7,9 +7,9 @@ import {Bid} from "../../interfaces/Bid";
 import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {DataService} from "../../services/data.service";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 
-
-// [ngClass]="{'error': this.bidCommitted && this.auctionForm.get('bid')?.invalid}"
 
 @Component({
   selector: 'app-view-auction',
@@ -35,7 +35,8 @@ export class ViewAuctionComponent implements OnInit {
   activeImage: number
 
   constructor(private requestService: RequestService, private router: Router, private route: ActivatedRoute,
-              public utilService: UtilService, private authService: AuthService, private dialog: MatDialog) {
+              public utilService: UtilService, private authService: AuthService, private dialog: MatDialog,
+              private dataService : DataService) {
 
     this.isBiddable = false
 
@@ -169,14 +170,41 @@ export class ViewAuctionComponent implements OnInit {
           let bidValue = this.auctionForm.get('bid')?.value
           let buyPrice = this.auctionForm.get('buyPrice')?.value
 
-          if (buyPrice !== 'N/A' && (+bidValue) > (+buyPrice))
+          let maxBid = false
+          if (buyPrice !== 'N/A' && (+bidValue) >= (+buyPrice))
+          {
+            maxBid = true
             bidValue = buyPrice
+          }
 
           let bid: Bid = {version: this.auctionVersion.toString(), amount: bidValue}
 
           this.requestService.bidOnAuction(this.auctionID, bid).subscribe(
             // if bid was successful
             response => {
+
+              if(maxBid)
+              {
+                let bid = this.utilService.reformatNumber(+bidValue)
+
+
+
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: "Auction won for "+bid.toString()+"$ ! Contact seller for more info .."
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                  ()=>{
+                    this.router.navigate(['/panel/messages/send'],
+                      {queryParams: {recipient: this.auctionForm.get('seller')?.value, title: this.auctionForm.get('name')?.value}})
+                    return
+                  }
+                )
+
+              }
+
 
               this.auctionForm.reset()
               this.bidCommitted = false
@@ -191,8 +219,20 @@ export class ViewAuctionComponent implements OnInit {
             },
             // if bid failed
             error => {
-              console.log("BID FAILED:", error)
-              this.getAuction(this.auctionID)
+
+              let dialogConfig = new MatDialogConfig();
+              dialogConfig.autoFocus = true;
+              dialogConfig.data = {
+                message: "Bid failed! Try bidding on another auction .."
+              }
+
+              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                ()=>{
+                  this.router.navigate(['/browse'])
+                }
+              )
+
+
             }
           )
 

@@ -12,24 +12,20 @@
         <input class="form-control" type="text" id="username" formControlName="username">
       </div>
 
-    </div>
-
-
-    <!-- ADDITIONAL INFO -->
-    <div class="additionalInfoClass">
-      <!-- TIN -->
       <div class="tinClass">
         <label for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
         <input class="form-control" type="text" id="tin" formControlName="tin">
       </div>
+
     </div>
+
 
     <!-- RESIDENCE -->
     <div class="residenceClass">
 
       <!-- STREET NAME -->
       <div class="streetNameClass">
-        <label for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street</label>
+        <label for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street Name</label>
         <app-geo-location id="address" [addressName]="extractAddressName()"
                           (geoAddress)="getGeolocationAddress($event)"
                           (geoState)="updateBarsState($event)"></app-geo-location>

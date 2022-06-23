@@ -5,7 +5,9 @@
   align-items: start;
 }
 
-.daterangeClass{
+.dateTime{
+  display: flex;
+  flex-direction: column;
   margin-top: 12%;
 }
 

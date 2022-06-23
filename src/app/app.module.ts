@@ -47,6 +47,15 @@ import {UtilService} from "./services/util.service";
 import {DeleteDialogComponent} from "./components/delete-dialog/delete-dialog.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
+import {DataService} from "./services/data.service";
+import {AlertDialogComponent} from "./components/alert-dialog/alert-dialog.component";
+import {DateTimeComponent} from "./components/date-time/date-time.component";
+import {MatInputModule} from "@angular/material/input";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
 
 @NgModule({
 
@@ -77,40 +86,48 @@ import {ImageSliderComponent} from "./components/image-slider/image-slider.compo
     DaterangeComponent,
     ExportComponent,
     DeleteDialogComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    AlertDialogComponent,
+    DateTimeComponent,
   ],
   // MODULES
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgxSliderModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatRadioModule,
-        MatCardModule,
-        MatButtonModule,
-        MatTabsModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        FormsModule,
-        NgSelectModule,
-        MatDialogModule,
-        MatCheckboxModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgxSliderModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    NgSelectModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatInputModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
+  ],
   // SERVICES , INTERCEPTORS
   providers: [
     RequestService,
     AuthService,
     UtilService,
+    DataService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
-  entryComponents:[MessageDialogComponent]
+  entryComponents: [MessageDialogComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
 
 // ng serve --ssl true --ssl-key ./ssl/localhost-key.pem --ssl-cert ./ssl/localhost.pem

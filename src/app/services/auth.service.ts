@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {
 
-    this.serverUrl = "http://localhost:8081"
+    this.serverUrl = "https://localhost:8443"
     this.loginParameter = "/login"
 
   }

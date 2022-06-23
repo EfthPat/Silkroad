@@ -4,6 +4,10 @@ import {BrowsingAuctionThumbnail} from "../../interfaces/BrowsingAuctionThumbnai
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UtilService} from "../../services/util.service";
+import {DataService} from "../../services/data.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 
 @Component({
   selector: 'app-browsing',
@@ -33,7 +37,8 @@ export class BrowsingComponent implements OnInit {
   priceRangeForm: FormGroup
 
   constructor(private requestService: RequestService, private route: ActivatedRoute, private router: Router,
-              public utilService: UtilService) {
+              public utilService: UtilService, private dataService : DataService, private dialog: MatDialog) {
+
 
     this.browsingAuctionThumbnails = this.imageLinks = []
 
@@ -210,9 +215,14 @@ export class BrowsingComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     // every time URL's state changes
     this.route.queryParams.subscribe(
       () => {
+
+
+
 
         // reset the search parameters
         this.resetParameters()
@@ -243,7 +253,6 @@ export class BrowsingComponent implements OnInit {
         {
           this.dfltMaxPrice = queryParameters['max-price']
           this.priceRangeForm.get('maxPrice')?.setValue(queryParameters['max-price'])
-
         }
 
         if(queryParameters['location'])
@@ -254,6 +263,9 @@ export class BrowsingComponent implements OnInit {
 
         this.getBrowsingAuctions(this.pageSize, 1, this.dfltMinPrice, this.dfltMaxPrice, this.dfltLocation,
           this.dfltCategory, this.dfltQuery, this.dfltBuyNow)
+
+
+
       }
     )
 

@@ -7,6 +7,7 @@ import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {MessageDialogComponent} from "../message-dialog/message-dialog.component";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 
 @Component({
   selector: 'app-my-auctions',
@@ -53,9 +54,13 @@ export class MyAuctionsComponent implements OnInit {
         this.auctionThumbnails = []
         this.imageLinks = []
 
+
         // fill auction thumbnail array
         for (let thumbnail of response.objects)
         {
+          console.log(thumbnail)
+
+
           this.auctionThumbnails.push(thumbnail)
           this.imageLinks.push([0])
         }
@@ -126,11 +131,36 @@ export class MyAuctionsComponent implements OnInit {
           this.requestService.deleteAuction(this.auctionThumbnails[index].id).subscribe(
             // if server deleted auction successfully
             response => {
-              this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+
+              let dialogConfig = new MatDialogConfig();
+              dialogConfig.autoFocus = true;
+              dialogConfig.data = {
+                message: "Auction deleted successfully!"
+              }
+
+              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                ()=>{
+                  this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+                }
+              )
+
+
             },
             // if server didn't manage to delete auction
             error => {
-              console.log("AUCTION DELETE FAILED :",error)
+              console.log("AUCTION DELETION FAILED :",error)
+
+              let dialogConfig = new MatDialogConfig();
+              dialogConfig.autoFocus = true;
+              dialogConfig.data = {
+                message: "Auction deletion failed .."
+              }
+
+              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                ()=>{
+                  this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+                }
+              )
             }
           )
         }

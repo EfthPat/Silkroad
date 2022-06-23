@@ -126,7 +126,7 @@
   width: 60%;
 }
 
-.auctionNameClass, .endDateClass, .cardButtonsClass{
+.auctionNameClass, .endDateClass, .cardButtonsClass, .locationClass{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -134,7 +134,7 @@
 }
 
 .auctionNameClass {
-  height: 40%;
+  height: 30%;
   padding: 1% 2%;
   text-align: center;
   margin: 0;
@@ -143,12 +143,20 @@
 .endDateClass {
   height: 25%;
   margin: 0;
-  padding: 1% 2%;
+  padding: 2% 1% 0;
   text-align: center;
 }
 
+.locationClass{
+  height: 25%;
+  padding: 1.5% 1% 0;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
 .cardButtonsClass {
-  height: 35%;
+  height: 25%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -157,8 +165,10 @@
 .contactButtonClass {
   align-self: end;
   text-align: center;
-  height: 70%;
+  height: 95%;
   width: 100%;
+  padding-top: 1%;
+
 }
 
 .updateDeleteClass {
@@ -167,11 +177,12 @@
   justify-content: space-between;
   align-items: center;
   width: 40%;
+  height: 80%;
 }
 
 .updateButtonClass, .deleteButtonClass {
-  height: 70%;
-  border-radius: 16px;
+  height: 95%;
+  border-radius: 4px;
   width: 40%;
 }
 

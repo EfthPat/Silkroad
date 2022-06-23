@@ -19,12 +19,15 @@ import {ViewAuctionComponent} from "./components/view-auction/view-auction.compo
 import {InboxComponent} from "./components/inbox/inbox.component";
 import {CreateMessageComponent} from "./components/create-message/create-message.component";
 import {AuctionBidsComponent} from "./components/auction-bids/auction-bids.component";
-import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
+import {DateTimeComponent} from "./components/date-time/date-time.component";
+import {ExportComponent} from "./components/export/export.component";
 
 
 const routes: Routes = [
 
+
   //----------------------------------- PANEL PAGE -------------------------------------------------------------------//
+
 
   // PANEL/ADMINISTRATION/USERS
   {path: 'panel/administration/users', component: PanelComponent, canActivate: [AdminGuard],
@@ -103,12 +106,6 @@ const routes: Routes = [
 
   {path: 'browse', component: BrowsingComponent},
   {path: 'home', component: HomeComponent},
-
-
-
-  // TODO : DELETE LATER
-
-  {path:'slider',component: ImageSliderComponent},
 
 
   //---------------------------- ANY OTHER LINK REDIRECTS TO BROWSE PAGE ---------------------------------------------//

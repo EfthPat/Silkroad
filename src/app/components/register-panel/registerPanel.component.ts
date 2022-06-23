@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {RequestService} from "../../services/request.service";
 import {DataService} from "../../services/data.service";
 import {endpoints} from "../../constants/pageLinks";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 
 @Component({
   selector: 'app-register-panel',
@@ -16,7 +18,7 @@ export class RegisterPanelComponent implements OnInit {
   registerForm: FormGroup
   showError: boolean
 
-  constructor(private router: Router, private requestService: RequestService, private dataService : DataService) {
+  constructor(private router: Router, private requestService: RequestService, private dialog: MatDialog) {
 
     this.registerForm = new FormGroup({
 
@@ -85,10 +87,20 @@ export class RegisterPanelComponent implements OnInit {
         // if the server responded successfully
         response => {
 
-          // then, the signup request was accepted and the user is redirected to home-navigation-panel page
-          this.dataService.setException("Sign-up completed! Approval pending ..")
-          this.router.navigate([endpoints.browse])
-          return
+          // then, the signup request was accepted and the user is redirected to home page
+
+          let dialogConfig = new MatDialogConfig();
+          dialogConfig.autoFocus = true;
+          dialogConfig.data = {
+            message: "Sign-up completed! Approval pending .."
+          }
+
+          let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
+
+          dialogRef.afterClosed().subscribe(()=>{
+            this.router.navigate([endpoints.browse])
+          })
+
         },
 
         // if the signup request failed

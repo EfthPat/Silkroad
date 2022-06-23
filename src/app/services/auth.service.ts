@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import jwt_decode from 'jwt-decode';
 import {ServerExceptionResponse} from "../interfaces/ServerExceptionResponse";
+import {serverLinks, serverParameters} from "../constants/server";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {
 
-    this.serverUrl = "https://localhost:8443"
-    this.loginParameter = "/login"
+    this.serverUrl = serverLinks[0]
+    this.loginParameter = serverParameters.login
 
   }
 
@@ -59,7 +60,7 @@ export class AuthService {
 
   // # POST
   // http://localhost:8081
-  // /login
+  // /login-navigation-panel
 
 
   login(username: string, password: string): Observable<HttpResponse<null | ServerExceptionResponse>> {
@@ -70,6 +71,7 @@ export class AuthService {
       username: username,
       password: password
     }
+
 
     let completeUrl = this.serverUrl + this.loginParameter
 

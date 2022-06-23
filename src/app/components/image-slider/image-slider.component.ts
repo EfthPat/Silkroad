@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ImageSliderComponent implements OnInit {
 
-  // server request : link + images[activeImage]
   @Input() link : string
   @Input() images : any[]
   activeImage = 0

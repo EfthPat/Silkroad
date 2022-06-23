@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import {Marker} from "leaflet";
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MapService} from "../../services/map.service";
+import {mapLinks} from "../../constants/map";
 
 @Component({
   selector: 'app-map',
@@ -37,7 +38,7 @@ export class MapComponent implements OnInit {
     this.isInteractive = false
 
 
-    this.tile = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
+    this.tile = mapLinks[0]
     this.zoom = 14
     this.marker = new Marker([this.latitude, this.longitude])
 

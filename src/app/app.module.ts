@@ -2,54 +2,51 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {BrowsingComponent} from './components/browsing/browsing.component';
+import {AuctionBrowsingPanelComponent} from './components/auction-browsing-panel/auctionBrowsingPanel.component';
 import {RequestService} from "./services/request.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
-import {SearchComponent} from './components/search/search.component';
+import {SearchBarComponent} from './components/search-bar/searchBar.component';
 import {CreateAuctionComponent} from './components/create-auction/create-auction.component';
 import {MapComponent} from './components/map/map.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {GeoLocationComponent} from './components/geo-location/geo-location.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {AdminComponent} from './components/admin/admin.component';
+import {AdminPanelComponent} from './components/admin-panel/adminPanel.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {UserInfoComponent} from './components/user-info/user-info.component';
-import {MyAuctionsComponent} from './components/my-auctions/my-auctions.component';
-import {MyPurchasesComponent} from './components/my-purchases/my-purchases.component';
-import {MyBidsComponent} from './components/my-bids/my-bids.component';
-import {PanelComponent} from './components/panel/panel.component';
+import {UserInformationPanel} from './components/user-information-panel/userInformationPanel';
+import {MyAuctionsTabComponent} from './components/my-auctions-tab/myAuctionsTab.component';
+import {MyPurchasesTabComponent} from './components/my-purchases-tab/myPurchasesTab.component';
+import {MyBidsTabComponent} from './components/my-bids-tab/myBidsTab.component';
+import {NavigationPanelComponent} from './components/navigation-panel/navigationPanel.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
-import {HomeComponent} from './components/home/home.component';
+import {LoginPanelComponent} from './components/login-panel/loginPanel.component';
+import {RegisterPanelComponent} from './components/register-panel/registerPanel.component';
+import {HomePanelComponent} from './components/home-panel/homePanel.component';
 import {AuthService} from "./services/auth.service";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {ErrorInterceptor} from "./interceptors/error.interceptor";
-import {CalendarComponent} from './components/calendar/calendar.component';
-import {MyMessagesComponent} from "./components/my-messages/my-messages.component";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
 import {MaterialModule} from "./material.module";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {InboxComponent} from "./components/inbox/inbox.component";
+import {MessagePanelComponent} from "./components/message-panel/messagePanel.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MessageDialogComponent} from "./components/message-dialog/message-dialog.component";
 import {CreateMessageComponent} from "./components/create-message/create-message.component";
-import {AuctionBidsComponent} from "./components/auction-bids/auction-bids.component";
-import {DaterangeComponent} from "./components/daterange/daterange.component";
-import {ExportComponent} from "./components/export/export.component";
+import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
+import {AuctionExportDialogComponent} from "./components/auction-export-dialog/auctionExportDialog.component";
 import {UtilService} from "./services/util.service";
-import {DeleteDialogComponent} from "./components/delete-dialog/delete-dialog.component";
+import {AuctionDeletionDialog} from "./components/auction-deletion-dialog/auctionDeletionDialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
 import {DataService} from "./services/data.service";
 import {AlertDialogComponent} from "./components/alert-dialog/alert-dialog.component";
-import {DateTimeComponent} from "./components/date-time/date-time.component";
+import {DateTimePickerComponent} from "./components/date-time-picker/dateTimePicker.component";
 import {MatInputModule} from "@angular/material/input";
 import {
   NgxMatDatetimePickerModule,
@@ -62,33 +59,30 @@ import {
   // COMPONENTS, DIRECTIVES, PIPES ..
   declarations: [
     AppComponent,
-    BrowsingComponent,
-    SearchComponent,
+    AuctionBrowsingPanelComponent,
+    SearchBarComponent,
     CreateAuctionComponent,
     MapComponent,
     GeoLocationComponent,
-    AdminComponent,
-    UserInfoComponent,
-    MyAuctionsComponent,
-    MyPurchasesComponent,
-    MyBidsComponent,
-    PanelComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent,
-    CalendarComponent,
-    MyMessagesComponent,
+    AdminPanelComponent,
+    UserInformationPanel,
+    MyAuctionsTabComponent,
+    MyPurchasesTabComponent,
+    MyBidsTabComponent,
+    NavigationPanelComponent,
+    LoginPanelComponent,
+    RegisterPanelComponent,
+    HomePanelComponent,
     ViewAuctionComponent,
-    InboxComponent,
+    MessagePanelComponent,
     MessageDialogComponent,
     CreateMessageComponent,
-    AuctionBidsComponent,
-    DaterangeComponent,
-    ExportComponent,
-    DeleteDialogComponent,
+    AuctionBidsPanelComponent,
+    AuctionExportDialogComponent,
+    AuctionDeletionDialog,
     ImageSliderComponent,
     AlertDialogComponent,
-    DateTimeComponent,
+    DateTimePickerComponent,
   ],
   // MODULES
   imports: [

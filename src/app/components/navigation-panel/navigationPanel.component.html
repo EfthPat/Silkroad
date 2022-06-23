@@ -1,0 +1,114 @@
+
+<search-bar></search-bar>
+<mat-tab-group class="tabGroup" [animationDuration]="'0'" [selectedIndex]="tabIndex" (selectedTabChange)="changeUrl($event)">
+
+    <!-- ACTIVITY TAB -->
+    <mat-tab label="Activity">
+
+      <!-- ACTIVITY GROUP -->
+      <div class="activityGroup">
+
+        <!-- ACTIVITY CATEGORIES -->
+        <div class="activityCategoriesGroup">
+
+
+          <div [ngClass]="{'activeElement': this.activeElement == 1}" class="bidsCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.myBids)">My Bids</button>
+          </div>
+
+          <div [ngClass]="{'activeElement': this.activeElement == 2}" class="purchasesCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.myPurchases)">My Purchases</button>
+          </div>
+
+          <div [ngClass]="{'activeElement': this.activeElement == 3}" class="auctionsCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.myAuctions)">My Auctions</button>
+          </div>
+
+        </div>
+
+        <!-- ACTIVITY CONTENT -->
+        <div class="activityContentClass">
+          <!-- NAMED OUTLET 'ACTIVITY' HERE -->
+          <router-outlet name="activity"></router-outlet>
+        </div>
+
+
+      </div>
+
+
+    </mat-tab>
+
+    <!-- MESSAGES TAB -->
+    <mat-tab label="Messages">
+      <!-- MESSAGES -->
+      <div class="messagesGroup">
+
+        <!-- MESSAGE CATEGORIES -->
+        <div class="messageCategoriesGroup">
+
+          <!-- SEND -->
+          <div [ngClass]="{'activeElement': this._activeElement == 1}" class="outboxCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.send)">Send</button>
+          </div>
+
+          <!-- INBOX -->
+          <div [ngClass]="{'activeElement': this._activeElement == 2}" class="inboxCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.inbox)">Inbox</button>
+          </div>
+
+          <!-- OUTBOX -->
+          <div [ngClass]="{'activeElement': this._activeElement == 3}" class="outboxCategoryClass">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.outbox)">Outbox</button>
+          </div>
+
+
+
+        </div>
+
+        <!-- MESSAGE CONTENT -->
+        <div class="messageContentClass">
+          <router-outlet name="messages"></router-outlet>
+        </div>
+
+      </div>
+
+
+    </mat-tab>
+
+    <!-- ADMINISTRATION -->
+    <mat-tab *ngIf="this.userRole==='ADMIN'" label="Administration">
+
+      <div class="administrationGroup">
+
+        <!-- ADMIN CATEGORIES -->
+        <div class="administrationCategoriesGroup">
+
+          <!-- USERS -->
+          <div class="usersCategoryClass activeElement">
+            <button class="btn btn-link" (click)="navigate(this.endpointSet.users)">Users</button>
+          </div>
+
+          <!-- EXPORT -->
+          <div class="exportCategoryClass">
+            <button class="btn btn-link" (click)="export()">Export</button>
+          </div>
+
+
+        </div>
+
+        <!-- ADMIN CONTENT -->
+        <div class="administrationContentClass">
+          <!-- NAMED OUTLET 'ADMINISTRATION' HERE -->
+          <router-outlet name="administration"></router-outlet>
+        </div>
+
+
+
+      </div>
+
+    </mat-tab>
+
+
+  </mat-tab-group>
+
+

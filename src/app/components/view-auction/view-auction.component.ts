@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RequestService} from "../../services/request.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
@@ -6,10 +6,10 @@ import {AuthService} from "../../services/auth.service";
 import {Bid} from "../../interfaces/Bid";
 import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
 import {DataService} from "../../services/data.service";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
-
+import {serverLinks, serverParameters} from "../../constants/server";
 
 @Component({
   selector: 'app-view-auction',
@@ -17,6 +17,9 @@ import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
   styleUrls: ['./view-auction.component.css']
 })
 export class ViewAuctionComponent implements OnInit {
+
+  serverLink: string
+  serverParameter: string
 
   // update, bid, view
   isBiddable: boolean
@@ -35,8 +38,10 @@ export class ViewAuctionComponent implements OnInit {
   activeImage: number
 
   constructor(private requestService: RequestService, private router: Router, private route: ActivatedRoute,
-              public utilService: UtilService, private authService: AuthService, private dialog: MatDialog,
-              private dataService : DataService) {
+              public utilService: UtilService, private authService: AuthService, private dialog: MatDialog) {
+
+    this.serverLink=serverLinks[0]
+    this.serverParameter = serverParameters.mediaParameter
 
     this.isBiddable = false
 
@@ -123,7 +128,7 @@ export class ViewAuctionComponent implements OnInit {
       // if auction fetching failed
       error => {
         console.log("VIEW-AUCTION FAILED :", error)
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home-navigation-panel'])
       }
     )
   }
@@ -158,7 +163,7 @@ export class ViewAuctionComponent implements OnInit {
     }
 
     // open the dialog
-    let dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    let dialogRef = this.dialog.open(AuctionDeletionDialog, dialogConfig);
 
     // get dialog's reply after it's closed
     dialogRef.afterClosed().subscribe(
@@ -197,7 +202,7 @@ export class ViewAuctionComponent implements OnInit {
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                   ()=>{
-                    this.router.navigate(['/panel/messages/send'],
+                    this.router.navigate(['/navigation-panel/messages/send'],
                       {queryParams: {recipient: this.auctionForm.get('seller')?.value, title: this.auctionForm.get('name')?.value}})
                     return
                   }

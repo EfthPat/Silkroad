@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from "../services/auth.service";
+import {roles} from "../constants/roles";
+import {endpoints} from "../constants/pageLinks";
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +17,12 @@ export class AuthGuard implements CanActivate {
 
     let userRole = this.authService.getUserRole()
 
-    if (userRole === "ADMIN" || userRole === "USER")
+    if (userRole === roles[2] || userRole === roles[1])
       return true;
-    else {
-      this.router.navigate(['/browse'])
-      return false;
-    }
+
+    this.router.navigate([endpoints.browse])
+    return false;
+
   }
 
 }

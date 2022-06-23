@@ -20,12 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
       if(error.status==500)
       {
-       /* console.log("ERR INTERCEPTOR CAUGHT 500 STATUS")
-        console.log("URL :",request.url)
-        console.log("METHOD :",request.method)
-        console.log("BODY :",request.body)*/
 
-      //  this.router.navigate(['/browse'])
       }
 
       return throwError(error);

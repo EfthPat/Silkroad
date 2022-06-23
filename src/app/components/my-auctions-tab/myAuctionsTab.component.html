@@ -1,0 +1,99 @@
+<div class="myAuctionsClass">
+
+  <!-- FILTERS -->
+  <div class="filtersGroup">
+
+    <p class="auctionLabel">Availability</p>
+    <div class="auctionStateClass">
+      <mat-radio-button class="buttonClass" (click)="submitFilter('any')"><p class="buttonTitle">All</p></mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('sold')"><p class="buttonTitle">Sold</p></mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('active')"><p class="buttonTitle">Active</p></mat-radio-button>
+    </div>
+
+
+
+  </div>
+
+  <!-- AUCTIONS + PAGINATION -->
+  <div class="apGroup">
+
+    <!-- CARD GROUP -->
+    <div class="cardsGroup">
+
+      <!-- CARD -->
+      <mat-card class="cardClass" *ngFor="let thumbnail of this.auctionThumbnails; let i=index">
+
+        <!-- CARD IMAGE -->
+        <div class="cardImageClass">
+          <!-- IMAGE -->
+          <img class="imageClass" (click)="auctionInfo(i)"
+               src="{{this.serverLink}}{{this.serverParameter}}/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
+          <!-- NEXT IMAGE -->
+          <button class="page-link nextImageClass fa fa-angle-right" (click)="getNextImage(i)"></button>
+          <!-- PREVIOUS IMAGE -->
+          <button class="page-link previousImageClass fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+        </div>
+
+        <!-- CARD CONTENT -->
+        <div class="cardContentClass">
+
+          <mat-card-title class="auctionNameClass" (click)="auctionInfo(i)">{{thumbnail.name}}</mat-card-title>
+          <mat-card-subtitle class="endDateClass" (click)="auctionInfo(i)">Expiration on {{utilService.reformatDate(thumbnail.endDate)}}!</mat-card-subtitle>
+          <mat-card-subtitle class="locationClass">Highest Bid at
+            {{thumbnail.highestBid>thumbnail.firstBid ? thumbnail.highestBid : thumbnail.firstBid}}
+            $!</mat-card-subtitle>
+          <div class="cardButtonsClass">
+
+            <!-- IF THE AUCTION IS EXPIRED AND THERE'S A BUYER-->
+            <a *ngIf="thumbnail.expired && thumbnail.bidder" class="contactButtonClass"
+               (click)="contactBuyer(i)">Contact Buyer</a>
+
+
+            <!-- IF THE AUCTION IS *NOT* EXPIRED AND THERE'S *NO* BUYER YET-->
+            <div *ngIf="(!thumbnail.expired) && (!thumbnail.bidder)" class="updateDeleteClass">
+              <button class="btn btn-outline-primary updateButtonClass" (click)="updateAuction(i)">Update</button>
+              <button class="btn btn-outline-secondary deleteButtonClass" (click)="deleteAuction(i)">Delete</button>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+      </mat-card>
+
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="paginationClass">
+
+      <div class="paginationBarClass">
+
+        <!-- PREVIOUS PAGE BUTTON -->
+        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex<=1">&laquo;
+        </button>
+
+        <!-- PAGE VALUE BUTTON -->
+        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+
+        <!-- NEXT PAGE BUTTON -->
+        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex>=this.totalPages">
+          &raquo;
+        </button>
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+</div>

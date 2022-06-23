@@ -4,10 +4,11 @@ import {MapService} from "../../services/map.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {RequestService} from "../../services/request.service";
-import {DateTimeComponent} from "../date-time/date-time.component";
+import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
+import {endpoints} from "../../constants/pageLinks";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
@@ -175,8 +176,6 @@ export class CreateAuctionComponent implements OnInit {
     this.address = address
 
 
-    console.log("CAUGHT :",this.address)
-
     if (this.address) {
 
       this.auctionForm.get('streetNumber')?.reset()
@@ -327,7 +326,7 @@ export class CreateAuctionComponent implements OnInit {
     }
 
     // open the dialog
-    let dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    let dialogRef = this.dialog.open(AuctionDeletionDialog, dialogConfig);
 
     // get user's reply
     dialogRef.afterClosed().subscribe(
@@ -421,7 +420,7 @@ export class CreateAuctionComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was updated successfully! Continue .."
+                  message: "Auction was updated successfully! Continue"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
@@ -439,7 +438,7 @@ export class CreateAuctionComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction failed to be updated .."
+                  message: "Auction update failed! Continue"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
@@ -454,7 +453,7 @@ export class CreateAuctionComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was created successfully! Continue .."
+                  message: "Auction was created successfully! Continue"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
@@ -474,7 +473,7 @@ export class CreateAuctionComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction creation failed! Continue .."
+                  message: "Auction creation failed! Continue"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
@@ -488,7 +487,7 @@ export class CreateAuctionComponent implements OnInit {
   }
 
   redirectUser(): void {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || 'panel/activity/my-auctions';
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || endpoints.myAuctions;
     this.router.navigate([returnUrl])
     return
   }

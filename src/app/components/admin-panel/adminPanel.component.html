@@ -1,0 +1,64 @@
+
+<div class="adminPage">
+
+  <!-- FILTERS -->
+  <div class="filtersGroup">
+
+    <p class="userLabel">Approval Status</p>
+    <div class="userStateClass">
+      <mat-radio-button class="buttonClass" (click)="submitFilter('')"><p class="buttonTitle">All</p></mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('no')"><p class="buttonTitle">Pending</p></mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('yes')"><p class="buttonTitle">Approved</p></mat-radio-button>
+    </div>
+
+  </div>
+
+  <!-- USERS + PAGINATION -->
+  <div class="cpGroup">
+
+    <!-- CARDS -->
+    <div class="cardsGroup">
+
+      <!-- EACH CARD -->
+      <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index" (click)="userInfo(i)">
+
+        <mat-card-title class="usernameClass">{{thumbnail.username}}</mat-card-title>
+        <mat-card-subtitle class="joinDateClass">joined on {{utilService.reformatDate(thumbnail.joinDate)}} ..</mat-card-subtitle>
+
+      </mat-card>
+
+    </div>
+
+
+    <!--
+    -->
+
+
+    <!-- PAGINATION -->
+    <div class="paginationClass">
+
+      <div class="paginationBarClass">
+
+        <!-- PREVIOUS PAGE BUTTON -->
+        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex<=1">&laquo;
+        </button>
+
+        <!-- PAGE VALUE BUTTON -->
+        <div class="page-link pageValueClass"  [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+
+        <!-- NEXT PAGE BUTTON -->
+        <button class="page-link nextPageClass" (click)="getNextPage()"  [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex>=this.totalPages">
+          &raquo;
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+</div>
+
+</div>

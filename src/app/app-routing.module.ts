@@ -1,26 +1,25 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
-import {AdminComponent} from "./components/admin/admin.component";
-import {BrowsingComponent} from "./components/browsing/browsing.component";
-import {UserInfoComponent} from "./components/user-info/user-info.component";
-import {MyAuctionsComponent} from "./components/my-auctions/my-auctions.component";
-import {MyPurchasesComponent} from "./components/my-purchases/my-purchases.component";
-import {MyBidsComponent} from "./components/my-bids/my-bids.component";
-import {PanelComponent} from "./components/panel/panel.component";
-import {LoginComponent} from "./components/login/login.component";
-import {RegisterComponent} from "./components/register/register.component";
-import {HomeComponent} from "./components/home/home.component";
+import {AdminPanelComponent} from "./components/admin-panel/adminPanel.component";
+import {AuctionBrowsingPanelComponent} from "./components/auction-browsing-panel/auctionBrowsingPanel.component";
+import {UserInformationPanel} from "./components/user-information-panel/userInformationPanel";
+import {MyAuctionsTabComponent} from "./components/my-auctions-tab/myAuctionsTab.component";
+import {MyPurchasesTabComponent} from "./components/my-purchases-tab/myPurchasesTab.component";
+import {MyBidsTabComponent} from "./components/my-bids-tab/myBidsTab.component";
+import {NavigationPanelComponent} from "./components/navigation-panel/navigationPanel.component";
+import {LoginPanelComponent} from "./components/login-panel/loginPanel.component";
+import {RegisterPanelComponent} from "./components/register-panel/registerPanel.component";
+import {HomePanelComponent} from "./components/home-panel/homePanel.component";
 import {GuestGuard} from "./guards/guest.guard";
 import {AuthGuard} from "./guards/auth.guard";
 import {AdminGuard} from "./guards/admin.guard";
 import {CreateAuctionComponent} from "./components/create-auction/create-auction.component";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
-import {InboxComponent} from "./components/inbox/inbox.component";
+import {MessagePanelComponent} from "./components/message-panel/messagePanel.component";
 import {CreateMessageComponent} from "./components/create-message/create-message.component";
-import {AuctionBidsComponent} from "./components/auction-bids/auction-bids.component";
-import {DateTimeComponent} from "./components/date-time/date-time.component";
-import {ExportComponent} from "./components/export/export.component";
+import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
+import {endpoints} from "./constants/pageLinks";
 
 
 const routes: Routes = [
@@ -30,86 +29,86 @@ const routes: Routes = [
 
 
   // PANEL/ADMINISTRATION/USERS
-  {path: 'panel/administration/users', component: PanelComponent, canActivate: [AdminGuard],
+  {path: endpoints.users, component: NavigationPanelComponent, canActivate: [AdminGuard],
     children: [
-      {path: '', component: AdminComponent, outlet: 'administration'}
+      {path: '', component: AdminPanelComponent, outlet: 'administration'}
     ]
   },
 
   // PANEL/ADMINISTRATION/USERS --> ADMINISTRATION/USERS/:USERNAME
-  {path: 'administration/users/:username', component: UserInfoComponent, canActivate: [AdminGuard]},
+  {path: 'administration/users/:username', component: UserInformationPanel, canActivate: [AdminGuard]},
 
 
   // PANEL/MESSAGES/INBOX
-  {path: 'panel/messages/inbox', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.inbox, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children:[
-      {path: '', component: InboxComponent, data: [false], outlet: 'messages'}
+      {path: '', component: MessagePanelComponent, data: [false], outlet: 'messages'}
     ]
   },
 
   // PANEL/MESSAGES/OUTBOX
-  {path: 'panel/messages/outbox', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.outbox, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children:[
-      {path: '', component: InboxComponent, data: [true], outlet: 'messages'}
+      {path: '', component: MessagePanelComponent, data: [true], outlet: 'messages'}
     ]
   },
 
   // PANEL/MESSAGES/SEND
-  {path: 'panel/messages/send', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.send, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children:[
       {path: '', component: CreateMessageComponent, outlet: 'messages'}
     ]
   },
 
   // PANEL/ACTIVITY/MY-BIDS
-  {path: 'panel/activity/my-bids', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.myBids, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children: [
-      {path: '', component: MyBidsComponent, outlet: 'activity'}
+      {path: '', component: MyBidsTabComponent, outlet: 'activity'}
     ]
   },
 
   // PANEL/ACTIVITY/MY-PURCHASES
-  {path: 'panel/activity/my-purchases', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.myPurchases, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children: [
-      {path: '', component: MyPurchasesComponent, outlet: 'activity'}
+      {path: '', component: MyPurchasesTabComponent, outlet: 'activity'}
     ]
   },
 
   // PANEL/ACTIVITY/MY-AUCTIONS
-  {path: 'panel/activity/my-auctions', component: PanelComponent, canActivate: [AuthGuard],
+  {path: endpoints.myAuctions, component: NavigationPanelComponent, canActivate: [AuthGuard],
     children: [
-      {path: '', component: MyAuctionsComponent, outlet: 'activity'}
+      {path: '', component: MyAuctionsTabComponent, outlet: 'activity'}
     ]
   },
 
 
   // PANEL-RELATED REDIRECTIONS
-  {path: 'panel/administration', redirectTo:'panel/administration/users' },
-  {path: 'panel/messages', redirectTo: 'panel/messages/inbox'},
-  {path: 'panel/activity', redirectTo:'panel/activity/my-bids' },
-  {path: 'panel', redirectTo:'panel/activity/my-bids' },
+  {path: 'navigation-panel/administration', redirectTo: endpoints.users },
+  {path: 'navigation-panel/messages', redirectTo: endpoints.inbox},
+  {path: 'navigation-panel/activity', redirectTo: endpoints.myBids },
+  {path: 'panel', redirectTo: endpoints.myBids },
 
 
   //---------------------------- CREATE / UPDATE / AUCTION BIDS / VIEW AUCTION ---------------------------------------//
 
-  {path: 'auctions/create', component: CreateAuctionComponent, canActivate: [AuthGuard]},
+  {path: endpoints.createAuction, component: CreateAuctionComponent, canActivate: [AuthGuard]},
   {path: 'auctions/:auctionID/update', component: CreateAuctionComponent, canActivate: [AuthGuard]},
-  {path: 'auctions/:auctionID/bids', component: AuctionBidsComponent, canActivate: [AuthGuard]},
+  {path: 'auctions/:auctionID/bids', component: AuctionBidsPanelComponent, canActivate: [AuthGuard]},
   {path: 'auctions/:auctionID/view', component: ViewAuctionComponent},
 
   //------------------------------ LOGIN / REGISTER ------------------------------------------------------------------//
 
-  {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
-  {path: 'register', component: RegisterComponent, canActivate: [GuestGuard]},
+  {path: endpoints.login, component: LoginPanelComponent, canActivate: [GuestGuard]},
+  {path: endpoints.register, component: RegisterPanelComponent, canActivate: [GuestGuard]},
 
   //------------------------------ BROWSE / HOME ---------------------------------------------------------------------//
 
-  {path: 'browse', component: BrowsingComponent},
-  {path: 'home', component: HomeComponent},
+  {path: endpoints.browse, component: AuctionBrowsingPanelComponent},
+  {path: endpoints.home, component: HomePanelComponent},
 
 
   //---------------------------- ANY OTHER LINK REDIRECTS TO BROWSE PAGE ---------------------------------------------//
-  {path: '**', redirectTo: '/browse'}
+  {path: endpoints.generic, redirectTo: endpoints.browse}
 
 
 

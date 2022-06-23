@@ -5,45 +5,14 @@ import {UserInfo} from "../interfaces/UserInfo";
 import {ServerExceptionResponse} from "../interfaces/ServerExceptionResponse";
 import {Bid} from "../interfaces/Bid";
 import {CustomMessage} from "../interfaces/CustomMessage";
+import {serverLinks, serverParameters} from "../constants/server";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
 
-  private serverUrl: string
-  private categoriesParameter: string
-  private adminParameter: string
-  private usersParameter: string
-  private purchasesParameter: string
-  private bidsParameter: string
-  private auctionsParameter: string
-  private approvalParameter: string
-  private bidParameter: string
-  private messagesParameter: string
-  private exportParameter: string
-  private mediaParameter: string
-  private recommendationsParameter: string
-
   constructor(private httpClient: HttpClient) {
-
-    // server URL
-    this.serverUrl = "https://localhost:8443"
-
-    // server path variables
-    this.categoriesParameter = "/categories"
-    this.adminParameter = "/administration"
-    this.purchasesParameter = "/purchases"
-    this.messagesParameter = "/messages"
-    this.auctionsParameter = "/auctions"
-    this.approvalParameter = "/approve"
-    this.usersParameter = "/users"
-    this.bidsParameter = "/bids"
-    this.bidParameter = "/bid"
-    this.exportParameter = "/export"
-    this.mediaParameter= "/media"
-    this.recommendationsParameter="/recommend"
-
   }
 
 
@@ -69,8 +38,8 @@ export class RequestService {
                       category: string, auctionText: string, buyNow: boolean): Observable<any> {
 
     let completeUrl =
-      this.serverUrl +
-      this.auctionsParameter +
+      serverLinks[0] +
+      serverParameters.auctionsParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -88,7 +57,7 @@ export class RequestService {
     if (auctionText)
       completeUrl += "&query=" + encodeURIComponent(auctionText)
 
-    if(buyNow)
+    if (buyNow)
       completeUrl += "&buy-now=true"
 
 
@@ -109,9 +78,9 @@ export class RequestService {
 
   getUserThumbnails(pageSize: number, pageIndex: number, userApproval: string): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.adminParameter +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.adminParameter +
+      serverParameters.usersParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -133,7 +102,10 @@ export class RequestService {
 
   getUserInfo(username: string): Observable<UserInfo> {
 
-    let completeUrl = this.serverUrl + this.adminParameter + this.usersParameter + "/" + encodeURIComponent(username)
+    let completeUrl = serverLinks[0] +
+      serverParameters.adminParameter +
+      serverParameters.usersParameter +
+      "/" + encodeURIComponent(username)
 
     return this.httpClient.get<UserInfo>(completeUrl)
 
@@ -149,7 +121,10 @@ export class RequestService {
 
   approveUser(username: string): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.adminParameter + this.usersParameter + "/" + encodeURIComponent(username)
+    let completeUrl = serverLinks[0] +
+      serverParameters.adminParameter +
+      serverParameters.usersParameter +
+      "/" + encodeURIComponent(username)
 
     return this.httpClient.put<any>(completeUrl, {})
 
@@ -170,10 +145,10 @@ export class RequestService {
 
   getAuctionThumbnails(username: string, pageIndex: number, pageSize: number, auctionState: string): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.auctionsParameter +
+      serverParameters.auctionsParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -196,7 +171,9 @@ export class RequestService {
 
   deleteAuction(auctionID: number): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.auctionsParameter + "/" + auctionID.toString()
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter +
+      "/" + auctionID.toString()
 
 
     return this.httpClient.delete(completeUrl)
@@ -214,10 +191,10 @@ export class RequestService {
 
   getPurchaseThumbnails(username: string, pageIndex: number, pageSize: number): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.purchasesParameter +
+      serverParameters.purchasesParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -237,10 +214,10 @@ export class RequestService {
 
   getBidThumbnails(username: string, pageIndex: number, pageSize: number): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.bidsParameter +
+      serverParameters.bidsParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -256,9 +233,8 @@ export class RequestService {
 
   registerUser(userInfo: any): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.usersParameter
-
-
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter
 
     return this.httpClient.post(completeUrl, userInfo)
 
@@ -272,13 +248,8 @@ export class RequestService {
 
   createAuction(auction: FormData): Observable<any> {
 
-    auction.forEach(x=>{
-      console.log(x)
-    })
-
-
-    let completeUrl = this.serverUrl + this.auctionsParameter
-
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter
 
     return this.httpClient.post<any>(completeUrl, auction)
 
@@ -293,7 +264,9 @@ export class RequestService {
 
   updateAuction(auction: FormData, auctionID: number): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.auctionsParameter + "/" + auctionID.toString()
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter +
+      "/" + auctionID.toString()
 
 
     return this.httpClient.put<any>(completeUrl, auction)
@@ -309,7 +282,8 @@ export class RequestService {
 
   getCategories(): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.categoriesParameter
+    let completeUrl = serverLinks[0] +
+      serverParameters.categoriesParameter
 
     return this.httpClient.get<any>(completeUrl)
   }
@@ -323,7 +297,9 @@ export class RequestService {
 
   getAuction(auctionID: number): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.auctionsParameter + "/" + auctionID.toString()
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter
+      + "/" + auctionID.toString()
 
 
     return this.httpClient.get<any>(completeUrl)
@@ -340,7 +316,10 @@ export class RequestService {
 
   bidOnAuction(auctionID: number, bid: Bid): Observable<ServerExceptionResponse | null> {
 
-    let completeUrl = this.serverUrl + this.auctionsParameter + "/" + auctionID.toString() + this.bidParameter
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter
+      + "/" + auctionID.toString() +
+      serverParameters.bidParameter
 
 
     return this.httpClient.post<any>(completeUrl, bid)
@@ -359,10 +338,10 @@ export class RequestService {
 
   getMessages(username: string, pageIndex: number, pageSize: number, sent: boolean): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0]+
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.messagesParameter +
+      serverParameters.messagesParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString() +
       "&sent=" + sent.toString()
@@ -383,10 +362,10 @@ export class RequestService {
 
   deleteMessage(username: string, messageID: number): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0]+
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.messagesParameter +
+      serverParameters.messagesParameter +
       "/" + messageID.toString()
 
     return this.httpClient.delete(completeUrl)
@@ -403,10 +382,10 @@ export class RequestService {
 
   readMessage(username: string, messageID: number): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.messagesParameter +
+      serverParameters.messagesParameter +
       "/" + messageID.toString()
 
     return this.httpClient.put<any>(completeUrl, {})
@@ -422,10 +401,10 @@ export class RequestService {
 
   sendMessage(username: string, customMessage: CustomMessage): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.usersParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.usersParameter +
       "/" + encodeURIComponent(username) +
-      this.messagesParameter
+      serverParameters.messagesParameter
 
     return this.httpClient.post(completeUrl, customMessage)
   }
@@ -442,10 +421,10 @@ export class RequestService {
 
   getAuctionBids(auctionID: number, pageIndex: number, pageSize: number): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.auctionsParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.auctionsParameter +
       "/" + auctionID.toString() +
-      this.bidParameter +
+      serverParameters.bidParameter +
       "?page=" + pageIndex.toString() +
       "&size=" + pageSize.toString()
 
@@ -460,8 +439,8 @@ export class RequestService {
 
   getRecommendations(): Observable<any> {
 
-    let completeUrl = this.serverUrl + this.recommendationsParameter
-
+    let completeUrl = serverLinks[0] +
+      serverParameters.recommendationsParameter
 
     return this.httpClient.get<any>(completeUrl)
 
@@ -473,17 +452,17 @@ export class RequestService {
   // http://localhost:8081
   // /administration
   // /auctions
-  // /export
+  // /auction-export-dialog
   // ?json= true | false
   // &from=X
   // &to=Y
 
   exportAuctions(inJSONformat: boolean, startDate: string, endDate: string): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.adminParameter +
-      this.auctionsParameter +
-      this.exportParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.adminParameter +
+      serverParameters.auctionsParameter +
+      serverParameters.exportParameter +
       "?json=" + inJSONformat.toString() +
       "&from=" + startDate +
       "&to=" + endDate
@@ -512,11 +491,10 @@ export class RequestService {
 
   getImage(auctionID: number, fileName: string): Observable<any> {
 
-    let completeUrl = this.serverUrl +
-      this.mediaParameter +
+    let completeUrl = serverLinks[0] +
+      serverParameters.messagesParameter +
       "/" + auctionID.toString() +
       "/" + fileName
-
 
     return this.httpClient.get<any>(completeUrl)
 

@@ -3,6 +3,6 @@ export interface UserThumbnail {
   username : string
   joinDate : string
   approved : boolean
-  // user , admin
+  // user , admin-navigation-panel
   role : string
 }

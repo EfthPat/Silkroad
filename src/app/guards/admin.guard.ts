@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthService} from "../services/auth.service";
+import {roles} from "../constants/roles";
+import {endpoints} from "../constants/pageLinks";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,11 @@ export class AdminGuard implements CanActivate {
 
     let userRole = this.authService.getUserRole()
 
-    if (userRole === "ADMIN")
+    // if user is an admin-navigation-panel
+    if (userRole === roles[2])
       return true;
 
-    this.router.navigate(['/browse'])
+    this.router.navigate([endpoints.browse])
 
     return false;
   }

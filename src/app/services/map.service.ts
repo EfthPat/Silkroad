@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-
+import {geocodingLinks, geocodingKeys} from "../constants/geocoding";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,9 @@ export class MapService {
 
   constructor(private httpClient: HttpClient) {
 
-    this.forwardUrl = "https://api.locationiq.com/v1/autocomplete.php"
-    this.reverseUrl = "https://eu1.locationiq.com/v1/reverse.php"
-    this.APIkey = "pk.2191e0641f3fafa3e3cce39591faf310"
+    this.forwardUrl = geocodingLinks[0]
+    this.reverseUrl = geocodingLinks[1]
+    this.APIkey = geocodingKeys[0]
 
   }
 

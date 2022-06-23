@@ -4,12 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomMessage} from "../../interfaces/CustomMessage";
 import {AuthService} from "../../services/auth.service";
-import {DataService} from "../../services/data.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
-import {take} from "rxjs";
-
 
 @Component({
   selector: 'app-create-message',
@@ -23,8 +17,7 @@ export class CreateMessageComponent implements OnInit {
   messageForm : FormGroup
   submitCommitted : boolean
 
-  constructor(private requestService : RequestService, private authService : AuthService, private route : ActivatedRoute,
-              private dataService: DataService,private dialog: MatDialog) {
+  constructor(private requestService : RequestService, private authService : AuthService, private route : ActivatedRoute) {
 
     this.alerted = false
     this.username = this.authService.getUsername()!

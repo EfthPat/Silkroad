@@ -2,7 +2,7 @@
 <div class="viewAuction">
 
   <!-- SEARCH BAR-->
-  <app-search></app-search>
+  <search-bar></search-bar>
 
   <!-- IMAGES + AUCTION-->
   <div class="imagesAuction">
@@ -86,7 +86,7 @@
     <div class="images">
 
       <!-- IMAGE -->
-      <img class="image" src="https://localhost:8443/media/{{auctionID}}/{{images[activeImage]}}">
+      <img class="image" src="{{this.serverLink}}{{this.serverParameter}}/{{auctionID}}/{{images[activeImage]}}">
 
       <!-- NEXT IMAGE -->
       <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage()"></button>

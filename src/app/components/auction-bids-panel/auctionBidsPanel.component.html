@@ -1,0 +1,130 @@
+
+<search-bar></search-bar>
+
+<div class="auctionBids row">
+
+
+  <div class="sticky col">
+
+
+    <!-- IMAGES -->
+    <div class="images row">
+
+      <!-- IMAGE -->
+      <img class="image" src="{{serverLink}}{{serverParameter}}/{{auctionID}}/{{images[activeImage]}}">
+
+      <!-- NEXT IMAGE -->
+      <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage()"></button>
+
+      <!-- PREVIOUS IMAGE -->
+      <button class="page-link previousImage fa fa-angle-left" (click)="getPreviousImage()"></button>
+
+    </div>
+
+    <div class="group row">
+      <div class="team spread">
+        <label class="stickyLabel" for="stickyName">Name</label>
+        <p id="stickyName" class="stickyText">{{this.name}}</p>
+      </div>
+    </div>
+
+    <div class="group row">
+
+      <div class="team split">
+        <label class="stickyLabel" for="stickyBids">Total Bids</label>
+        <p id="stickyBids" class="stickyText">{{this.totalBids}}</p>
+      </div>
+
+      <div class="team split">
+        <label class="stickyLabel" for="stickyHighest">Highest Bid</label>
+        <p id="stickyHighest" class="stickyText">{{this.utilService.reformatNumber(this.highestBid)}} $</p>
+      </div>
+
+    </div>
+
+    <div class="group row">
+
+      <div class="team split">
+        <label class="stickyLabel" for="stickyStart">Start Date</label>
+        <p id="stickyStart" class="stickyText">{{this.startDate}}</p>
+      </div>
+
+      <div class="team split">
+        <label class="stickyLabel" for="stickyEnd">Due Date</label>
+        <p id="stickyEnd" class="stickyText">{{this.endDate}}</p>
+      </div>
+
+    </div>
+
+    <div class="group row">
+      <div class="team spread">
+        <label class="stickyLabel" for="stickyDescr">Description</label>
+        <p id="stickyDescr" class="stickyText">{{this.description}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="other col">
+
+    <!-- EACH CARD -->
+    <mat-card class="card" *ngFor="let thumbnail of this.auctionBids; let i=index">
+
+      <div class="group row">
+
+        <div class="team split">
+          <label class="stickyLabel" for="bidder">Bidder</label>
+          <p id="bidder" class="stickyText">{{thumbnail.bidder}}</p>
+        </div>
+
+        <div class="team split">
+          <label class="stickyLabel" for="rating">Bidder Rating</label>
+          <p id="rating" class="stickyText">{{this.utilService.reformatNumber(thumbnail.bidderRating)}}</p>
+        </div>
+
+      </div>
+
+
+      <div class="group row">
+
+        <div class="team split">
+          <label class="stickyLabel" for="bid">Bid</label>
+          <p id="bid" class="stickyText">{{this.utilService.reformatNumber(thumbnail.amount)}} $</p>
+        </div>
+
+        <div class="team split">
+          <label class="stickyLabel" for="date">Submission Date</label>
+          <p id="date" class="stickyText">{{this.utilService.reformatDate(thumbnail.submissionDate)}}</p>
+        </div>
+
+      </div>
+
+    </mat-card>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+
+      <div class="pageBar">
+
+        <!-- PREVIOUS PAGE BUTTON -->
+        <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex<=1">&laquo;
+        </button>
+
+        <!-- PAGE VALUE BUTTON -->
+        <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+
+        <!-- NEXT PAGE BUTTON -->
+        <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
+                [disabled]="this.pageIndex>=this.totalPages">
+          &raquo;
+        </button>
+
+      </div>
+
+  </div>
+
+
+</div>
+
+</div>

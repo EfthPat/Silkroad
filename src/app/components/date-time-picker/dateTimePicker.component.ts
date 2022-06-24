@@ -1,5 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'date-time-picker',
@@ -11,17 +10,18 @@ export class DateTimePickerComponent implements OnInit{
 
   picker: any;
 
-  @Output() dateTime: number[];
+  @Input() dateTimeValue: Date | undefined;
+
+  dateTime: number[];
 
   @Output() dateTimeEmitter :  EventEmitter<number[]>;
 
-  public dateControl = new FormControl();
 
 
   constructor() {
 
-    // YYYY , MM , DD , HR, MN, SC, MS
-    this.dateTime = [1970, 1, 1, 0, 0, 0, 0];
+    // YY , MM , DD , HR, MN, SC, MS
+    this.dateTime = new Array<number>(7);
 
     this.dateTimeEmitter = new EventEmitter<number[]>();
   }
@@ -30,15 +30,14 @@ export class DateTimePickerComponent implements OnInit{
 
   updateDateTime() : void {
 
-    let date = new Date(this.dateControl.value)
 
-    this.dateTime[0] = date.getFullYear()
-    this.dateTime[1] = date.getMonth()
-    this.dateTime[2] = date.getDate()
-    this.dateTime[3] = date.getHours()
-    this.dateTime[4] = date.getUTCMinutes()
-    this.dateTime[5] = date.getUTCSeconds()
-    this.dateTime[6] = date.getUTCMilliseconds()
+    this.dateTime[0] = this.dateTimeValue!.getFullYear()
+    this.dateTime[1] = this.dateTimeValue!.getMonth()
+    this.dateTime[2] = this.dateTimeValue!.getDate()
+    this.dateTime[3] = this.dateTimeValue!.getHours()
+    this.dateTime[4] = this.dateTimeValue!.getUTCMinutes()
+    this.dateTime[5] = this.dateTimeValue!.getUTCSeconds()
+    this.dateTime[6] = this.dateTimeValue!.getUTCMilliseconds()
 
     this.dateTimeEmitter.emit(this.dateTime)
 

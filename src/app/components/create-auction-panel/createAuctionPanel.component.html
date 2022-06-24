@@ -67,7 +67,9 @@
         <!-- DATE PICKER -->
         <div class="datePickerClass">
           <label for="dt" [ngClass]="{'errorClass': this.submitCommitted && !this.dateValid}">End Date</label>
-          <date-time-picker id="dt" (dateTimeEmitter)="getDateTime($event)"></date-time-picker>
+          <date-time-picker id="dt"
+                            [dateTimeValue]="this.auctionForm.get('endDate')?.value"
+                            (dateTimeEmitter)="getDateTime($event)"></date-time-picker>
         </div>
 
         <!-- IMAGE FILES -->

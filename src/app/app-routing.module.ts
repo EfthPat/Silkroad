@@ -24,7 +24,6 @@ import {endpoints} from "./constants/pageLinks";
 
 const routes: Routes = [
 
-  //
 
   //----------------------------------- PANEL PAGE -------------------------------------------------------------------//
 

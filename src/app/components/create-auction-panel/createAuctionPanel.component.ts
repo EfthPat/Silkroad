@@ -103,13 +103,9 @@ export class CreateAuctionPanelComponent implements OnInit {
           // forward NAME to GEOLOCATION
           this.extractAddressName()
 
-          // set datepicker's value
-          let date = (new Date(response.endDate))
-          let day = date.getDate().toString()
-          let month: number | string = date.getMonth() + 1
-          month = month.toString()
-          let year = date.getFullYear().toString()
-
+          // set the date and datepicker's value
+          this.auctionForm.get('endDate')?.setValue(response.endDate)
+          this.dateValid = this.auctionForm.get('endDate')?.value >= new Date().toISOString();
 
           // fill the form with the preexistent values
           this.auctionForm.get('name')?.setValue(response.name)
@@ -173,7 +169,6 @@ export class CreateAuctionPanelComponent implements OnInit {
   // MAP LISTENER
   getMapsAddress(address: any): void {
 
-    console.log("caught :",address.address)
 
     // store the whole address the MAP sent you
     this.address = address
@@ -309,8 +304,6 @@ export class CreateAuctionPanelComponent implements OnInit {
       if(imageFile.type==="image/png" || imageFile.type==="image/jpeg")
         this.imageFiles.push(imageFile)
     }
-
-    console.log("IMAGES :",this.imageFiles.length)
 
   }
 

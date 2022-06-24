@@ -6,7 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: rgba(128, 128, 128, 0.58) 1px solid;
+  border: rgba(128, 128, 128, 0.58) 2px solid;
+  border-radius: 5px;
   width: 55vh;
   height: 25vh;
   margin: 0;
@@ -15,26 +16,29 @@
 .alertMessage{
   font-family: "Yu Gothic", sans-serif;
   font-size: large;
-  font-weight: bold;
+  font-weight: 1;
   width: 100%;
   text-align: center;
-  padding: 0 1%;
-  margin: 10% 0 0 0;
+  padding: 0 2% 5%;
+  margin: 7% 0 0 0;
+  border-bottom: rgba(128, 128, 128, 0.58) 1px solid;
 }
 
 
 .acceptButton{
-  border-radius: 20px;
-  height: 15%;
+  border-radius: 50px;
+  height: 18%;
   width: 50%;
-  margin: 0 0 10% 0;
-  background: rgba(135, 189, 189, 0.62);
-  box-shadow: none !important;
-  outline: none !important;
+  margin: 0 0 2.5%;
+  background: rgba(211, 206, 206, 0.22);
+  box-shadow: none;
+  border: gray 1px solid;
+  color: black;
+  font-weight: 1;
 }
 
 .acceptButton:active, .acceptButton:hover{
-  background: #4d8d8d;
+  background: rgba(169, 164, 164, 0.22);
 }
 
 .acceptButtonText{

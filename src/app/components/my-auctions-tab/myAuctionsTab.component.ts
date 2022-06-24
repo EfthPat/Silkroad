@@ -198,7 +198,9 @@ export class MyAuctionsTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+
   }
 
   getNextImage(index: number) : void {

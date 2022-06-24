@@ -1,0 +1,37 @@
+
+
+export const auctionExceptions = {
+
+  AUCTION_NOT_FOUND : "AE_001",
+  AUCTION_INVALID_CATEGORIES : "AE_002",
+  AUCTION_HAS_BID_OR_EXPIRED : "AE_003",
+  AUCTION_MODIFIED_OR_EXPIRED : "AE_004"
+
+}
+
+
+export const bidExceptions = {
+
+  BID_INVALID_AMOUNT : "BE_001",
+  BID_HIGHER_BID_EXISTS : "BE_002"
+
+}
+
+export const userExceptions = {
+
+  USER_NOT_FOUND : "UE_001",
+  USER_ACTION_FORBIDDEN : "UE_002",
+  USER_USERNAME_EXISTS : "UE_003",
+  USER_EMAIL_EXISTS : "UE_004",
+  USER_BAD_CREDENTIALS : "UE_005",
+  USER_NOT_APPROVED : "UE_006"
+
+}
+
+export  const  serverExceptions = {
+
+  MEDIA_UPLOAD_FAILURE : "ISEE_001",
+  MEDIA_DELETION_FAILURE : "ISEE_002",
+  MEDIA_RETRIEVAL_FAILURE : "ISEE_003"
+
+}

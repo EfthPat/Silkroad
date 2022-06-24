@@ -9,6 +9,8 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {serverLinks, serverParameters} from "../../constants/server";
+import {endpoints} from "../../constants/pageLinks";
+import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
 
 @Component({
   selector: 'app-view-auction',
@@ -234,15 +236,35 @@ export class ViewAuctionComponent implements OnInit {
             // if bid failed
             error => {
 
+              let reload = true
+              let errorMessage
+
+              if(error.error.code == auctionExceptions.AUCTION_MODIFIED_OR_EXPIRED)
+                errorMessage = "Bid failed! Auction was either modified or expired. Continue"
+              else if(error.error.code == bidExceptions.BID_HIGHER_BID_EXISTS)
+                errorMessage = "Bid failed! Another user outbid you! Continue"
+              else if(error.error.code == auctionExceptions.AUCTION_NOT_FOUND)
+              {
+                reload = false
+                errorMessage = "Whoops! Auction not found! Continue"
+              }
+
+
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
               dialogConfig.data = {
-                message: "Bid failed! Try bidding on another auction .."
+                message: errorMessage
               }
 
               let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                 ()=>{
-                  this.router.navigate(['/browse'])
+
+                  if(reload)
+                    window.location.reload()
+                  else
+                    this.router.navigate([endpoints.home])
+
+                  return
                 }
               )
 

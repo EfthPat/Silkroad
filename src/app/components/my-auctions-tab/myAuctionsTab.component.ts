@@ -9,6 +9,7 @@ import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionD
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {endpoints} from "../../constants/pageLinks";
 import {serverLinks, serverParameters} from "../../constants/server";
+import {auctionExceptions} from "../../constants/serverErrors";
 
 @Component({
   selector: 'app-my-auctions-tab',
@@ -156,17 +157,28 @@ export class MyAuctionsTabComponent implements OnInit {
             },
             // if server didn't manage to delete auction
             error => {
-              console.log("AUCTION DELETION FAILED :",error)
+
+              let jumpToAuction = true
+              let errorMessage
+
+              if(error.error.code===auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
+                errorMessage = "Auction deletion failed! Some user already bid! Continue"
+              else
+                errorMessage = "Auction deletion failed! Continue"
 
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
               dialogConfig.data = {
-                message: "Auction deletion failed .."
+                message: errorMessage
               }
 
               let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                 ()=>{
-                  this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+                  if(jumpToAuction)
+                    this.router.navigate(['auctions',this.auctionThumbnails[index].id,'bids'])
+                  else
+                    this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
+
                 }
               )
             }

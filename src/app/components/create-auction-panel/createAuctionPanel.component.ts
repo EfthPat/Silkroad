@@ -11,6 +11,7 @@ import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
 import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
 
 @Component({
   selector: 'app-create-auction-panel',
@@ -433,14 +434,34 @@ export class CreateAuctionPanelComponent implements OnInit {
 
               // if the auction wasn't updated
               error => {
-                console.log("AUCTION-UPDATE FAILED :", error)
-                let dialogConfig = new MatDialogConfig();
-                dialogConfig.autoFocus = true;
-                dialogConfig.data = {
+
+                let jumpToAuction = true
+                let errorMessage
+
+                if(error.error.code==auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
+                  errorMessage = "Auction update failed! Some user already bid! Continue"
+                else
+                {
+                  jumpToAuction = false
                   message: "Auction update failed! Continue"
                 }
 
-                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
+                let dialogConfig = new MatDialogConfig();
+                dialogConfig.autoFocus = true;
+                dialogConfig.data = {
+                  message: errorMessage
+                }
+
+                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                  ()=>{
+
+                    if(jumpToAuction)
+                      this.router.navigate(['auctions',this.auctionID,'bids'])
+                    else
+                      this.router.navigate([endpoints.browse])
+
+                  }
+                )
               }
             )
           } else {

@@ -1,15 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from "../../interfaces/Category";
+import {endpoints} from "../../constants/pageLinks";
 import {MapService} from "../../services/map.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {RequestService} from "../../services/request.service";
-import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
+import {formExpressions} from "../../constants/regularExpressions";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
-import {endpoints} from "../../constants/pageLinks";
+import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-create-auction-panel',
@@ -49,13 +51,13 @@ export class CreateAuctionPanelComponent implements OnInit {
 
         name: new FormControl('', [Validators.required]),
         description: new FormControl('', [Validators.required]),
-        firstBid: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*(.?[0-9]{1,2})$")]),
-        buyNow: new FormControl('', [Validators.pattern("^[0-9]*(.?[0-9]{1,2})?$")]),
+        firstBid: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)]),
+        buyNow: new FormControl('', [Validators.pattern(formExpressions.price)]),
 
         zipCode: new FormControl('', [Validators.required]),
         endDate: new FormControl('', [Validators.required]),
-        streetNumber: new FormControl('', [Validators.required]),
-        country: new FormControl('', [Validators.required]),
+        streetNumber: new FormControl('', [Validators.required, Validators.pattern(formExpressions.streetNumber)]),
+        country: new FormControl('', [Validators.required, Validators.pattern(formExpressions.country)]),
 
       },
       {validators: this.buyNowValidator}

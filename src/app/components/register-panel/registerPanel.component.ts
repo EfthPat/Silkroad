@@ -6,6 +6,7 @@ import {DataService} from "../../services/data.service";
 import {endpoints} from "../../constants/pageLinks";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
+import {formExpressions} from "../../constants/regularExpressions";
 
 @Component({
   selector: 'app-register-panel',
@@ -28,19 +29,19 @@ export class RegisterPanelComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern('^\\S*$')]),
       confirmPassword: new FormControl('', [Validators.required]),
       // firstname , lastname
-      firstname: new FormControl('', [Validators.required, Validators.pattern('^[^0-9!@#$%^&*()_+=.,?><`~]+$')]),
-      lastname: new FormControl('', [Validators.required, Validators.pattern('^[^0-9!@#$%^&*()_+=.,?><`~]+$')]),
+      firstname: new FormControl('', [Validators.required, Validators.pattern(formExpressions.name)]),
+      lastname: new FormControl('', [Validators.required, Validators.pattern(formExpressions.name)]),
       // contact info
-      email: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+      email: new FormControl('', [Validators.required, Validators.pattern(formExpressions.email)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(formExpressions.phoneNumber)]),
       // residence
       addressStreet: new FormControl('', [Validators.required]),
-      streetNumber: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
+      streetNumber: new FormControl('', [Validators.required, Validators.pattern(formExpressions.streetNumber)]),
+      country: new FormControl('', [Validators.required, Validators.pattern(formExpressions.country)]),
       zipCode: new FormControl('', [Validators.required]),
 
       // other info
-      tin: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9]*$')]),
+      tin: new FormControl('', [Validators.required, Validators.pattern(formExpressions.tin)]),
 
 
     }, {validators: this.passwordValidator})

@@ -301,12 +301,15 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   fileUpload(event: any) {
 
+    this.imageFiles = []
     // store all the user-selected images in an image array
     for (let imageFile of event.target.files)
     {
       if(imageFile.type==="image/png" || imageFile.type==="image/jpeg")
         this.imageFiles.push(imageFile)
     }
+
+    console.log("IMAGES :",this.imageFiles.length)
 
   }
 

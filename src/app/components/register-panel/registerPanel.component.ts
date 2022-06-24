@@ -24,9 +24,9 @@ export class RegisterPanelComponent implements OnInit {
     this.registerForm = new FormGroup({
 
       // username - unique
-      username: new FormControl('', [Validators.required, Validators.pattern('^\\S*$')]),
+      username: new FormControl('', [Validators.required, Validators.pattern(formExpressions.username)]),
       // passwords
-      password: new FormControl('', [Validators.required, Validators.pattern('^\\S*$')]),
+      password: new FormControl('', [Validators.required, Validators.pattern(formExpressions.password)]),
       confirmPassword: new FormControl('', [Validators.required]),
       // firstname , lastname
       firstname: new FormControl('', [Validators.required, Validators.pattern(formExpressions.name)]),

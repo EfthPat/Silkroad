@@ -164,7 +164,10 @@ export class MyAuctionsTabComponent implements OnInit {
               if(error.error.code===auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
                 errorMessage = "Auction deletion failed! Some user already bid! Continue"
               else
+              {
+                jumpToAuction = false
                 errorMessage = "Auction deletion failed! Continue"
+              }
 
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;

@@ -20,14 +20,14 @@ import {MessagePanelComponent} from "./components/message-panel/messagePanel.com
 import {CreateMessageComponent} from "./components/create-message-panel/createMessagePanel.component";
 import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
 import {endpoints} from "./constants/pageLinks";
+import {AlertDialogComponent} from "./components/alert-dialog/alert-dialog.component";
 
 
 const routes: Routes = [
 
 
   //----------------------------------- PANEL PAGE -------------------------------------------------------------------//
-
-
+  
   // PANEL/ADMINISTRATION/USERS
   {path: endpoints.users, component: NavigationPanelComponent, canActivate: [AdminGuard],
     children: [

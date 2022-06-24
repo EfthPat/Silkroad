@@ -25,6 +25,8 @@ export class AuctionBidsPanelComponent implements OnInit {
   description: string
   images: any[]
   activeImage: number
+  buyPrice: number
+  address: string
 
   auctionBids: AuctionBid[]
   username : string
@@ -43,8 +45,8 @@ export class AuctionBidsPanelComponent implements OnInit {
     this.serverParameter = serverParameters.mediaParameter
 
     // auction's basic info
-    this.name = this.startDate = this. endDate = this.description = ""
-    this.totalBids = this.highestBid = 0
+    this.name = this.startDate = this. endDate = this.description = this.address = ""
+    this.totalBids = this.highestBid = this.buyPrice = 0
     this.images= []
     this.activeImage = 0
 
@@ -75,7 +77,14 @@ export class AuctionBidsPanelComponent implements OnInit {
         this.endDate = this.utilService.reformatDate(response.endDate)
         this.description = response.description
         this.images = response.images
+        this.buyPrice = response.buyPrice
 
+        this.address = response.address.streetName+" "+response.address.streetNumber+", "+
+          response.address.zipCode+", "+response.address.location
+
+
+
+        console.log(response)
       }
       ,
       // if auction fetching failed

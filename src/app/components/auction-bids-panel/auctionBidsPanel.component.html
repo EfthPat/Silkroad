@@ -22,10 +22,16 @@
     </div>
 
     <div class="group row">
-      <div class="team spread">
+      <div class="team split">
         <label class="stickyLabel" for="stickyName">Name</label>
         <p id="stickyName" class="stickyText">{{this.name}}</p>
       </div>
+
+      <div class="team split" *ngIf="this.buyPrice">
+        <label class="stickyLabel" for="stickyBuyPrice">Buy Price</label>
+        <p id="stickyBuyPrice" class="stickyText">{{this.buyPrice}} $</p>
+      </div>
+
     </div>
 
     <div class="group row">
@@ -54,6 +60,14 @@
         <p id="stickyEnd" class="stickyText">{{this.endDate}}</p>
       </div>
 
+    </div>
+
+
+    <div class="group row">
+      <div class="team spread">
+        <label class="stickyLabel" for="stickyAddress">Address</label>
+        <p id="stickyAddress" class="stickyText">{{this.address}}</p>
+      </div>
     </div>
 
     <div class="group row">

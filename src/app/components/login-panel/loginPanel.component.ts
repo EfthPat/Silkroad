@@ -87,7 +87,7 @@ export class LoginPanelComponent implements OnInit {
 
           // then, either user isn't approved yet
           if (error.error.code==="UE_006") {
-            this.errorMessage = "Approval pending ..."
+            this.errorMessage = "Approval Pending"
           }
           // or username / password was incorrect
           else {

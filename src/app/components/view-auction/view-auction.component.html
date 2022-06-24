@@ -14,7 +14,7 @@
       <div class="auctionInfo" [formGroup]="this.auctionForm">
 
         <!-- NAME -->
-        <label class="textLabel" for="name">Name</label>
+        <label class="textLabel">Name</label>
         <p id="name" class="text">{{this.auctionForm.get('name')?.value}}</p>
 
         <!-- DESCRIPTION -->
@@ -72,9 +72,8 @@
 
         <!-- BID BAR -->
         <div id="bidBar" class="bidBar" [ngClass]="{'err': this.bidCommitted && this.auctionForm.get('bid')?.invalid}">
-          <input class="bidInput" formControlName="bid" [ngClass]="{'err': this.bidCommitted && this.auctionForm.get('bid')?.invalid}">
+          <input class="bidInput" formControlName="bid">
           <button class="bidButton" [ngClass]="{'error': this.bidCommitted && this.auctionForm.get('bid')?.invalid}" (click)="bid()">Bid</button>
-          <i id="alert" class="fa fa-solid fa-check"></i>
         </div>
 
 

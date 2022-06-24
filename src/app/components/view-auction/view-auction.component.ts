@@ -196,8 +196,6 @@ export class ViewAuctionComponent implements OnInit {
               {
                 let bid = this.utilService.reformatNumber(+bidValue)
 
-
-
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
@@ -211,9 +209,16 @@ export class ViewAuctionComponent implements OnInit {
                     return
                   }
                 )
-
+                return
               }
 
+              let dialogConfig = new MatDialogConfig();
+              dialogConfig.autoFocus = true;
+              dialogConfig.data = {
+                message: "Bid succeeded! Continue"
+              }
+
+              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
 
               this.auctionForm.reset()
               this.bidCommitted = false

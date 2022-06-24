@@ -93,7 +93,7 @@ export class RegisterPanelComponent implements OnInit {
           let dialogConfig = new MatDialogConfig();
           dialogConfig.autoFocus = true;
           dialogConfig.data = {
-            message: "Sign-up completed! Approval pending .."
+            message: "Sign-up completed! Approval Pending"
           }
 
           let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)

@@ -7,7 +7,6 @@ import {Bid} from "../../interfaces/Bid";
 import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
-import {DataService} from "../../services/data.service";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {serverLinks, serverParameters} from "../../constants/server";
 
@@ -84,7 +83,7 @@ export class ViewAuctionComponent implements OnInit {
       // if the auction was fetched successfully
       response => {
 
-        console.log(response.images)
+        console.log(response)
 
         // get auction's latitude / longitude
         this.latitude = response.address.coordinates.latitude
@@ -100,8 +99,13 @@ export class ViewAuctionComponent implements OnInit {
         this.auctionForm.get('endDate')?.setValue(this.utilService.reformatDate(response.endDate))
         this.auctionForm.get('seller')?.setValue(response.seller)
         this.auctionForm.get('sellerRating')?.setValue(response.sellerRating)
-        this.auctionForm.get('address')?.setValue(response.address.streetName + ", " + response.address.location + ", "
-          + response.address.country)
+
+
+
+        let fullAddress = response.address.streetName+" "+response.address.streetNumber
+          +", "+response.address.zipCode+", "+response.address.location
+
+        this.auctionForm.get('address')?.setValue(fullAddress)
 
         console.log(this.auctionForm.get('address')?.value)
 

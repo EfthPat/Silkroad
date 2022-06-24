@@ -12,7 +12,6 @@ import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionD
 import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
-
 @Component({
   selector: 'app-create-auction-panel',
   templateUrl: './createAuctionPanel.component.html',
@@ -174,6 +173,8 @@ export class CreateAuctionPanelComponent implements OnInit {
   // MAP LISTENER
   getMapsAddress(address: any): void {
 
+    console.log("caught :",address.address)
+
     // store the whole address the MAP sent you
     this.address = address
 
@@ -261,7 +262,7 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   extractLatitude(): number {
 
-    let latitude = 37.9838
+    let latitude = 51.5072
 
     if (this.address) {
       latitude = this.address.lat
@@ -272,7 +273,7 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   extractLongitude(): number {
 
-    let longitude = 23.7275
+    let longitude = 0.1276
 
     if (this.address)
       longitude = this.address.lon

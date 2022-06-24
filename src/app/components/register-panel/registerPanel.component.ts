@@ -267,7 +267,7 @@ export class RegisterPanelComponent implements OnInit {
 
   extractLatitude(): number {
 
-    let latitude = 37.9838
+    let latitude = 51.5072
 
     if (this.address)
       latitude = this.address.lat
@@ -277,7 +277,7 @@ export class RegisterPanelComponent implements OnInit {
 
   extractLongitude(): number {
 
-    let longitude = 23.7275
+    let longitude = 0.1276
 
     if (this.address)
       longitude = this.address.lon

@@ -32,8 +32,8 @@ export class MapComponent implements OnInit {
 
     this.mapAddress = new EventEmitter<any>()
 
-    this.latitude = 37.9838
-    this.longitude = 23.7275
+    this.latitude = 51.5072
+    this.longitude = 0.1276
 
     this.isInteractive = false
 

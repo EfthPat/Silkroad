@@ -5,15 +5,17 @@
 .images{
   position: relative;
   border-bottom: gray 1px solid;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 3;
   padding: 0;
   margin: 0;
+  height: 23vh;
 }
 
 .image{
   height: 100%;
-  width: 100%;
+  width: 80%;
   padding: 0;
   margin: 0;
 }
@@ -21,21 +23,22 @@
 .nextImage, .previousImage{
   position: absolute;
   font-size: large;
-  width: 30px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  top: 40%;
+  width: 10%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  top: 0;
   box-shadow: none;
   border: none;
   background: rgba(168, 165, 165, 0.22);
 }
 
 .nextImage{
-  right: 0.5%;
+  right: 0;
 }
 
 .previousImage{
-  left: 0.5%;
+  left: 0;
 }
 
 .nextImage:hover, .previousImage:hover{
@@ -69,14 +72,7 @@
 
 }
 
-.sticky{
-  border: gray 3px solid;
-  border-radius: 1px;
-  padding: 0 0 1% 0;
-  margin: 1.5% 1% 1%;
-  height: fit-content;
-  width: 39%;
-}
+
 
 .group{
   max-width: 100%;
@@ -170,7 +166,13 @@
 
 
 
-
+.sticky{
+  border: gray 3px solid;
+  border-radius: 1px;
+  padding: 0 0 1% 0;
+  margin: 1.5% 1% 1%;
+  width: 39%;
+}
 
 
 

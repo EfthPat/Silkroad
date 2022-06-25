@@ -83,7 +83,7 @@ export class MyAuctionsTabComponent implements OnInit {
 
       },
       // if an error occurred
-      error => {}
+      () => {}
     )
   }
 
@@ -139,7 +139,7 @@ export class MyAuctionsTabComponent implements OnInit {
         {
           this.requestService.deleteAuction(this.auctionThumbnails[index].id).subscribe(
             // if server deleted auction successfully
-            response => {
+            () => {
 
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
@@ -147,7 +147,7 @@ export class MyAuctionsTabComponent implements OnInit {
                 message: "Auction deleted successfully!"
               }
 
-              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+              this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                 ()=>{
                   this.getAuctionThumbnails(this.username,1,this.pageSize,this.auctionState)
                 }
@@ -160,9 +160,10 @@ export class MyAuctionsTabComponent implements OnInit {
 
               let jumpToAuction = true
               let errorMessage
+              console.log(error.error.code)
 
               if(error.error.code===auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
-                errorMessage = "Auction deletion failed! Some user already bid! Continue"
+                errorMessage = "Auction is either expired or bid! Continue"
               else
               {
                 jumpToAuction = false
@@ -175,7 +176,7 @@ export class MyAuctionsTabComponent implements OnInit {
                 message: errorMessage
               }
 
-              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+              this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                 ()=>{
                   if(jumpToAuction)
                     this.router.navigate(['auctions',this.auctionThumbnails[index].id,'bids'])

@@ -88,15 +88,21 @@ export class CreateAuctionPanelComponent implements OnInit {
           // auction is not expired (3), and
           // there's no bids set on the auction (4)
 
-          if (username !== response.seller || response.expired)
+          if (username !== response.seller)
             this.redirectUser()
-          else if(response.totalBids > 0)
+          else if(response.expired || response.totalBids > 0)
           {
+
+            let errorMessage
+            if(response.expired)
+              errorMessage = "Expired auctions can't be updated! Continue"
+            else
+              errorMessage = "Auction update failed! Some user bid first! Continue"
 
             let dialogConfig = new MatDialogConfig();
             dialogConfig.autoFocus = true;
             dialogConfig.data = {
-              message: "Auction update failed! Some user bid first! Continue"
+              message: errorMessage
             }
 
             let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(()=>{

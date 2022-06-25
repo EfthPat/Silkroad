@@ -4,7 +4,7 @@ export const formExpressions = {
 
   price : "^[0-9]*(.?[0-9]{1,2})$",
   zipCode: "^\\d{5}(?:[-\\s]\\d{4})?$",
-  streetNumber: "^\\w+(( |-)\\w+)?$",
+  streetNumber: "^\\w{1,3}(( |-)\\w{1,3})?$",
   country: "[.a-z A-Z]{2,}",
   tin: "[a-zA-Z0-9]*$",
   phoneNumber: "^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$",

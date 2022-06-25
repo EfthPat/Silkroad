@@ -88,8 +88,24 @@ export class CreateAuctionPanelComponent implements OnInit {
           // auction is not expired (3), and
           // there's no bids set on the auction (4)
 
-          if (username !== response.seller || response.expired || response.totalBids > 0)
+          if (username !== response.seller || response.expired)
             this.redirectUser()
+          else if(response.totalBids > 0)
+          {
+
+            let dialogConfig = new MatDialogConfig();
+            dialogConfig.autoFocus = true;
+            dialogConfig.data = {
+              message: "Auction update failed! Some user bid first! Continue"
+            }
+
+            let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(()=>{
+              this.router.navigate(['auctions',this.auctionID,'bids'])
+            })
+
+            return
+          }
+
 
           // store LAT, LONG and NAME of the address to forward them to Map and GeoLocation components respectively
           this.address = {
@@ -487,8 +503,6 @@ export class CreateAuctionPanelComponent implements OnInit {
               },
               // if the auction wasn't created
               error => {
-
-                console.log("AUCTION-CREATION FAILED :", error)
 
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;

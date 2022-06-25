@@ -133,8 +133,27 @@ export class ViewAuctionComponent implements OnInit {
       ,
       // if auction fetching failed
       error => {
-        console.log("VIEW-AUCTION FAILED :", error)
-        this.router.navigate(['/home-navigation-panel'])
+
+        let errorMessage
+
+        if(error.error.code===auctionExceptions.AUCTION_NOT_FOUND)
+          errorMessage = "Whoops! Auction not found! Continue"
+        else
+          errorMessage = "Auction couldn't be loaded! Continue"
+
+        let dialogConfig = new MatDialogConfig();
+        dialogConfig.autoFocus = true;
+
+        dialogConfig.data = {
+          message: errorMessage
+        }
+
+        // open the dialog
+        this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+          ()=>{
+            this.router.navigate(['/browse'])
+          }
+        )
       }
     )
   }
@@ -192,7 +211,7 @@ export class ViewAuctionComponent implements OnInit {
 
           this.requestService.bidOnAuction(this.auctionID, bid).subscribe(
             // if bid was successful
-            response => {
+            () => {
 
               if(maxBid)
               {
@@ -204,7 +223,7 @@ export class ViewAuctionComponent implements OnInit {
                   message: "Auction won for "+bid.toString()+"$ ! Contact seller for more info .."
                 }
 
-                let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+                this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                   ()=>{
                     this.router.navigate(['/navigation-panel/messages/send'],
                       {queryParams: {recipient: this.auctionForm.get('seller')?.value, title: this.auctionForm.get('name')?.value}})
@@ -220,7 +239,7 @@ export class ViewAuctionComponent implements OnInit {
                 message: "Bid succeeded! Continue"
               }
 
-              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
+              this.dialog.open(AlertDialogComponent, dialogConfig)
 
               this.auctionForm.reset()
               this.bidCommitted = false
@@ -256,7 +275,7 @@ export class ViewAuctionComponent implements OnInit {
                 message: errorMessage
               }
 
-              let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
+              this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                 ()=>{
 
                   if(reload)

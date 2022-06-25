@@ -1,5 +1,4 @@
 
-
 export const auctionExceptions = {
 
   AUCTION_NOT_FOUND : "AE_001",
@@ -8,7 +7,6 @@ export const auctionExceptions = {
   AUCTION_MODIFIED_OR_EXPIRED : "AE_004"
 
 }
-
 
 export const bidExceptions = {
 

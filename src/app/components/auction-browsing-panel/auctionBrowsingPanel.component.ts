@@ -5,8 +5,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UtilService} from "../../services/util.service";
 import {serverLinks, serverParameters} from "../../constants/server";
-import {endpoints} from "../../constants/pageLinks";
-
 
 @Component({
   selector: 'app-auction-browsing-navigation-panel',
@@ -111,9 +109,9 @@ export class AuctionBrowsingPanelComponent implements OnInit {
     if(this.dfltLocation!=="Any")
     {
       if(!parametersExist)
-        newLink+='?location='+this.dfltLocation
+        newLink+='?location='+encodeURIComponent(this.dfltLocation)
       else
-        newLink+='&location='+this.dfltLocation
+        newLink+='&location='+encodeURIComponent(this.dfltLocation)
       parametersExist = true
     }
 
@@ -132,18 +130,18 @@ export class AuctionBrowsingPanelComponent implements OnInit {
     if(this.route.snapshot.queryParams['query'])
     {
       if(!parametersExist)
-        newLink+='?query='+this.route.snapshot.queryParams['query'].trim()
+        newLink+='?query='+encodeURIComponent(this.route.snapshot.queryParams['query'].trim())
       else
-        newLink+='&query='+this.route.snapshot.queryParams['query'].trim()
+        newLink+='&query='+encodeURIComponent(this.route.snapshot.queryParams['query'].trim())
       parametersExist = true
     }
 
     if(this.route.snapshot.queryParams['category'])
     {
       if(!parametersExist)
-        newLink+='?category='+this.route.snapshot.queryParams['category'].trim()
+        newLink+='?category='+encodeURIComponent(this.route.snapshot.queryParams['category'].trim())
       else
-        newLink+='&category='+this.route.snapshot.queryParams['category'].trim()
+        newLink+='&category='+encodeURIComponent(this.route.snapshot.queryParams['category'].trim())
     }
 
 
@@ -220,11 +218,9 @@ export class AuctionBrowsingPanelComponent implements OnInit {
 
 
 
-    // every time URL's state changes
+    // every time URL changes
     this.route.queryParams.subscribe(
       () => {
-
-
 
 
         // reset the search-bar parameters
@@ -241,10 +237,10 @@ export class AuctionBrowsingPanelComponent implements OnInit {
         // query, category, min-price, max-price, location, buyNow
 
         if(queryParameters['query'])
-          this.dfltQuery = queryParameters['query'].trim()
+          this.dfltQuery = decodeURIComponent(queryParameters['query'].trim())
 
         if(queryParameters['category'])
-          this.dfltCategory = queryParameters['category'].trim()
+          this.dfltCategory = decodeURIComponent(queryParameters['category'].trim())
 
         if(queryParameters['min-price'] && !isNaN(queryParameters['min-price']))
         {
@@ -259,10 +255,11 @@ export class AuctionBrowsingPanelComponent implements OnInit {
         }
 
         if(queryParameters['location'])
-          this.location = this.dfltLocation = queryParameters['location'].trim()
+          this.location = this.dfltLocation = decodeURIComponent(queryParameters['location'].trim())
 
         if(queryParameters['buy-now'] && queryParameters['buy-now']==="true" )
           this.dfltBuyNow=true
+
 
         this.getBrowsingAuctions(this.pageSize, 1, this.dfltMinPrice, this.dfltMaxPrice, this.dfltLocation,
           this.dfltCategory, this.dfltQuery, this.dfltBuyNow)

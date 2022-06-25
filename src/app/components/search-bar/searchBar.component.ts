@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../../services/request.service";
 import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
 import {endpoints} from "../../constants/pageLinks";
 import {roles} from "../../constants/roles";
 
@@ -29,7 +28,7 @@ export class SearchBarComponent implements OnInit {
   @Input() category: string
   @Input() query: string
 
-  constructor(private requestService: RequestService, private authService: AuthService, private router: Router) {
+  constructor(private requestService: RequestService, private authService: AuthService) {
 
     this.roleSet = roles
     this.username = ""
@@ -76,43 +75,44 @@ export class SearchBarComponent implements OnInit {
     let requestedCategory
     this.category !== "Categories" ? requestedCategory = this.category : requestedCategory = "Any"
 
-    let params
-    let query = auctionText.trim()
+    let query = encodeURI(auctionText.trim())
 
-    params = query ? {query: query, category: requestedCategory} : {category: requestedCategory}
+    let url = endpoints.browse+"?category="+encodeURIComponent(requestedCategory)
+    if(query)
+      url += "&query="+encodeURIComponent(query)
 
-    this.router.navigate([endpoints.browse], {queryParams: params});
+    location.replace(url)
   }
 
 
   categoryShopping(requestedCategory: string): void {
-    this.router.navigate([endpoints.browse], {queryParams: {category: requestedCategory}});
+    location.replace(endpoints.browse+"?category="+encodeURIComponent(requestedCategory))
   }
 
 
   tabRedirect(option: any): void {
 
     if (option === "My Purchases")
-      this.router.navigate([endpoints.myPurchases])
+      location.replace(endpoints.myPurchases)
     else if (option === "My Auctions")
-      this.router.navigate([endpoints.myAuctions])
+      location.replace(endpoints.myAuctions)
     else if (option === "My Bids")
-      this.router.navigate([endpoints.myBids])
+      location.replace(endpoints.myBids)
     else if (option === "Administration")
-      this.router.navigate([endpoints.users])
+      location.replace(endpoints.users)
     else if (option === "My Messages")
-      this.router.navigate([endpoints.inbox])
+      location.replace(endpoints.inbox)
     else if (option === "sell")
-      this.router.navigate([endpoints.createAuction])
+      location.replace(endpoints.createAuction)
     else if (option === "login")
-      this.router.navigate([endpoints.login])
+      location.replace(endpoints.login)
     else if (option === "home")
-      this.router.navigate([endpoints.home])
+      location.replace(endpoints.home)
     else if (option === "logout") {
       this.authService.logout()
       this.userRole = roles[0]
       this.dynamicButtonTitle="Login"
-      this.router.navigate([endpoints.browse])
+      location.replace(endpoints.browse)
     }
 
   }

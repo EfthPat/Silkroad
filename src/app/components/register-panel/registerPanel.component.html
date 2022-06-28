@@ -10,6 +10,7 @@
       <div class="usernameClass">
         <label for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
         <input class="form-control" type="text" id="username" formControlName="username">
+        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username is taken</p>
       </div>
 
       <div class="tinClass">
@@ -97,6 +98,7 @@
       <div class="emailClass">
         <label for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
         <input class="form-control" type="text" id="email" formControlName="email" >
+        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email is taken</p>
       </div>
 
       <!-- PHONE NUMBER -->

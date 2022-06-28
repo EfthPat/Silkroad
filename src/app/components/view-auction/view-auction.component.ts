@@ -12,6 +12,7 @@ import {serverLinks, serverParameters} from "../../constants/server";
 import {endpoints} from "../../constants/pageLinks";
 import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
 
+
 @Component({
   selector: 'app-view-auction',
   templateUrl: './view-auction.component.html',
@@ -103,7 +104,7 @@ export class ViewAuctionComponent implements OnInit {
         this.auctionForm.get('sellerRating')?.setValue(response.sellerRating)
 
 
-
+        // !
         let fullAddress = response.address.streetName+" "+response.address.streetNumber
           +", "+response.address.zipCode+", "+response.address.location
 
@@ -151,7 +152,7 @@ export class ViewAuctionComponent implements OnInit {
         // open the dialog
         this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
           ()=>{
-            this.router.navigate(['/browse'])
+            this.router.navigate([endpoints.browse])
           }
         )
       }
@@ -225,7 +226,7 @@ export class ViewAuctionComponent implements OnInit {
 
                 this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
                   ()=>{
-                    this.router.navigate(['/navigation-panel/messages/send'],
+                    this.router.navigate([endpoints.send],
                       {queryParams: {recipient: this.auctionForm.get('seller')?.value, title: this.auctionForm.get('name')?.value}})
                     return
                   }

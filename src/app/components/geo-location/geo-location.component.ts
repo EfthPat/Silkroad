@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MapService} from "../../services/map.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-geo-location',
@@ -54,6 +53,36 @@ export class GeoLocationComponent implements OnInit {
 
   }
 
+  reformatSuggestion(location : any) : string{
+
+
+    if(!location)
+      return ""
+
+    // if both address-road and address-name don't exist, return the default display-name
+    if(!(location.address.road || location.address.name))
+      return location.display_name
+
+    // prioritize address-road over address-name
+    let suggestion = location.address.road ? location.address.road : location.address.name
+
+    if(location.address.house_number)
+      suggestion+=" "+location.address.house_number
+
+    if(location.address.city)
+      suggestion+=", "+location.address.city
+
+    if(location.address.postcode)
+      suggestion+=", "+location.address.postcode
+
+    if(location.address.country)
+      suggestion+=", "+location.address.country
+
+
+    return suggestion
+  }
+
+
   // Find autocomplete's suggestions
   getSuggestedLocations(event: any): void {
 
@@ -65,7 +94,7 @@ export class GeoLocationComponent implements OnInit {
     if (invalidInput)
       return
 
-    // if the input was a number, a letter or (delete) button, then the location should be reexamined
+    // if the input was a number, a letter or (delete) button, then location should be reexamined
     this.locationField.setErrors({'incorrect': true})
     this.geoState.emit(false)
 
@@ -85,29 +114,22 @@ export class GeoLocationComponent implements OnInit {
         this.suggestedLocations = []
         this.suggestedAddresses = []
 
-        // make an array to save location names to avoid duplicates
+        // make an array to save location names
         let existingNames: any = []
 
         // for each suggested location that was found
         for (let currentLocation of response) {
 
-          // if the said road is defined AND is not included already in autocomplete's dropdown
-          if(currentLocation.address.road && !(existingNames.indexOf(currentLocation.address.road)>-1))
+          let currentLocationName = this.reformatSuggestion(currentLocation)
+
+          // if the current suggestion is not included already in autocomplete's dropdown
+          if(currentLocationName && !(existingNames.indexOf(currentLocationName)>-1))
           {
-            // otherwise, store the suggested location
+            // store the suggested location
             this.suggestedLocations.push(currentLocation)
-            // store location's road
-            this.suggestedAddresses.push(currentLocation.address.road)
-            existingNames.push(currentLocation.address.road)
-          }
-          // otherwise, attempt to save location's name
-          else if(currentLocation.address.name && !(existingNames.indexOf(currentLocation.address.name)>-1))
-          {
-            // otherwise, store the suggested location
-            this.suggestedLocations.push(currentLocation)
-            // store location's road
-            this.suggestedAddresses.push(currentLocation.address.name)
-            existingNames.push(currentLocation.address.name)
+            // store location's reformatted name
+            this.suggestedAddresses.push(currentLocationName)
+            existingNames.push(currentLocationName)
           }
 
 
@@ -129,7 +151,6 @@ export class GeoLocationComponent implements OnInit {
     // if the user clicked on one of the dropdown-menu options
     if (index > -1) {
       console.log("(CLICK) #" + index)
-      this.locationField.setValue(this.suggestedAddresses[index])
       this.locationField.setErrors(null)
       this.geoAddress.emit(this.suggestedLocations[index])
       this.geoState.emit(true)
@@ -146,6 +167,8 @@ export class GeoLocationComponent implements OnInit {
         this.locationField.setErrors(null)
         this.geoAddress.emit(this.suggestedLocations[i])
         this.geoState.emit(true)
+
+        console.log("LOCATION :",this.locationField.value)
         return
       }
 
@@ -154,41 +177,34 @@ export class GeoLocationComponent implements OnInit {
     // then, if the address was inserted by clicking on the map
     if (this.locationField.pristine && this.locationField.value !== "") {
       // no need for request, because map sent the address name through the map-service
-      console.log("NO REQUEST NEEDED - MAP UPDATED ADDRESS BAR")
+      console.log("NO REQUEST NEEDED! MAP UPDATED ADDRESS FIELD!")
       this.locationField.setErrors(null)
       this.geoState.emit(true)
     }
     // if the user inserted a custom address
     else {
+
+
       console.log("REQUESTING CUSTOM ADDRESS")
       // send an HTTP request to the server to get a single suggested-location
       this.mapService.getForwardLocation(location).subscribe(
         response => {
-          if (response.data.length == 0) {
-            console.error("ERROR #1 : CUSTOM ADDRESS NOT FOUND")
-            this.locationField.setErrors({'incorrect': true})
-            this.geoState.emit(false)
-            return
-          }
 
-          // get the single response object from the server
-          let customLocation = response.data[0]
-
-          console.log("FOUND CUSTOM ADDRESS :", customLocation)
+          console.log("FOUND CUSTOM ADDRESS :", response[0].address)
 
           // store the custom location's name
-          this.locationField.setValue(customLocation.label)
+          this.locationField.setValue(this.reformatSuggestion(response[0]))
 
           // emit custom Location
-          this.geoAddress.emit(customLocation)
-
+          this.geoAddress.emit(response[0])
           this.locationField.setErrors(null)
           this.geoState.emit(true)
         }
         ,
         // otherwise, if the custom address doesn't exist, mark the input as invalid
         () => {
-          console.error("#2 ERR : CUSTOM ADDR NOT FOUND")
+
+          console.log("ERROR : CUSTOM ADDRESS NOT FOUND!")
           this.locationField.setErrors({'incorrect': true})
           this.geoState.emit(false)
         }

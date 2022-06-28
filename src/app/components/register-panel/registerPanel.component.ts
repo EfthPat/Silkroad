@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RequestService} from "../../services/request.service";
-import {DataService} from "../../services/data.service";
 import {endpoints} from "../../constants/pageLinks";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
@@ -18,6 +17,7 @@ export class RegisterPanelComponent implements OnInit {
   address: any
   registerForm: FormGroup
   showError: boolean
+  errorCode: string
 
   constructor(private router: Router, private requestService: RequestService, private dialog: MatDialog) {
 
@@ -47,7 +47,7 @@ export class RegisterPanelComponent implements OnInit {
     }, {validators: this.passwordValidator})
 
     this.showError = false
-
+    this.errorCode = ""
   }
 
   passwordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -71,6 +71,8 @@ export class RegisterPanelComponent implements OnInit {
 
   submitForm(): void {
 
+    this.errorCode = ""
+    this.showError = false
 
     if (this.registerForm.invalid) {
       this.showError = true
@@ -81,12 +83,12 @@ export class RegisterPanelComponent implements OnInit {
       // pack user's data
       let userInfo = this.extractUserInfo()
 
-      console.log("INFO : ",userInfo)
+      console.log("INFO : ", userInfo)
 
       // send a signup request to the server with user's data
       this.requestService.registerUser(userInfo).subscribe(
         // if the server responded successfully
-        response => {
+        () => {
 
           // then, the signup request was accepted and the user is redirected to home page
 
@@ -98,7 +100,7 @@ export class RegisterPanelComponent implements OnInit {
 
           let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)
 
-          dialogRef.afterClosed().subscribe(()=>{
+          dialogRef.afterClosed().subscribe(() => {
             this.router.navigate([endpoints.browse])
           })
 
@@ -107,21 +109,10 @@ export class RegisterPanelComponent implements OnInit {
         // if the signup request failed
         error => {
 
-          console.log("SIGNUP FAILED :",error.error.code)
+          console.log("SIGNUP FAILED :", error.error.code)
           this.showError = true
-
-          // then, either the username is taken
-          if(error.error.code=="UE_003")
-          {
-            console.log("USERNAME ALREADY EXISTS")
-            this.registerForm.get('username')?.reset()
-          }
-          else if(error.error.code=="UE_004")
-          {
-            console.log("EMAIL ALREADY EXISTS")
-            this.registerForm.get('email')?.reset()
-
-          }
+          this.registerForm.markAsPristine()
+          this.errorCode = error.error.code
 
         }
       )
@@ -133,7 +124,7 @@ export class RegisterPanelComponent implements OnInit {
   extractUserInfo(): any {
 
     // function that extracts location
-    let getLocation = (address: any, defaultValue : any) => {
+    let getLocation = (address: any, defaultValue: any) => {
 
       if (address.address.neighbourhood)
         return address.address.neighbourhood
@@ -144,16 +135,16 @@ export class RegisterPanelComponent implements OnInit {
       if (address.address.town)
         return address.address.town
 
-      if(address.address.region)
+      if (address.address.region)
         return address.address.region
 
-      if(address.address.county)
+      if (address.address.county)
         return address.address.county
 
       return defaultValue
     }
 
-    let getAddressName = (address: any) =>{
+    let getAddressName = (address: any) => {
       if (address.address.road)
         return address.address.road
 
@@ -172,7 +163,7 @@ export class RegisterPanelComponent implements OnInit {
       return address.address.diplay_name
     }
 
-    let  userInfo =  {
+    let userInfo = {
       username: this.registerForm.get('username')?.value,
       password: this.registerForm.get('password')?.value,
       email: this.registerForm.get('email')?.value,
@@ -181,7 +172,7 @@ export class RegisterPanelComponent implements OnInit {
       phone: this.registerForm.get('phoneNumber')?.value,
       tin: this.registerForm.get('tin')?.value,
       address: {
-        coordinates  : {
+        coordinates: {
           latitude: this.address.lat,
           longitude: this.address.lon
         },
@@ -294,18 +285,13 @@ export class RegisterPanelComponent implements OnInit {
         addressName = this.address.address.road
       } else if (this.address.address.name) {
         addressName = this.address.address.name
-      }
-      else if (this.address.address.town) {
+      } else if (this.address.address.town) {
         addressName = this.address.address.town
-      }
-      else if (this.address.address.city) {
+      } else if (this.address.address.city) {
         addressName = this.address.address.city
-      }
-      else if (this.address.address.municipality) {
+      } else if (this.address.address.municipality) {
         addressName = this.address.address.municipality
-      }
-      else
-      {
+      } else {
         addressName = this.address.display_name
       }
     }
@@ -313,6 +299,7 @@ export class RegisterPanelComponent implements OnInit {
     return addressName
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

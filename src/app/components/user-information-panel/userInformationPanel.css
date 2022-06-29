@@ -12,6 +12,10 @@
   font-size: small;
 }
 
+.txt{
+  font-size: 120%;
+}
+
 .row{
   display: flex;
   flex-direction: row;
@@ -117,18 +121,10 @@
 }
 
 .approveButton{
-  width: 15%;
-  height: 30px;
-  border-radius: 20px;
-  background: transparent;
-  border: gray 1.5px solid;
-  min-width: fit-content;
-  font-size: medium;
-  color: rgba(0, 0, 0, 0.76);
-  margin: 1% 0 0 10%;
-  outline: none;
+  width: 96%;
+  margin: 8% 2% 0;
+  padding: 1%;
+  font-weight: bold;
+  color: white !important;
 }
 
-.approveButton:hover{
-  background: rgba(0, 0, 139, 0.07);
-}

@@ -8,13 +8,13 @@
 
       <!-- USERNAME -->
       <div class="usernameClass">
-        <label for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
+        <label class="lbl" for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
         <input class="form-control" type="text" id="username" formControlName="username">
-        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username is taken</p>
+        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username Exists</p>
       </div>
 
       <div class="tinClass">
-        <label for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
+        <label class="lbl" for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
         <input class="form-control" type="text" id="tin" formControlName="tin">
       </div>
 
@@ -26,7 +26,7 @@
 
       <!-- STREET NAME -->
       <div class="streetNameClass">
-        <label for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street Name</label>
+        <label class="lbl" for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street Name</label>
         <app-geo-location id="address" [addressName]="extractAddressName()"
                           (geoAddress)="getGeolocationAddress($event)"
                           (geoState)="updateBarsState($event)"></app-geo-location>
@@ -35,7 +35,7 @@
 
       <!-- STREET NUMBER -->
       <div class="streetNumberClass">
-        <label for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
+        <label class="lbl" for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
         <input class="form-control" type="text" id="streetNumber" formControlName="streetNumber" >
       </div>
 
@@ -46,13 +46,13 @@
 
       <!-- COUNTRY -->
       <div class="countryClass">
-        <label for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
+        <label class="lbl" for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
         <input class="form-control" type="text" id="country" formControlName="country" >
       </div>
 
       <!-- ZIP CODE -->
       <div class="zipCodeClass">
-        <label for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
+        <label class="lbl" for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
         <input class="form-control" type="text" id="zip" formControlName="zipCode" >
       </div>
     </div>
@@ -62,13 +62,13 @@
 
       <!-- FIRSTNAME -->
       <div class="firstnameClass">
-        <label for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
+        <label class="lbl" for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
         <input class="form-control" type="text" id="firstname" formControlName="firstname" >
       </div>
 
       <!-- LASTNAME -->
       <div class="lastnameClass">
-        <label for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
+        <label class="lbl" for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
         <input class="form-control" type="text" id="lastname" formControlName="lastname" >
       </div>
 
@@ -79,13 +79,13 @@
 
       <!-- PASSWORD -->
       <div class="passwordClass">
-        <label for="password" [ngClass]="{errorClass:showError && invalidField('password')}">Password</label>
+        <label class="lbl" for="password" [ngClass]="{errorClass:showError && invalidField('password')}">Password</label>
         <input class="form-control" type="text" id="password" formControlName="password" >
       </div>
 
       <!-- CONFIRM PASSWORD -->
       <div class="confirmPasswordClass">
-        <label for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
+        <label class="lbl" for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
         <input class="form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
       </div>
 
@@ -96,20 +96,20 @@
 
       <!-- EMAIL -->
       <div class="emailClass">
-        <label for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
+        <label class="lbl" for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
         <input class="form-control" type="text" id="email" formControlName="email" >
-        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email is taken</p>
+        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email Exists</p>
       </div>
 
       <!-- PHONE NUMBER -->
       <div class="phoneNumberClass">
-        <label for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
+        <label class="lbl" for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
         <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
       </div>
 
     </div>
 
-    <button class="btn btn-outline-primary submitClass" (click)="submitForm()">Sign-Up</button>
+    <button class="btn btn btn-success btn-raised submitClass" (click)="submitForm()">Sign-Up</button>
 
   </div>
 

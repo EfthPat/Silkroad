@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestService} from "../../services/request.service";
 import {endpoints} from "../../constants/pageLinks";
+import {UtilService} from "../../services/util.service";
 
 @Component({
   selector: 'app-user-information-panel',
@@ -14,7 +15,8 @@ export class UserInformationPanel implements OnInit {
   userForm: FormGroup
   showApproval: boolean
 
-  constructor(private route: ActivatedRoute, private router: Router, private requestService: RequestService) {
+  constructor(private route: ActivatedRoute, private router: Router, private requestService: RequestService,
+              public utilService: UtilService) {
 
     this.showApproval = false
 
@@ -64,6 +66,7 @@ export class UserInformationPanel implements OnInit {
         this.userForm.get('longitude')?.setValue(response.address.coordinates.longitude)
         this.userForm.get('country')?.setValue(response.address.country)
         this.userForm.get('location')?.setValue(response.address.location)
+
         this.userForm.get('streetName')?.setValue(response.address.streetName)
         this.userForm.get('streetNumber')?.setValue(response.address.streetNumber)
         this.userForm.get('zipCode')?.setValue(response.address.zipCode)

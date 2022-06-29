@@ -12,7 +12,8 @@
 }
 
 .form-control{
-  background: rgba(0, 0, 255, 0.11);
+  background: transparent;
+  box-shadow: none;
 }
 
 .registerFormClass{
@@ -34,6 +35,11 @@
   flex-direction: row;
   width: 100%;
   justify-content: start;
+}
+
+.lbl{
+  font-weight: bold;
+  font-size: small;
 }
 
 .usernameClass{
@@ -156,7 +162,6 @@
   border-radius: 4px;
   height: 30px;
   margin-left: 18%;
-  background: rgba(173, 216, 230, 0.55);
 }
 
 .errorClass {

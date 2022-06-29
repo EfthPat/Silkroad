@@ -12,10 +12,10 @@
   <div class="slider row" *ngIf="showRecommendations">
 
     <!-- SLIDE LEFT BUTTON-->
-    <button class="slideLeftButton fa fa-angle-left" (click)="slide(true)"></button>
+    <button class="slideLeftButton fa fa-angle-left fa-2x" (click)="slide(true)"></button>
 
     <!-- SLIDE RIGHT BUTTON-->
-    <button class="slideRightButton fa fa-angle-right" (click)="slide(false)"></button>
+    <button class="slideRightButton fa fa-angle-right fa-2x" (click)="slide(false)"></button>
 
     <!-- RECOMMENDATIONS -->
     <div id="recommendations" class="recommendations row">
@@ -31,10 +31,10 @@
                src="https://localhost:8443/media/{{recommendation.id}}/{{recommendation.images[activeImages[i]]}}">
 
           <!-- NEXT IMAGE -->
-          <button class="page-link next nextImage fa fa-angle-right" (click)="getNextImage(i)"></button>
+          <button class="page-link next nextImage fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
 
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link next previousImage fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+          <button class="page-link next previousImage fa fa-angle-left fa-2x  " (click)="getPreviousImage(i)"></button>
 
 
 
@@ -46,14 +46,13 @@
           <mat-card-title class="cardName">{{recommendation.name}}</mat-card-title>
 
           <!-- HIGHEST BID -->
-          <mat-card-subtitle class="highestBid">Highest Bid at
-            {{this.utilService.reformatNumber((recommendation.highestBid>recommendation.firstBid ? recommendation.highestBid : recommendation.firstBid))}}
-            $</mat-card-subtitle>
+          <mat-card-content class="highestBid">From ${{this.utilService.reformatNumber((recommendation.highestBid>recommendation.firstBid ? recommendation.highestBid : recommendation.firstBid))}}
+            </mat-card-content>
 
           <!-- LOCATION -->
-          <mat-card-subtitle class="location">
+          <mat-card-content class="location">
             Located in {{recommendation.country}} !
-          </mat-card-subtitle>
+          </mat-card-content>
 
         </div>
 

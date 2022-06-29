@@ -35,7 +35,7 @@
 }
 
 .slider{
-  border: gray 2px solid;
+  border: rgba(128, 128, 128, 0.31) 1px solid;
   overflow: hidden;
   position: relative;
   height: 50%;
@@ -43,7 +43,6 @@
   margin: 0;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 139, 0.09);
 }
 
 .recommendations{
@@ -57,15 +56,12 @@
 }
 
 .recommendation{
-  border: gray 1px solid;
-  border-left: gray 2px solid;
   justify-content: center;
   align-items: center;
   height: 97%;
   width: 45%;
   margin: 0 2.5%;
   padding: 0;
-  box-shadow: 1px 1px black;
 }
 
 .images{
@@ -77,30 +73,34 @@
 
 .image{
   height: 100%;
-  width: 80%;
+  width: 60%;
 }
 
 .nextImage, .previousImage{
   height: 100%;
-  width: 10%;
+  width: 20%;
   position: absolute;
   bottom: 0;
   border: none;
   background: rgba(168, 165, 165, 0.09);
   font-size: large;
-  box-shadow: none;
 }
 
 .nextImage{
   right: 0;
+  color: black;
 }
 
 .previousImage{
   left: 0;
+  color: black;
 }
 
 .content{
-  border-top: gray 3px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: rgba(128, 128, 128, 0.13) 1px solid;
   height: 50%;
   width: 100%;
 }
@@ -141,6 +141,10 @@
   text-overflow: ellipsis;
   padding: 1%;
   margin: 1% 0;
+}
+
+.cardName{
+
 }
 
 .location{

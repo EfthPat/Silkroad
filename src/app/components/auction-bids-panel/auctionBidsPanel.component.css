@@ -86,9 +86,8 @@
 
 .stickyLabel{
   margin: 0;
-  font-weight: bolder;
-  font-size: large;
-  font-family: "Century Gothic", sans-serif;
+  font-weight: bold;
+  font-size: medium;
 }
 
 .stickyText{
@@ -98,9 +97,8 @@
 
   width: fit-content;
 
-  font-weight: 1;
-  font-size: small;
-  font-family: "Century Gothic", sans-serif;
+  font-size: medium;
+
 
   word-break: break-all;
   overflow: hidden;
@@ -131,12 +129,9 @@
 }
 
 .card{
-  width: 98%;
+  width: 99%;
   padding: 0;
-  margin: 0 0 2%;
-  background: linear-gradient(20deg, rgba(128, 128, 128, 0.07),transparent);
-  border: gray 1px solid;
-  box-shadow: 1.5px 1.5px rgba(128, 128, 128, 0.55);
+  margin: 0 0 2% 1%;
 }
 
 .pagination{

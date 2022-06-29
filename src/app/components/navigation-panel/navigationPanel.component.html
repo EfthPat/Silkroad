@@ -13,15 +13,15 @@
 
 
           <div [ngClass]="{'activeElement': this.activeElement == 1}" class="bidsCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.myBids)">My Bids</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.myBids)">My Bids</button>
           </div>
 
           <div [ngClass]="{'activeElement': this.activeElement == 2}" class="purchasesCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.myPurchases)">My Purchases</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.myPurchases)">My Purchases</button>
           </div>
 
           <div [ngClass]="{'activeElement': this.activeElement == 3}" class="auctionsCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.myAuctions)">My Auctions</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.myAuctions)">My Auctions</button>
           </div>
 
         </div>
@@ -48,17 +48,17 @@
 
           <!-- SEND -->
           <div [ngClass]="{'activeElement': this._activeElement == 1}" class="outboxCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.send)">Send</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.send)">Send</button>
           </div>
 
           <!-- INBOX -->
           <div [ngClass]="{'activeElement': this._activeElement == 2}" class="inboxCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.inbox)">Inbox</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.inbox)">Inbox</button>
           </div>
 
           <!-- OUTBOX -->
           <div [ngClass]="{'activeElement': this._activeElement == 3}" class="outboxCategoryClass">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.outbox)">Outbox</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.outbox)">Outbox</button>
           </div>
 
 
@@ -85,12 +85,12 @@
 
           <!-- USERS -->
           <div class="usersCategoryClass activeElement">
-            <button class="btn btn-link" (click)="navigate(this.endpointSet.users)">Users</button>
+            <button mat-button color="primary" (click)="navigate(this.endpointSet.users)">Users</button>
           </div>
 
           <!-- EXPORT -->
           <div class="exportCategoryClass">
-            <button class="btn btn-link" (click)="export()">Export</button>
+            <button mat-button color="primary" (click)="export()">Export</button>
           </div>
 
 

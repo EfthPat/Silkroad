@@ -17,18 +17,24 @@
   <!-- USERS + PAGINATION -->
   <div class="cpGroup">
 
+
     <!-- CARDS -->
     <div class="cardsGroup">
-      <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 70%;" *ngFor="let thumbnail of this.userThumbnails; let i=index">
 
-        <div class="card-body">
-          <h5 class="card-title cardText" style="font-weight: bolder">{{thumbnail.username}}</h5>
-          <label class="cardText" for="join-date" style="font-weight: 600">Join Date</label>
-          <p id="join-date" class="card-text cardText" style="font-weight: 350">{{utilService.reformatDate(thumbnail.joinDate)}}</p>
-          <button type="button" class="btn btn-primary btn-md btn-block cardText detailButton" (click)="userInfo(i)">Details</button>
+      <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index">
+
+        <mat-card-title class="username">{{thumbnail.username}}</mat-card-title>
+
+        <div class="date">
+          <label class="textLabel" for="joinDate">Join Date</label>
+          <mat-card-content id="joinDate" class="joinDate">{{utilService.reformatDate(thumbnail.joinDate)}}</mat-card-content>
         </div>
 
-      </div>
+        <button mat-flat-button color="primary" class="updateButtonClass" (click)="userInfo(i)">Details</button>
+
+      </mat-card>
+
+
     </div>
 
 

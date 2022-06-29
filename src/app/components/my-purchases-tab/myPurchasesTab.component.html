@@ -25,7 +25,9 @@
         <div class="cardContentClass">
 
           <mat-card-title class="card-title auctionNameField" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
-          <mat-card-content class="costClass priceField"(click)="purchaseInfo(i)">Bought it for {{this.utilService.reformatNumber(thumbnail.cost)}} $</mat-card-content>
+
+          <label class="textLabel" for="priceField">Cost</label>
+          <mat-card-content id="priceField" class="priceField"(click)="purchaseInfo(i)">${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
 
           <!-- CONTACT SELLER BUTTON -->
           <button mat-button color="primary" (click)="contactSeller(i)">Contact Seller</button>

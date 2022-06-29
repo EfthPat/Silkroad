@@ -25,19 +25,19 @@
         <div class="cardContent">
 
           <!-- NAME -->
-          <h5 class="auctionName" (click)="moreInfo(i)">{{thumbnail.auctionName}}</h5>
+          <mat-card-title class="auctionName" (click)="moreInfo(i)">{{thumbnail.auctionName}}</mat-card-title>
 
           <!-- DATE-->
           <div class="date">
             <label for="dateField" class="textLabel">Date</label>
-            <p id="dateField" class="dateField">{{utilService.reformatDate(thumbnail.submissionDate)}}</p>
+            <mat-card-content id="dateField" class="dateField">{{utilService.reformatDate(thumbnail.submissionDate)}}</mat-card-content>
           </div>
 
           <!-- BID -->
           <div class="bid">
             <label for="highestBid" class="textLabel">Amount</label>
 
-            <p id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.amount)}}</p>
+            <mat-card-content id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.amount)}}</mat-card-content>
 
           </div>
 

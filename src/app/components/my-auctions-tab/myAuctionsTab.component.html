@@ -38,10 +38,12 @@
         <div class="cardContentClass">
 
           <mat-card-title class="auctionNameClass" (click)="auctionInfo(i)">{{thumbnail.name}}</mat-card-title>
-          <mat-card-subtitle class="endDateClass" (click)="auctionInfo(i)">Expiration on {{utilService.reformatDate(thumbnail.endDate)}}!</mat-card-subtitle>
-          <mat-card-subtitle class="locationClass">Highest Bid at
+
+          <label class="textLabel" for="endDateClass">Expires</label>
+          <mat-card-content id="endDateClass" class="endDateClass" (click)="auctionInfo(i)">{{utilService.reformatDate(thumbnail.endDate)}}</mat-card-content>
+          <mat-card-content class="locationClass">Highest Bid at
             {{thumbnail.highestBid>thumbnail.firstBid ? thumbnail.highestBid : thumbnail.firstBid}}
-            $!</mat-card-subtitle>
+            $!</mat-card-content>
           <div class="cardButtonsClass">
 
             <!-- IF THE AUCTION IS EXPIRED AND THERE'S A BUYER-->

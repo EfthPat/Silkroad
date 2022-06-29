@@ -10,7 +10,6 @@
 }
 
 .bpGroup{
-  background: #f6fbff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,9 +26,11 @@
 }
 
 .cardClass{
+
   padding: 0.5%;
-  min-height: 25vh;
-  width: 55%;
+  min-height: 200px;
+  height:25vh;
+  width: 98%;
   margin: 0.5%;
   display: flex;
   flex-direction: row;
@@ -49,7 +50,7 @@
   border:  rgba(0, 0, 0, 0.04) 1px solid;
   position: relative;
   height: 100%;
-  width: 40%;
+  width: 25%;
 }
 
 .imageClass{
@@ -86,7 +87,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 60%;
+  width: 75%;
 }
 
 .auctionName, .highestBid, .dateField{
@@ -99,18 +100,18 @@
   font-size: x-large;
   font-weight: 600;
   height: 30%;
-  margin: 2% 0 0 10%;
+  margin: 0 0 0 1%;
   max-width: 20vw;
 }
 
 .date{
   height: 30%;
-  margin: 2% 0 0 10%;
+  margin: 0 0 0 1%;
 }
 
 .bid{
   height: 30%;
-  margin: 2% 0 0 10%;
+  margin: 0 0 0 1%;
 }
 
 
@@ -143,13 +144,12 @@
 
 
 .date{
-
+  margin: 0 0 1% 1%;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 .paginationClass{
-  background: #f6fbff;
   display: flex;
   flex-direction: row;
   justify-content: center;

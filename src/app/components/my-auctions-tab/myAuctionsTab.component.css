@@ -71,8 +71,9 @@
 }
 
 .cardClass {
-  height: 20vh;
-  width: 80%;
+  height: 25vh;
+  min-height: 200px;
+  width: 98%;
   margin: 0.5%;
   display: flex;
   flex-direction: row;
@@ -88,7 +89,7 @@
   justify-content: center;
   position: relative;
   height: 100%;
-  width: 40%;
+  width: 25%;
   border: #cfd3d0 1px solid;
 }
 
@@ -105,7 +106,7 @@
   right: 0;
   box-shadow: none;
   border: none;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
 }
 
 .previousImageClass{
@@ -116,14 +117,14 @@
   left: 0;
   box-shadow: none;
   border: none;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
 }
 
 .cardContentClass {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 60%;
+  width: 75%;
 }
 
 .auctionNameClass, .endDateClass, .cardButtonsClass, .locationClass{
@@ -134,24 +135,27 @@
 }
 
 .auctionNameClass {
-  height: 30%;
-  padding: 1% 2%;
-  text-align: center;
+  font-size: x-large;
+  font-weight: 600;
+  padding: 0.5%;
   margin: 0;
 }
 
 .endDateClass {
-  height: 25%;
   margin: 0;
-  padding: 2% 1% 0;
-  text-align: center;
+  padding: 0 1%;
+}
+
+.textLabel{
+  font-weight: bold;
+  font-size: medium;
+  margin: 1% 0 0 1%;
 }
 
 .locationClass{
   height: 25%;
   padding: 1.5% 1% 0;
   margin: 0;
-  text-align: center;
   font-weight: bold;
 }
 
@@ -164,7 +168,6 @@
 
 .contactButtonClass {
   align-self: end;
-  text-align: center;
   height: 95%;
   width: 100%;
   padding-top: 1%;

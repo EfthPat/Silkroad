@@ -1,6 +1,5 @@
 
 .newMessageClass{
-  background: #f6fbff;
   display: flex;
   flex-direction: column;
   min-height: 93vh;

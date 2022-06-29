@@ -10,7 +10,6 @@
 }
 
 .ipGroup{
-  background: #f6fbff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,7 +77,6 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 .paginationClass{
-  background-color: #f6fbff;
   display: flex;
   flex-direction: row;
   justify-content: center;

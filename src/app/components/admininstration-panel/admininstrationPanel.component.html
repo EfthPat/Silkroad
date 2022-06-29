@@ -1,4 +1,3 @@
-
 <div class="adminPage">
 
   <!-- FILTERS -->
@@ -7,8 +6,10 @@
     <p class="userLabel">Approval Status</p>
     <div class="userStateClass">
       <mat-radio-button class="buttonClass" (click)="submitFilter('')"><p class="buttonTitle">All</p></mat-radio-button>
-      <mat-radio-button class="buttonClass" (click)="submitFilter('no')"><p class="buttonTitle">Pending</p></mat-radio-button>
-      <mat-radio-button class="buttonClass" (click)="submitFilter('yes')"><p class="buttonTitle">Approved</p></mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('no')"><p class="buttonTitle">Pending</p>
+      </mat-radio-button>
+      <mat-radio-button class="buttonClass" (click)="submitFilter('yes')"><p class="buttonTitle">Approved</p>
+      </mat-radio-button>
     </div>
 
   </div>
@@ -17,22 +18,35 @@
   <div class="cpGroup">
 
     <!-- CARDS -->
-    <div class="cardsGroup">
 
-      <!-- EACH CARD -->
-      <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index" (click)="userInfo(i)">
+    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 70%;" *ngFor="let thumbnail of this.userThumbnails; let i=index">
 
-        <mat-card-title class="usernameClass">{{thumbnail.username}}</mat-card-title>
-        <mat-card-subtitle class="joinDateClass">joined on {{utilService.reformatDate(thumbnail.joinDate)}} ..</mat-card-subtitle>
+      <div class="card-body">
+        <h5 class="card-title" style="font-weight: bolder">{{thumbnail.username}}</h5>
+        <label for="join-date" style="font-weight: 600">Join Date</label>
+        <p id="join-date" class="card-text" style="font-weight: 350">{{utilService.reformatDate(thumbnail.joinDate)}}</p>
+        <button type="button" class="btn btn-primary btn-md btn-block" (click)="userInfo(i)">Details</button>
+      </div>
 
-      </mat-card>
+
+      <!--<div class="cardsGroup">
+
+        &lt;!&ndash; EACH CARD &ndash;&gt;
+        <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index" (click)="userInfo(i)">
+
+          <mat-card-title class="usernameClass">{{thumbnail.username}}</mat-card-title>
+          <mat-card-subtitle class="joinDateClass">joined on {{utilService.reformatDate(thumbnail.joinDate)}} ..</mat-card-subtitle>
+
+        </mat-card>
+
+      </div>-->
+
+
+      <!--
+      -->
+
 
     </div>
-
-
-    <!--
-    -->
-
 
     <!-- PAGINATION -->
     <div class="paginationClass">
@@ -45,10 +59,11 @@
         </button>
 
         <!-- PAGE VALUE BUTTON -->
-        <div class="page-link pageValueClass"  [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}}
+          / {{this.totalPages}}</div>
 
         <!-- NEXT PAGE BUTTON -->
-        <button class="page-link nextPageClass" (click)="getNextPage()"  [hidden]="this.totalPages<1"
+        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex>=this.totalPages">
           &raquo;
         </button>
@@ -58,7 +73,6 @@
 
     </div>
 
-
-</div>
+  </div>
 
 </div>

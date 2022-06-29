@@ -9,9 +9,13 @@ export class UtilService {
 
   reformatDate(date: string) : string{
 
+
     let dt = new Date(date)
 
-    return dt.toDateString()+", "+dt.toLocaleTimeString()
+
+    let newDate = dt.toDateString()+", "+dt.toLocaleTimeString()
+
+    return newDate
   }
 
   reformatNumber(value : number) : number {

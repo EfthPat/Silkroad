@@ -15,21 +15,20 @@
           <img class="imageClass" (click)="purchaseInfo(i)"
                src="{{this.serverLink}}{{this.serverParameter}}/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
-          <button class="page-link nextImageClass fa fa-angle-right" (click)="getNextImage(i)"></button>
+          <button class="page-link nextImageClass fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link previousImageClass fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+          <button class="page-link previousImageClass fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
         </div>
 
 
         <!-- CONTENT -->
         <div class="cardContentClass">
 
-          <mat-card-title class="purchaseNameClass" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
-          <mat-card-subtitle class="costClass" (click)="purchaseInfo(i)">Bought it for {{this.utilService.reformatNumber(thumbnail.cost)}} $</mat-card-subtitle>
-          <mat-dialog-content class="sellerClass" (click)="purchaseInfo(i)">Sold by {{thumbnail.seller}}</mat-dialog-content>
+          <mat-card-title class="card-title auctionNameField" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
+          <mat-card-content class="costClass priceField"(click)="purchaseInfo(i)">Bought it for {{this.utilService.reformatNumber(thumbnail.cost)}} $</mat-card-content>
 
           <!-- CONTACT SELLER BUTTON -->
-          <a class="contactButtonClass" (click)="contactSeller(i)">Contact Seller</a>
+          <button mat-button color="primary" (click)="contactSeller(i)">Contact Seller</button>
 
 
         </div>

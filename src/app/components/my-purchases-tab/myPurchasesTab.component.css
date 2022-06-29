@@ -10,7 +10,6 @@
 }
 
 .ppGroup {
-  background: #f6fbff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,24 +27,24 @@
 }
 
 .cardClass {
+  min-height: 160px;
   height: 20vh;
-  width: 70%;
+  min-width: 300px;
+  width: 98%;
   margin: 0.5%;
   display: flex;
   flex-direction: row;
-  padding: 0;
-  border: rgba(128, 128, 128, 0.59) 1px solid;
-  box-shadow: 1px 1px black;
+  padding: 1%;
 }
 
 .cardImageClass {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border:  rgba(0, 0, 0, 0.17) 1px solid;
+  border:  rgba(0, 0, 0, 0.04) 1px solid;
   position: relative;
   height: 100%;
-  width: 40%;
+  width: 25%;
 }
 
 .imageClass{
@@ -60,8 +59,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
   border: none;
+  color: black;
 }
 
 .previousImageClass{
@@ -71,17 +71,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
   border: none;
+  color: black;
+
 }
 
 .cardContentClass {
   height: 100%;
-  width: 60%;
+  width: 75%;
   display: flex;
   flex-direction: column;
-  text-align: center;
   justify-content: space-between;
+  text-align: center;
+
 }
 
 .purchaseNameClass, .costClass, .sellerClass, .contactButtonClass{
@@ -94,14 +97,10 @@
 
 }
 
-.purchaseNameClass {
-}
-
-.costClass {
-
-}
-
-.sellerClass {
+.auctionNameField, .priceField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contactButtonClass {
@@ -111,7 +110,6 @@
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 .paginationClass{
-  background: #f6fbff;
   display: flex;
   flex-direction: row;
   justify-content: center;

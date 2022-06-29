@@ -77,8 +77,6 @@ body{
   margin-left: 10%;
 }
 
-
-
 .location{
   width: 90%;
   margin: 15% 0 0;
@@ -129,8 +127,9 @@ body{
 }
 
 .card{
-  height: 25vh;
-  width: 50%;
+  min-height: 25vh;
+  width: 95%;
+  min-width: 300px;
   padding: 0;
   margin: 0 0 1% 0;
 }
@@ -175,10 +174,15 @@ body{
 }
 
 .cardContent{
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 60%;
   padding:0;
   margin: 0;
+  overflow: hidden !important;
+  min-width: fit-content;
+
 }
 
 
@@ -186,6 +190,13 @@ body{
   justify-content: center;
 }
 
+.auctionName, .highestBid, .countryField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  padding: 0 0 1% 0;
+}
 
 .auctionName{
   font-size: x-large;
@@ -219,12 +230,6 @@ body{
   font-weight: 500;
 }
 
-.auctionName, .highestBid, .countryField{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 0 1% 0;
-}
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 

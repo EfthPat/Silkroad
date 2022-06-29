@@ -74,6 +74,7 @@
 .image{
   height: 100%;
   width: 60%;
+  padding: 0;
 }
 
 .nextImage, .previousImage{
@@ -81,6 +82,7 @@
   width: 20%;
   position: absolute;
   bottom: 0;
+  padding: 0;
   border: none;
   background: rgba(168, 165, 165, 0.09);
   font-size: large;

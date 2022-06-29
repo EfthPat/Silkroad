@@ -4,6 +4,14 @@
 
 /*       */
 
+.container{
+  margin-top: 4%
+}
+
+.lbl {
+  font-size: small;
+}
+
 .row{
   display: flex;
   flex-direction: row;

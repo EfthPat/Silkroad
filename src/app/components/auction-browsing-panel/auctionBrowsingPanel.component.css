@@ -124,27 +124,26 @@ body{
 .cards{
   align-items: center;
   padding: 1% 0 0 0;
-  margin: 5.5% 0 0;
+  margin: 4% 0 0;
   min-height: 80%;
 }
 
 .card{
-  height: 20vh;
+  height: 25vh;
   width: 50%;
   padding: 0;
   margin: 0 0 1% 0;
-  border: gray 1px solid;
-  box-shadow: 1.5px 1.5px rgba(128, 128, 128, 0.35);
 }
 
 .cardImage {
   justify-content: center;
-  border:  rgba(0, 0, 0, 0.17) 1px solid;
+  border:  rgba(0, 0, 0, 0.05) 1px solid;
   position: relative;
   height: 100%;
   width: 40%;
   padding: 0;
   margin: 0;
+
 }
 
 .image{
@@ -160,15 +159,15 @@ body{
   box-shadow: none;
   position: absolute;
   top: 0;
-  background: rgba(168, 165, 165, 0.09);
+  background:transparent;
   border: none;
   padding: 0;
   margin: 0;
+  color: black;
 }
 
 .nextImage{
   right: 0;
-  border-right: black 1px solid;
 }
 
 .previousImage{
@@ -178,34 +177,54 @@ body{
 .cardContent{
   height: 100%;
   width: 60%;
-  justify-content: space-around;
   padding:0;
   margin: 0;
 }
 
-.auctionName, .highestBid, .country{
-  text-align: center;
+
+.customGroup{
+  justify-content: center;
+}
+
+.auctionName, .highestBid, .countryField{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
-  padding: 1% 1% 1% 5%;
-  margin: 0;
+  width: 95%;
+  padding: 0 0 1% 0;
 }
 
 .auctionName{
-  font-size: xx-large;
+  font-size: x-large;
+  font-weight: 600;
 
+}
+
+.auctionName, .textLabel, .countryField{
+  margin: 4% 0 0 5%;
+
+}
+
+.textLabel{
+  font-weight: 500;
+  font-size: large;
 }
 
 .highestBid{
-  font-size: small;
-
+  font-size: medium;
+  margin: 1% 0 0 5%;
+  font-weight: 450;
 }
 
-.country{
-
+.countryField{
+  font-weight: 400;
+  font-size: medium;
 }
+
+.location{
+  font-weight: 500;
+}
+
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 

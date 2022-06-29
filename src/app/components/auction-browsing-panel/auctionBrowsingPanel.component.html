@@ -62,7 +62,7 @@
     <div class="cards column">
 
       <!-- EACH CARD -->
-      <mat-card class="card row" *ngFor="let thumbnail of this.browsingAuctionThumbnails; let i=index">
+      <div class="card row shadow p-3 mb-5 bg-white rounded" *ngFor="let thumbnail of this.browsingAuctionThumbnails; let i=index">
 
         <!-- IMAGE GROUP -->
         <div class="cardImage row">
@@ -70,27 +70,72 @@
           <img class="image" (click)="auctionInfo(i)"
                src="{{serverLink}}{{serverParameter}}/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
-          <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage(i)"></button>
+          <button class="page-link nextImage fa fa-2x fa-angle-right" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link previousImage fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+          <button class="page-link previousImage fa fa-2x fa-angle-left" (click)="getPreviousImage(i)"></button>
         </div>
 
         <!-- CARD CONTENT -->
         <div class="cardContent column">
 
           <!-- NAME -->
-          <mat-card-title class="auctionName" (click)="auctionInfo(i)">{{thumbnail.name}}</mat-card-title>
+          <h5 class="auctionName card-title" (click)="auctionInfo(i)">{{thumbnail.name}}</h5>
 
           <!-- HIGHEST BID -->
-          <mat-card-subtitle class="highestBid">Highest Bid at {{this.utilService.reformatNumber(thumbnail.highestBid>thumbnail.firstBid
-            ? thumbnail.highestBid : thumbnail.firstBid)}} $</mat-card-subtitle>
+          <label for="highestBid" class="textLabel card-title">Highest Bid</label>
+
+          <p id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.highestBid>thumbnail.firstBid
+            ? thumbnail.highestBid : thumbnail.firstBid)}}</p>
 
           <!-- COUNTRY -->
-          <mat-card-content class="country">Located in {{thumbnail.country}}!</mat-card-content>
+          <p class="countryField">From {{thumbnail.country}}!</p>
 
         </div>
 
-      </mat-card>
+      </div>
+
+
+
+<!--
+      <div class="container" *ngFor="let thumbnail of this.browsingAuctionThumbnails; let i=index">
+
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded " style="margin-top: 20px;">
+
+          <div class="row">
+
+            <div class="col-5 cardImage">
+              &lt;!&ndash; IMAGE &ndash;&gt;
+              <img class="image" (click)="auctionInfo(i)"
+                   src="{{serverLink}}{{serverParameter}}/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
+              &lt;!&ndash; NEXT IMAGE &ndash;&gt;
+              <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage(i)"></button>
+              &lt;!&ndash; PREVIOUS IMAGE &ndash;&gt;
+              <button class="page-link previousImage fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+            </div>
+
+&lt;!&ndash;
+            <img class="col-5"  src="https://i.stack.imgur.com/vhoa0.jpg" alt="Image">
+&ndash;&gt;
+
+
+            <div class="col-7 card-body" style="padding-left: 10px " >
+
+              <h5 class="card-title" style="font-size: x-large">Item Name</h5>
+              <label for="join-date" style="font-weight: 500; font-size: large">Highest Bid</label>
+              <p id="join-date" class="card-text" style="font-weight: 450">$500</p>
+              <p id="location" class="card-text" style="font-weight: 500;">From Greece</p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+-->
+
 
     </div>
 

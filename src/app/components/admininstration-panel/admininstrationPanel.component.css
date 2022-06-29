@@ -141,8 +141,14 @@
   width: 30%;
 }
 
+.cardText{
+  font-size: 120%;
+}
 
-
-
+.detailButton{
+  font-weight: bold;
+  padding: 1%;
+  border-radius: 4px;
+}
 
 

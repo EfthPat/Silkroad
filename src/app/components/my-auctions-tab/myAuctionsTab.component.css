@@ -164,10 +164,10 @@
 }
 
 .contactButtonClass {
-  height: 90%;
+  height: 35px;
   width: 99%;
   margin: 0.5% 0 0 0;
-
+  align-self: end;
 }
 
 

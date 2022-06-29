@@ -186,13 +186,6 @@ body{
   justify-content: center;
 }
 
-.auctionName, .highestBid, .countryField{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 95%;
-  padding: 0 0 1% 0;
-}
 
 .auctionName{
   font-size: x-large;
@@ -226,6 +219,12 @@ body{
   font-weight: 500;
 }
 
+.auctionName, .highestBid, .countryField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0 1% 0;
+}
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 

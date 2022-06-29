@@ -18,35 +18,37 @@
   <div class="cpGroup">
 
     <!-- CARDS -->
+    <div class="cardsGroup">
+      <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 70%;" *ngFor="let thumbnail of this.userThumbnails; let i=index">
 
-    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 70%;" *ngFor="let thumbnail of this.userThumbnails; let i=index">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bolder">{{thumbnail.username}}</h5>
+          <label for="join-date" style="font-weight: 600">Join Date</label>
+          <p id="join-date" class="card-text" style="font-weight: 350">{{utilService.reformatDate(thumbnail.joinDate)}}</p>
+          <button type="button" class="btn btn-primary btn-md btn-block" (click)="userInfo(i)">Details</button>
+        </div>
 
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: bolder">{{thumbnail.username}}</h5>
-        <label for="join-date" style="font-weight: 600">Join Date</label>
-        <p id="join-date" class="card-text" style="font-weight: 350">{{utilService.reformatDate(thumbnail.joinDate)}}</p>
-        <button type="button" class="btn btn-primary btn-md btn-block" (click)="userInfo(i)">Details</button>
+
+        <!--<div class="cardsGroup">
+
+          &lt;!&ndash; EACH CARD &ndash;&gt;
+          <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index" (click)="userInfo(i)">
+
+            <mat-card-title class="usernameClass">{{thumbnail.username}}</mat-card-title>
+            <mat-card-subtitle class="joinDateClass">joined on {{utilService.reformatDate(thumbnail.joinDate)}} ..</mat-card-subtitle>
+
+          </mat-card>
+
+        </div>-->
+
+
+        <!--
+        -->
+
+
       </div>
-
-
-      <!--<div class="cardsGroup">
-
-        &lt;!&ndash; EACH CARD &ndash;&gt;
-        <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index" (click)="userInfo(i)">
-
-          <mat-card-title class="usernameClass">{{thumbnail.username}}</mat-card-title>
-          <mat-card-subtitle class="joinDateClass">joined on {{utilService.reformatDate(thumbnail.joinDate)}} ..</mat-card-subtitle>
-
-        </mat-card>
-
-      </div>-->
-
-
-      <!--
-      -->
-
-
     </div>
+
 
     <!-- PAGINATION -->
     <div class="paginationClass">

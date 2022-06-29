@@ -44,8 +44,9 @@
           <label class="textLabel" for="locationClass">Highest Bid</label>
           <mat-card-content id="locationClass" class="locationClass">
             ${{thumbnail.highestBid>thumbnail.firstBid ? thumbnail.highestBid : thumbnail.firstBid}}</mat-card-content>
-          <div class="cardButtonsClass">
 
+
+          <div class="cardButtonsClass">
             <!-- IF THE AUCTION IS EXPIRED AND THERE'S A BUYER-->
             <button mat-flat-button color="primary" *ngIf="thumbnail.expired && thumbnail.bidder" class="contactButtonClass"
                (click)="contactBuyer(i)">Contact Buyer</button>

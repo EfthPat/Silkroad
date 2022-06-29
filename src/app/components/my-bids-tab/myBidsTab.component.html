@@ -16,18 +16,39 @@
           <img class="imageClass" (click)="moreInfo(i)"
                src="{{this.serverLink}}{{this.serverParameter}}/{{thumbnail.auctionID}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
-          <button class="page-link nextImageClass fa fa-angle-right" (click)="getNextImage(i)"></button>
+          <button class="page-link nextImageClass fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link previousImageClass fa fa-angle-left" (click)="getPreviousImage(i)"></button>
+          <button class="page-link previousImageClass fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
         </div>
+
+
+        <div class="cardContent column">
+
+          <!-- NAME -->
+          <h5 class="auctionName card-title" (click)="moreInfo(i)">{{thumbnail.auctionName}}</h5>
+
+          <!-- Date -->
+          <label for="dateField" class="textLabel card-title">Date</label>
+          <p id="dateField" class="dateField">{{utilService.reformatDate(thumbnail.submissionDate)}}</p>
+
+
+          <!-- HIGHEST BID -->
+          <label for="highestBid" class="textLabel card-title">Amount</label>
+
+          <p id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.amount)}}</p>
+
+
+
+        </div>
+
 
 
         <!-- CARD CONTENT -->
-        <div class="cardContentClass" (click)="moreInfo(i)">
+        <!--<div class="cardContentClass" (click)="moreInfo(i)">
           <mat-card-title class="auctionNameClass">{{thumbnail.auctionName}}</mat-card-title>
           <mat-card-subtitle class="submissionDateClass">On {{utilService.reformatDate(thumbnail.submissionDate)}}</mat-card-subtitle>
           <mat-dialog-content class="amountClass">You bid {{this.utilService.reformatNumber(thumbnail.amount)}} $</mat-dialog-content>
-        </div>
+        </div>-->
 
       </mat-card>
 

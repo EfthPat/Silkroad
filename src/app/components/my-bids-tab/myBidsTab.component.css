@@ -27,14 +27,13 @@
 }
 
 .cardClass{
-  height: 20vh;
-  width: 70%;
+  padding: 0.5%;
+  height: 25vh;
+  width: 55%;
   margin: 0.5%;
   display: flex;
   flex-direction: row;
-  padding: 0;
-  border: rgba(128, 128, 128, 0.59) 1px solid;
-  box-shadow: 1px 1px black;
+
 }
 
 
@@ -47,7 +46,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border:  rgba(0, 0, 0, 0.17) 1px solid;
+  border:  rgba(0, 0, 0, 0.04) 1px solid;
   position: relative;
   height: 100%;
   width: 40%;
@@ -65,8 +64,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
   border: none;
+  color: black;
 }
 
 .previousImageClass{
@@ -76,8 +76,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(168, 165, 165, 0.09);
+  background: transparent;
   border: none;
+  color: black;
 }
 
 .cardContentClass{
@@ -88,6 +89,46 @@
   text-align: center;
   justify-content: space-around;
 }
+
+.auctionName, .highestBid, .dateField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  padding: 0 0 1% 0;
+}
+
+.auctionName{
+  font-size: x-large;
+  font-weight: 600;
+
+}
+
+.auctionName, .textLabel{
+  margin: 3.5% 0 0 5%;
+
+}
+
+.textLabel{
+  font-weight: 500;
+  font-size: large;
+}
+
+.highestBid{
+  font-size: medium;
+  margin: 1% 0 0 5%;
+  font-weight: 400;
+}
+
+.dateField{
+
+  font-size: medium;
+  margin: 1% 0 0 5%;
+  font-weight: 400;
+
+}
+
+
 
 .auctionNameClass, .submissionDateClass, .amountClass{
   width: 100%;
@@ -104,7 +145,8 @@
   margin-bottom: 1%;
 }
 
-.submissionDateClass{
+.dateField{
+  width: fit-content;
 }
 
 .amountClass{

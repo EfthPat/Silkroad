@@ -27,7 +27,7 @@
 
 .stickyCardClass{
   height: 10vh;
-  width: 90%;
+  width: 98%;
   margin: 0.5%;
   display: flex;
   flex-direction: row;
@@ -35,7 +35,7 @@
 
 .cardClass {
   height: 10vh;
-  width: 90%;
+  width: 98%;
   margin: 0.5%;
   display: flex;
   padding-top: 2%;
@@ -46,6 +46,7 @@
 .messageSenderClass, .messageRecipientClass, .messageReceiverClass{
   width: 20%;
   margin: 0;
+  font-size: small;
 }
 
 
@@ -55,11 +56,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: small;
   margin: 0;
 }
 
 .messageSenderClass, .messageRecipientClass, .messageSubjectClass{
   padding-top: 0.4%;
+}
+
+.deleteButton{
+  font-size: small;
 }
 
 .cardButtonClass{

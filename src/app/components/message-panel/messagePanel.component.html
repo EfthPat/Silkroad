@@ -9,7 +9,7 @@
         <p *ngIf="!sent" class="messageSenderClass"><b>From</b></p>
         <p *ngIf="sent" class="messageSenderClass"><b>To</b></p>
         <p class="messageSubjectClass"><b>Subject</b></p>
-        <button class="btn btn-link" (click)="deleteMessages()">Delete</button>
+        <button class="btn btn-link deleteButton" (click)="deleteMessages()">Delete</button>
       </mat-card>
 
       <!-- CARD -->

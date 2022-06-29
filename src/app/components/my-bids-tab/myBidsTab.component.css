@@ -101,57 +101,43 @@
 .auctionName{
   font-size: x-large;
   font-weight: 600;
-
+  height: 30%;
+  margin: 2% 0 0 10%;
 }
 
-.auctionName, .textLabel{
-  margin: 3.5% 0 0 5%;
-
+.date{
+  height: 30%;
+  margin: 2% 0 0 10%;
 }
+
+.bid{
+  height: 30%;
+  margin: 2% 0 0 10%;
+}
+
 
 .textLabel{
-  font-weight: 500;
+  font-weight: bold;
   font-size: large;
+  margin: 0;
 }
 
 .highestBid{
   font-size: medium;
-  margin: 1% 0 0 5%;
+  margin: 0;
   font-weight: 400;
 }
 
 .dateField{
 
   font-size: medium;
-  margin: 1% 0 0 5%;
+  margin: 0;
   font-weight: 400;
-
-}
-
-
-
-.auctionNameClass, .submissionDateClass, .amountClass{
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 1% 3%;
-  justify-content: space-evenly;
-  margin: 0 !important;
-}
-
-.auctionNameClass{
-  margin-top: 1%;
-  margin-bottom: 1%;
-}
-
-.dateField{
   width: fit-content;
 }
 
-.amountClass{
-  margin-top: 1%;
-}
+
+
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 

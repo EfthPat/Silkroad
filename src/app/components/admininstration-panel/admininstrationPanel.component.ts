@@ -74,10 +74,6 @@ export class AdmininstrationPanelComponent implements OnInit {
 
   userInfo(index: number): void {
 
-    let selection = window.getSelection()
-    if(selection?.toString().length)
-      return
-
     let username = this.userThumbnails[index].username
 
     this.router.navigate(['administration/users',username])

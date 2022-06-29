@@ -127,7 +127,10 @@ body{
 }
 
 .card{
-  min-height: 25vh;
+  display: flex;
+  flex-direction: row;
+  min-height: 200px;
+  height: 25vh;
   width: 95%;
   min-width: 300px;
   padding: 0;
@@ -139,7 +142,8 @@ body{
   border:  rgba(0, 0, 0, 0.05) 1px solid;
   position: relative;
   height: 100%;
-  width: 40%;
+  min-width: 25%;
+  max-width: 25%;
   padding: 0;
   margin: 0;
 
@@ -176,12 +180,12 @@ body{
 .cardContent{
   display: flex;
   flex-direction: column;
+  justify-content: start;
   height: 100%;
-  width: 60%;
+  width: 75%;
   padding:0;
   margin: 0;
-  overflow: hidden !important;
-  min-width: fit-content;
+  overflow: hidden;
 
 }
 
@@ -201,29 +205,26 @@ body{
 .auctionName{
   font-size: x-large;
   font-weight: 600;
-
+  margin: 2% 0 0 2%;
 }
 
-.auctionName, .textLabel{
-  margin: 4% 0 0 5%;
-
-}
 
 .textLabel{
-  font-weight: 500;
+  margin: 1% 0 0 2%;
+  font-weight: bold;
   font-size: large;
 }
 
 .highestBid{
   font-size: medium;
-  margin: 1% 0 0 5%;
+  margin: 0 0 0 2%;
   font-weight: 400;
 }
 
 .countryField{
+  margin: 4% 0 0 2%;
   font-weight: 500;
   font-size: medium;
-  margin: 5% 0 0 5%;
 }
 
 .location{

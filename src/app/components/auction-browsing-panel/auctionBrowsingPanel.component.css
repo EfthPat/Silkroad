@@ -200,7 +200,7 @@ body{
 
 }
 
-.auctionName, .textLabel, .countryField{
+.auctionName, .textLabel{
   margin: 4% 0 0 5%;
 
 }
@@ -219,6 +219,7 @@ body{
 .countryField{
   font-weight: 500;
   font-size: medium;
+  margin: 5% 0 0 5%;
 }
 
 .location{

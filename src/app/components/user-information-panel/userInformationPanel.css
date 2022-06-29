@@ -121,9 +121,10 @@
 }
 
 .approveButton{
-  width: 96%;
-  margin: 8% 2% 0;
+  width: 100%;
+  margin: 8% 0 0;
   padding: 1%;
+  font-size: 120%;
   font-weight: bold;
   color: white !important;
 }

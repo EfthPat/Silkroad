@@ -1,4 +1,3 @@
-
 <search-bar></search-bar>
 <div class="container">
 
@@ -6,7 +5,7 @@
   <div class="row">
 
     <div class="col-6">
-      <div class="form-group" >
+      <div class="form-group">
         <label class="lbl" for="username" style="font-weight: bold;">Username</label>
 
         <p class="txt form-control" id="username">{{this.userForm.get('username')!.value}}</p>
@@ -16,7 +15,7 @@
 
 
     <div class="col-6">
-      <div class="form-group" >
+      <div class="form-group">
         <label class="lbl" for="tin" style="font-weight: bold;">TIN</label>
         <p class="txt form-control" id="tin">{{this.userForm.get('tin')!.value}}</p>
       </div>
@@ -88,7 +87,7 @@
       <div class="form-group">
         <label class="lbl" for="location">Location</label>
         <p class="txt form-control" id="location">
-          {{this.userForm.get('streetName')!.value}}  {{this.userForm.get('streetNumber')!.value}}</p>
+          {{this.userForm.get('streetName')!.value}}, {{this.userForm.get('streetNumber')!.value}}</p>
 
       </div>
     </div>
@@ -97,5 +96,6 @@
   </div>
 
 
-  <a class="approveButton col btn btn-success btn-raised" [hidden]="!this.showApproval" (click)="approveUser()" >Approve</a>
+  <a class="approveButton col btn btn-success btn-raised" [hidden]="!this.showApproval"
+     (click)="approveUser()">Approve</a>
 </div>

@@ -27,10 +27,10 @@
           <mat-card-title class="card-title auctionNameField" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
 
           <label class="textLabel" for="priceField">Cost</label>
-          <mat-card-content id="priceField" class="priceField"(click)="purchaseInfo(i)">${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
+          <mat-card-content id="priceField" class="priceField" (click)="purchaseInfo(i)">${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
 
           <!-- CONTACT SELLER BUTTON -->
-          <button mat-flat-button color="primary" (click)="contactSeller(i)">Contact Seller</button>
+          <button mat-flat-button color="primary" class="contactButton" (click)="contactSeller(i)">Contact Seller</button>
 
 
         </div>

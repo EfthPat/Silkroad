@@ -39,7 +39,7 @@
 
           <mat-card-title class="auctionNameClass" (click)="auctionInfo(i)">{{thumbnail.name}}</mat-card-title>
 
-          <label class="textLabel" for="endDateClass">Expires</label>
+          <label class="textLabel" for="endDateClass">Due Date</label>
           <mat-card-content id="endDateClass" class="endDateClass" (click)="auctionInfo(i)">{{utilService.reformatDate(thumbnail.endDate)}}</mat-card-content>
           <label class="textLabel" for="locationClass">Highest Bid</label>
           <mat-card-content id="locationClass" class="locationClass">

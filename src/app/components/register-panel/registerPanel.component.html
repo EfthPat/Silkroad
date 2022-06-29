@@ -9,13 +9,13 @@
       <!-- USERNAME -->
       <div class="usernameClass">
         <label class="lbl" for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
-        <input class="form-control" type="text" id="username" formControlName="username">
+        <input class="textField form-control" type="text" id="username" formControlName="username">
         <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username Exists</p>
       </div>
 
       <div class="tinClass">
         <label class="lbl" for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
-        <input class="form-control" type="text" id="tin" formControlName="tin">
+        <input class="textField form-control" type="text" id="tin" formControlName="tin">
       </div>
 
     </div>
@@ -36,7 +36,7 @@
       <!-- STREET NUMBER -->
       <div class="streetNumberClass">
         <label class="lbl" for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
-        <input class="form-control" type="text" id="streetNumber" formControlName="streetNumber" >
+        <input class="textField form-control" type="text" id="streetNumber" formControlName="streetNumber" >
       </div>
 
     </div>
@@ -47,13 +47,13 @@
       <!-- COUNTRY -->
       <div class="countryClass">
         <label class="lbl" for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
-        <input class="form-control" type="text" id="country" formControlName="country" >
+        <input class="textField form-control" type="text" id="country" formControlName="country" >
       </div>
 
       <!-- ZIP CODE -->
       <div class="zipCodeClass">
         <label class="lbl" for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
-        <input class="form-control" type="text" id="zip" formControlName="zipCode" >
+        <input class="textField form-control" type="text" id="zip" formControlName="zipCode" >
       </div>
     </div>
 
@@ -63,13 +63,13 @@
       <!-- FIRSTNAME -->
       <div class="firstnameClass">
         <label class="lbl" for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
-        <input class="form-control" type="text" id="firstname" formControlName="firstname" >
+        <input class="textField form-control" type="text" id="firstname" formControlName="firstname" >
       </div>
 
       <!-- LASTNAME -->
       <div class="lastnameClass">
         <label class="lbl" for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
-        <input class="form-control" type="text" id="lastname" formControlName="lastname" >
+        <input class="textField form-control" type="text" id="lastname" formControlName="lastname" >
       </div>
 
     </div>
@@ -86,7 +86,7 @@
       <!-- CONFIRM PASSWORD -->
       <div class="confirmPasswordClass">
         <label class="lbl" for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
-        <input class="form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
+        <input class="textField form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
       </div>
 
     </div>
@@ -97,14 +97,14 @@
       <!-- EMAIL -->
       <div class="emailClass">
         <label class="lbl" for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
-        <input class="form-control" type="text" id="email" formControlName="email" >
+        <input class="textField form-control" type="text" id="email" formControlName="email" >
         <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email Exists</p>
       </div>
 
       <!-- PHONE NUMBER -->
       <div class="phoneNumberClass">
         <label class="lbl" for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
-        <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
+        <input class="textField form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
       </div>
 
     </div>

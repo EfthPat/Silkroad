@@ -13,6 +13,15 @@
   align-self: start;
 }
 
+
+.lbl{
+  font-size: medium;
+}
+
+input{
+  font-size: medium;
+}
+
 .subjectClass{
   margin-top: 1%;
   margin-left: 5%;
@@ -34,9 +43,9 @@
 .sendButtonClass{
   position: relative;
   margin-top: 2%;
-  margin-left: 40%;
-  width: 20%;
-  border-radius: 10px;
+  margin-left: 10%;
+  width: 80%;
+  font-size: small;
 }
 
 .sendButtonClass:hover{

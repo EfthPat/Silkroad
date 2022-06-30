@@ -1,22 +1,37 @@
 
 .messageDialogClass{
   width: 65vh;
-  height: 55vh;
+  height: fit-content;
   padding: 0;
   margin: 0;
 }
 
-.sender{
+.otherUserRole{
+  font-size: medium;
+  font-weight: bold;
 }
 
-.receiver{
+
+.otherUser{
+  font-size: medium;
+}
+
+.subjectLabel{
+  font-size: medium;
+}
+
+.subject{
+  min-height: 55px;
+  font-size: small;
+  word-break: break-all;
+  overflow-y: auto;
 }
 
 
-.subject, .body{
-  width: 100%;
-  overflow: hidden;
-  word-wrap: break-word;
-  margin: 0;
-  padding: 1%;
+
+.content{
+  font-size: small;
+  word-break: break-all;
+  min-height: 150px;
+  overflow-y: auto;
 }

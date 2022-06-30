@@ -19,8 +19,7 @@
 
       <!-- PASSWORD -->
       <div class="passwordClass">
-        <input class="passwordTextClass" type="password" placeholder="Password" formControlName="password" #pwdInput (keyup.enter)="login()">
-        <button class="fa fa-eye passwordIconClass" (click)="toggleVisibility(pwdInput, pwdIcon)" #pwdIcon></button>
+        <input class="passwordTextClass" type="password" placeholder="Password" formControlName="password" (keyup.enter)="login()">
       </div>
 
       <!-- ERROR MESSAGE -->
@@ -29,7 +28,7 @@
       </p>
 
       <!-- LOGIN BUTTON -->
-      <button class="loginButtonClass" (click)="login()">Login</button>
+      <button mat-stroked-button color="primary" class="loginButtonClass" (click)="login()">Login</button>
 
     </div>
 

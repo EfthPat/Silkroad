@@ -17,7 +17,10 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(12deg, rgba(211, 211, 211, 0.23),white);
+}
+
+input{
+  font-size: medium;
 }
 
 .loginGroup{
@@ -30,10 +33,8 @@
 }
 
 .loginTitleClass{
-  font-family: Gadugi cursive;
   font-size: x-large;
   text-align: center;
-  font-weight: 1;
   width: 50%;
   margin: 0;
 }
@@ -71,9 +72,9 @@
 
 .passwordTextClass{
   min-height: 30px;
-  padding-left: 5%;
+  padding: 0 5%;
   height: 100%;
-  width: 75%;
+  width: 100%;
   border: none;
   outline: none;
 }
@@ -98,12 +99,7 @@
   min-height: 23px;
   width: 80%;
   padding: 0;
-  color: #8a7676;
   font-size: medium;
-  background: #dfe7e7;
-  outline: none;
-  border: #8a7676 1px solid;
-  border-radius: 12px;
   margin-top: 5%;
 }
 
@@ -123,13 +119,13 @@
 }
 
 .registerClass{
-  font-size: 1.5em;
+  font-size: medium;
   padding : 0;
   margin: 0;
 }
 
 .continueAsGuestClass{
-  font-size: 1.5em;
+  font-size: medium;
   width: 100%;
   padding : 0;
   margin-top: 3%;

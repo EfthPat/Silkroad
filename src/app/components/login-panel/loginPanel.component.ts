@@ -30,17 +30,6 @@ export class LoginPanelComponent implements OnInit {
 
   }
 
-  toggleVisibility(pwdInput: HTMLInputElement, pwdIcon: HTMLButtonElement): void {
-
-    if (pwdInput.type === "text") {
-      pwdInput.type = "password"
-      pwdIcon.setAttribute("class", "fa fa-eye passwordIconClass")
-    } else {
-      pwdInput.type = "text"
-      pwdIcon.setAttribute("class", "fa fa-eye-slash passwordIconClass")
-    }
-
-  }
 
   login(): void {
 

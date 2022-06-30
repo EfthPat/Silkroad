@@ -90,8 +90,18 @@
   background: transparent;
 }
 
-.lbl{
-  font-size: small;
+.fieldLabel{
+  font-weight: bold;
+  font-size: medium;
+}
+
+.rowMargin{
+  margin-top: 1%;
+}
+
+.dropdownMenu{
+
+
 }
 
 .ddmOption{
@@ -111,11 +121,11 @@
 
 
 .submitClass{
-  width: 20%;
-  align-self: end;
+  margin: 2% 0 0 0;
+  width: 100%;
   border-radius: 4px;
-  background: lightblue;
-  margin: 0 0 0 48%;
+  height: 30px;
+  font-weight: bold;
 }
 
 .datePickerClass{
@@ -125,4 +135,21 @@
 
 .errorClass {
   color: red;
+}
+
+.textField{
+  font-size: small;
+}
+
+.mapWrapper{
+  border: rgba(128, 128, 128, 0.17) 1px solid;
+  height: 40vh;
+  width: 100%;
+  padding: 0.5%;
+  margin: 2% 0 0 0;
+}
+
+.mapClass{
+  margin: 2% 1% 2% 0;
+  width: 40%;
 }

@@ -44,6 +44,7 @@ import {UtilService} from "./services/util.service";
 import {AuctionDeletionDialog} from "./components/auction-deletion-dialog/auctionDeletionDialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {DataService} from "./services/data.service";
 import {AlertDialogComponent} from "./components/alert-dialog/alert-dialog.component";
 import {DateTimePickerComponent} from "./components/date-time-picker/dateTimePicker.component";
@@ -104,6 +105,7 @@ import {
     NgSelectModule,
     MatDialogModule,
     MatCheckboxModule,
+    NgMultiSelectDropDownModule.forRoot(),
     MatInputModule,
     NgxMatTimepickerModule,
     NgxMatDatetimePickerModule,

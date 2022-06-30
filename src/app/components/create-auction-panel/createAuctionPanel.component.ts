@@ -12,6 +12,7 @@ import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionD
 import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-create-auction-panel',
@@ -19,6 +20,20 @@ import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
   styleUrls: ['./createAuctionPanel.component.css']
 })
 export class CreateAuctionPanelComponent implements OnInit {
+
+  myArray =  [
+    { categoryID: 1, categoryName: 'Mumbai' },
+    { categoryID: 2, categoryName: 'Bangaluru' },
+    { categoryID: 3, categoryName: 'Pune' },
+    { categoryID: 4, categoryName: 'Navsari' },
+    { categoryID: 5, categoryName: 'New Delhi' }
+  ]
+
+
+  dropdownSettings : any
+
+  /* END HERE*/
+
 
   auctionID: number
   updateAuction: boolean
@@ -29,13 +44,28 @@ export class CreateAuctionPanelComponent implements OnInit {
   address: any
   auctionForm: FormGroup
   imageFiles: File[]
-  categories: Category[]
-  selectedCategories: string[]
+  categories: any
+  selectedCategories: any
 
   constructor(private mapService: MapService, private requestService: RequestService, private router: Router,
               private route: ActivatedRoute, private authService: AuthService, private dialog: MatDialog) {
 
-    this.auctionID = 1
+
+
+      this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'categoryID',
+      textField: 'categoryName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+
+
+
+  this.auctionID = 1
     this.updateAuction = false
     this.submitCommitted = false
     this.geolocationValid = false
@@ -62,6 +92,77 @@ export class CreateAuctionPanelComponent implements OnInit {
       },
       {validators: this.buyNowValidator}
     )
+
+  }
+
+
+  addCategory(category: any) {
+
+    this.selectedCategories.push(category)
+
+    let array = []
+    for( let i =0 ; i < this.selectedCategories.length; ++i)
+    {
+      let object = this.selectedCategories[i]
+      let catname = object.categoryName
+      array.push(catname)
+    }
+    console.log(array)
+
+
+  }
+
+  addCategories(categories: any) {
+    this.selectedCategories = categories
+
+    let array = []
+    for( let i =0 ; i < this.selectedCategories.length; ++i)
+    {
+      let object = this.selectedCategories[i]
+      let catname = object.categoryName
+      array.push(catname)
+    }
+    console.log(array)
+
+  }
+
+  removeCategory(category: any) {
+
+
+
+
+    for(let i = 0 ; i < this.selectedCategories.length; i++)
+    {
+      if(this.selectedCategories[i].categoryID==category.categoryID)
+      {
+        this.selectedCategories.splice(i,1)
+        break
+      }
+
+    }
+
+    let array = []
+    for( let i =0 ; i < this.selectedCategories.length; ++i)
+    {
+      let object = this.selectedCategories[i]
+      let catname = object.categoryName
+      array.push(catname)
+    }
+    console.log(array)
+
+  }
+
+  clearCategories() {
+    this.selectedCategories = []
+
+    let array = []
+    for( let i =0 ; i < this.selectedCategories.length; ++i)
+    {
+      let object = this.selectedCategories[i]
+      let catname = object.categoryName
+      array.push(catname)
+    }
+    console.log(array)
 
   }
 
@@ -161,8 +262,15 @@ export class CreateAuctionPanelComponent implements OnInit {
       // if server responded successfully
       response => {
 
-        for (let category of response)
-          this.categories.push(category)
+        this.categories = []
+        for (let i = 0 ; i < response.length ; i++)
+        {
+          let item = {categoryID: i+1, categoryName: response[i]}
+
+          this.categories.push(item)
+        }
+
+
       },
       // if categories couldn't be fetched
       error => {
@@ -423,6 +531,10 @@ export class CreateAuctionPanelComponent implements OnInit {
             return defaultValue
           }
 
+          let categoryNames = []
+          for(let category of this.selectedCategories)
+            categoryNames.push(category.categoryName)
+
           // create the body of the auction
           let auction = {
             name: this.auctionForm.get('name')?.value,
@@ -430,7 +542,7 @@ export class CreateAuctionPanelComponent implements OnInit {
             endDate: this.auctionForm.get('endDate')?.value,
             buyPrice: this.auctionForm.get('buyNow')?.value,
             firstBid: this.auctionForm.get('firstBid')?.value,
-            categories: this.selectedCategories,
+            categories: categoryNames,
 
             address: {
               coordinates: {

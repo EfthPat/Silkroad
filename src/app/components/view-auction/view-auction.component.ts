@@ -158,9 +158,9 @@ export class ViewAuctionComponent implements OnInit {
         let errorMessage
 
         if(error.error.code===auctionExceptions.AUCTION_NOT_FOUND)
-          errorMessage = "Whoops! Auction not found! Continue"
+          errorMessage = "Whoops! Auction not found!"
         else
-          errorMessage = "Auction couldn't be loaded! Continue"
+          errorMessage = "Auction couldn't be loaded!"
 
         let dialogConfig = new MatDialogConfig();
         dialogConfig.autoFocus = true;
@@ -285,7 +285,7 @@ export class ViewAuctionComponent implements OnInit {
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
               dialogConfig.data = {
-                message: "Bid succeeded! Continue"
+                message: "Bid succeeded!"
               }
 
               this.dialog.open(AlertDialogComponent, dialogConfig)
@@ -308,13 +308,13 @@ export class ViewAuctionComponent implements OnInit {
               let errorMessage
 
               if(error.error.code == auctionExceptions.AUCTION_MODIFIED_OR_EXPIRED)
-                errorMessage = "Bid failed! Auction was either modified or expired. Continue"
+                errorMessage = "Bid failed! Auction was either modified or expired!"
               else if(error.error.code == bidExceptions.BID_HIGHER_BID_EXISTS)
-                errorMessage = "Bid failed! Another user outbid you! Continue"
+                errorMessage = "Bid failed! Another user outbid you!"
               else if(error.error.code == auctionExceptions.AUCTION_NOT_FOUND)
               {
                 reload = false
-                errorMessage = "Whoops! Auction not found! Continue"
+                errorMessage = "Whoops! Auction not found!"
               }
 
 

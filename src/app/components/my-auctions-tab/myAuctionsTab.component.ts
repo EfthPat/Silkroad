@@ -124,7 +124,7 @@ export class MyAuctionsTabComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      message: "Delete Auction?"
+      message: "Delete this Auction?"
     }
 
     // open the dialog

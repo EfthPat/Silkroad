@@ -48,14 +48,6 @@ input{
   font-size: small;
 }
 
-.sendButtonClass:hover{
-  background: lightblue;
-}
-
-.sendButtonClass:active{
-  background: blue;
-  outline: none;
-}
 
 .errorClass {
   color: red;

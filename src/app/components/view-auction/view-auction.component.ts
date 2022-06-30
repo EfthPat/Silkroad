@@ -233,7 +233,7 @@ export class ViewAuctionComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      message: "Do you want to bid on this auction?"
+      message: "Bid on Auction?"
     }
 
     // open the dialog

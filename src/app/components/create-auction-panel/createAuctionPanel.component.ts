@@ -479,10 +479,10 @@ export class CreateAuctionPanelComponent implements OnInit {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
 
-    let submit : string = this.updateAuction ? "update" : "create"
+    let submit : string = this.updateAuction ? "Update" : "Post"
 
     dialogConfig.data = {
-      message: "Do you want to "+submit+" this auction?"
+      message: submit+" this auction?"
     }
 
     // open the dialog

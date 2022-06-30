@@ -109,7 +109,7 @@ input{
 
 .cardsPagination{
   /* HERE */
-  border-left: gray 1px solid;
+  border-left: rgba(128, 128, 128, 0.22) 1px solid;
   min-height: 100%;
   width: 80%;
   padding: 0;

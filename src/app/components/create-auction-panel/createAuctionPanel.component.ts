@@ -235,13 +235,14 @@ export class CreateAuctionPanelComponent implements OnInit {
           this.auctionForm.get('name')?.setValue(response.name)
           this.auctionForm.get('description')?.setValue(response.description)
           this.auctionForm.get('firstBid')?.setValue(response.firstBid)
+
           this.auctionForm.get('buyNow')?.setValue(response.buyPrice)
           this.auctionForm.get('streetNumber')?.setValue(response.address.streetNumber)
           this.auctionForm.get('country')?.setValue(response.address.country)
           this.auctionForm.get('zipCode')?.setValue(response.address.zipCode)
 
           // set the item's categories
-          this.selectedCategories = response.categories
+          // this.selectedCategories = response.categories
 
         },
         // if the auction couldn't be fetched
@@ -443,16 +444,22 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   submitForm(): void {
 
+
+
     this.submitCommitted = true
+
+    console.log("Submission Committed")
 
     if (!(this.auctionForm.valid && this.geolocationValid && this.dateValid && this.selectedCategories.length))
       return
 
     let validPriceCombination: boolean = false
     let firstBid = this.auctionForm.get('firstBid')!.value
-    let buyNowValue : string = this.auctionForm.get('buyNow')?.value
+    let buyNowValue : string | null = this.auctionForm.get('buyNow')?.value
 
-    if(Number(firstBid)>0 && buyNowValue.length==0)
+
+
+    if(Number(firstBid)>0 && buyNowValue?.length==0)
       validPriceCombination = true
     else if(Number(firstBid)>0 && Number(buyNowValue)>0 && Number(buyNowValue)>Number(firstBid))
       validPriceCombination = true

@@ -12,11 +12,11 @@
   display: flex;
   flex-direction: row;
   padding: 0 1%;
-  margin: 1% 8% 0;
+  margin: 1% 10% 0 6%;
   width: fit-content;
   border: black solid 1px;
   cursor: pointer;
-  background: radial-gradient(circle, white 1%, #eaf6fa);
+  font-size: small;
 }
 
 
@@ -54,7 +54,11 @@
 }
 
 .dropdownButtonClass{
+  font-size: small;
+}
 
+.dropdownMenuOption{
+  font-size: small;
 }
 
 .textCategoriesSearchClass{
@@ -75,6 +79,7 @@
   border-right: none;
   min-width: 20vw;
   text-align: center;
+  font-size: small;
 }
 
 .categoriesDropdownClass{
@@ -83,16 +88,15 @@
   transition: none !important;
   border: black solid 1px;
   border-right: none;
-  background: linear-gradient(180deg, #d5d5e3,white);
-
+  font-size: small;
 }
 
 .categoriesButtonClass{
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+  font-size: small;
   height: 100%;
   outline: none !important;
   box-shadow: none !important;
-  border: blue !important;
+  background: transparent;
 }
 
 .searchButtonClass{
@@ -102,8 +106,9 @@
 }
 
 .srchbtnClass{
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
-
+  background: transparent;
+  height: 100%;
+  font-size: small;
 }
 
 .dynamicCategoryClass{
@@ -118,15 +123,18 @@
 }
 
 .optionsButtonClass{
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
-
+  height: 100%;
+  background: transparent;
+  font-size: small;
 }
 
 .sellButton{
   border: none;
   border-right: black solid 1px;
   border-left: black solid 1px;
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+  background: transparent;
+  font-size: small;
+  width: 45px;
 }
 
 .logoutClass{
@@ -134,7 +142,10 @@
 }
 
 .logoutButtonClass{
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+  background: transparent;
+  border: none;
+  height: 100%;
+  font-size: small;
 }
 
 .loginClass{
@@ -142,7 +153,9 @@
 }
 
 .loginButtonClass{
-  background: radial-gradient(circle, white 1%, #eaf6fa) !important;
+  height: 100%;
+  background: transparent;
+  font-size: small;
 }
 
 .ddmClass{

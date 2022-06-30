@@ -219,6 +219,8 @@ export class AuctionBrowsingPanelComponent implements OnInit {
 
 
 
+
+
     // every time URL changes
     this.route.queryParams.subscribe(
       () => {

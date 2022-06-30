@@ -48,7 +48,6 @@ input{
 .buyNowText{
   padding: 0;
   font-weight: bold;
-  font-family: "Yu Gothic", sans-serif;
   font-size: small;
 }
 
@@ -178,7 +177,7 @@ input{
 .cardContent{
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   height: 100%;
   width: 75%;
   padding:0;

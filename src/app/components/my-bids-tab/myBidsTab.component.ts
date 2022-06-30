@@ -64,7 +64,7 @@ export class MyBidsTabComponent implements OnInit {
 
       }
       // if user's bids weren't fetched
-      ,error=>{}
+      ,()=>{}
     )
   }
 
@@ -89,6 +89,10 @@ export class MyBidsTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
+
     this.getBidThumbnails(this.username,1,this.pageSize)
   }
 

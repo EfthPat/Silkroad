@@ -84,7 +84,7 @@ export class CreateAuctionPanelComponent implements OnInit {
         firstBid: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)]),
         buyNow: new FormControl('', [Validators.pattern(formExpressions.price)]),
 
-        zipCode: new FormControl('', [Validators.required]),
+        zipCode: new FormControl('', [Validators.required, Validators.pattern(formExpressions.zipCode)]),
         endDate: new FormControl('', [Validators.required]),
         streetNumber: new FormControl('', [Validators.required, Validators.pattern(formExpressions.streetNumber)]),
         country: new FormControl('', [Validators.required, Validators.pattern(formExpressions.country)]),

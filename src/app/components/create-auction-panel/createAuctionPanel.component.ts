@@ -21,19 +21,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class CreateAuctionPanelComponent implements OnInit {
 
-  myArray =  [
-    { categoryID: 1, categoryName: 'Mumbai' },
-    { categoryID: 2, categoryName: 'Bangaluru' },
-    { categoryID: 3, categoryName: 'Pune' },
-    { categoryID: 4, categoryName: 'Navsari' },
-    { categoryID: 5, categoryName: 'New Delhi' }
-  ]
-
-
   dropdownSettings : any
-
-  /* END HERE*/
-
 
   auctionID: number
   updateAuction: boolean
@@ -196,9 +184,9 @@ export class CreateAuctionPanelComponent implements OnInit {
 
             let errorMessage
             if(response.expired)
-              errorMessage = "Expired auctions can't be updated! Continue"
+              errorMessage = "Expired auctions can't be updated!"
             else
-              errorMessage = "Auction update failed! Some user bid first! Continue"
+              errorMessage = "Auctions with at least 1 bid can't be updated!"
 
             let dialogConfig = new MatDialogConfig();
             dialogConfig.autoFocus = true;
@@ -584,7 +572,7 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was updated successfully! Continue"
+                  message: "Auction was updated successfully!"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
@@ -603,11 +591,11 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let errorMessage
 
                 if(error.error.code==auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
-                  errorMessage = "Auction update failed! Some user already bid! Continue"
+                  errorMessage = "Auctions with at least 1 bid can't be updated!"
                 else
                 {
                   jumpToAuction = false
-                  message: "Auction update failed! Continue"
+                  message: "Auction update failed!"
                 }
 
                 let dialogConfig = new MatDialogConfig();
@@ -637,7 +625,7 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was created successfully! Continue"
+                  message: "Auction was created successfully!"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
@@ -655,7 +643,7 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction creation failed! Continue"
+                  message: "Auction creation failed!"
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)

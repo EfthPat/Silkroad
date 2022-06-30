@@ -269,7 +269,7 @@ export class ViewAuctionComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction won for "+bid.toString()+"$ ! Contact seller for more info .."
+                  message: "Auction won for "+bid.toString()+"$ ! Contact Seller!"
                 }
 
                 this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
@@ -308,7 +308,7 @@ export class ViewAuctionComponent implements OnInit {
               let errorMessage
 
               if(error.error.code == auctionExceptions.AUCTION_MODIFIED_OR_EXPIRED)
-                errorMessage = "Bid failed! Auction was either modified or expired!"
+                errorMessage = "Bid failed! Auction is either modified or expired!"
               else if(error.error.code == bidExceptions.BID_HIGHER_BID_EXISTS)
                 errorMessage = "Bid failed! Another user outbid you!"
               else if(error.error.code == auctionExceptions.AUCTION_NOT_FOUND)

@@ -163,11 +163,11 @@ export class MyAuctionsTabComponent implements OnInit {
               console.log(error.error.code)
 
               if(error.error.code===auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
-                errorMessage = "Auction is either expired or bid! Continue"
+                errorMessage = "Auction is either expired or bid on!"
               else
               {
                 jumpToAuction = false
-                errorMessage = "Auction deletion failed! Continue"
+                errorMessage = "Auction deletion failed!"
               }
 
               let dialogConfig = new MatDialogConfig();

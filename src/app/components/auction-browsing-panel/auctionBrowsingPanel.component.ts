@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UtilService} from "../../services/util.service";
 import {serverLinks, serverParameters} from "../../constants/server";
+import {formExpressions} from "../../constants/regularExpressions"
 
 @Component({
   selector: 'app-auction-browsing-navigation-panel',
@@ -52,8 +53,8 @@ export class AuctionBrowsingPanelComponent implements OnInit {
     this.location = ""
     this.priceRangeForm = new FormGroup(
       {
-        minPrice: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*(.?[0-9]+)$")]),
-        maxPrice: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*(.?[0-9]+)$")])
+        minPrice: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)]),
+        maxPrice: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)])
       }
     )
 

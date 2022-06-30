@@ -182,8 +182,8 @@
 
 .updateButtonClass, .deleteButtonClass {
   margin: 1% 0 0 0;
-  width: 49.3%;
-  height: 40px !important;
+  width: 49%;
+  height: 37px;
 }
 
 .updateButtonClass{

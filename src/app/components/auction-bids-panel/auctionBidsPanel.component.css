@@ -190,6 +190,11 @@
   bottom: -2.5%;
 }
 
+.stickyLabel{
+  font-size: medium;
+  font-weight: bold;
+}
+
 .pageBar{
   border: rgba(128, 128, 128, 0.59) 1px solid;
   display: flex;

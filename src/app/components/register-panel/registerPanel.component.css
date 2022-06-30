@@ -6,19 +6,20 @@
   height: 100vh;
 }
 
+.registerForm{
 
+}
+
+.rowMargin{
+  margin-top: 1%;
+}
 
 .form-control{
   background: transparent;
   box-shadow: none;
 }
 
-.registerFormClass{
-  display: flex;
-  flex-direction: column;
-  margin: 2% 0 0 3%;
-  width: 57%;
-}
+
 
 .mapClass{
   margin: 2% 1% 2% 0;
@@ -38,9 +39,9 @@
   justify-content: start;
 }
 
-.lbl{
+.fieldLabel{
   font-weight: bold;
-  font-size: small;
+  font-size: medium;
 }
 
 .usernameClass{
@@ -158,8 +159,8 @@
 
 
 .submitClass{
-  margin: 10% 0 0 18%;
-  width: 60%;
+  margin: 2% 0 0 0;
+  width: 100%;
   border-radius: 4px;
   height: 30px;
   font-weight: bold;
@@ -170,5 +171,14 @@
 }
 
 .textField{
-  font-size: 120%;
+  font-size: small;
+}
+
+
+.mapWrapper{
+  border: rgba(128, 128, 128, 0.17) 1px solid;
+  height: 20vh;
+  width: 100%;
+  padding: 0.5%;
+  margin: 2% 0 0 0;
 }

@@ -1,121 +1,122 @@
-<div class="registerClass">
+<search-bar></search-bar>
 
-  <!-- REGISTER FORM -->
-  <div class="registerFormClass" [formGroup]="registerForm">
+<div class="registerForm container"  [formGroup]="registerForm">
 
-    <!-- MAIN INFO -->
-    <div class="mainInfoClass">
+  <!-- MAIN INFO -->
+  <div class="row rowMargin">
 
-      <!-- USERNAME -->
-      <div class="usernameClass">
-        <label class="lbl" for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
-        <input class="textField form-control" type="text" id="username" formControlName="username">
-        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username Exists</p>
-      </div>
-
-      <div class="tinClass">
-        <label class="lbl" for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
-        <input class="textField form-control" type="text" id="tin" formControlName="tin">
-      </div>
-
+    <!-- USERNAME -->
+    <div class="col-6">
+      <label class="fieldLabel" for="username" [ngClass]="{errorClass:showError && invalidField('username')}">Username</label>
+      <input class="textField form-control" type="text" id="username" formControlName="username">
+      <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_003'">Username Exists</p>
     </div>
 
-
-    <!-- RESIDENCE -->
-    <div class="residenceClass">
-
-      <!-- STREET NAME -->
-      <div class="streetNameClass">
-        <label class="lbl" for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street Name</label>
-        <app-geo-location id="address" [addressName]="extractAddressName()"
-                          (geoAddress)="getGeolocationAddress($event)"
-                          (geoState)="updateBarsState($event)"></app-geo-location>
-      </div>
-
-
-      <!-- STREET NUMBER -->
-      <div class="streetNumberClass">
-        <label class="lbl" for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
-        <input class="textField form-control" type="text" id="streetNumber" formControlName="streetNumber" >
-      </div>
-
+    <div class="col-6">
+      <label class="fieldLabel" for="tin" [ngClass]="{errorClass:showError && invalidField('tin')}">TIN</label>
+      <input class="textField form-control" type="text" id="tin" formControlName="tin">
     </div>
-
-    <!-- EXTENDED RESIDENCE -->
-    <div class="extendedResidenceClass">
-
-      <!-- COUNTRY -->
-      <div class="countryClass">
-        <label class="lbl" for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
-        <input class="textField form-control" type="text" id="country" formControlName="country" >
-      </div>
-
-      <!-- ZIP CODE -->
-      <div class="zipCodeClass">
-        <label class="lbl" for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
-        <input class="textField form-control" type="text" id="zip" formControlName="zipCode" >
-      </div>
-    </div>
-
-    <!-- FIRSTNAME / LASTNAME -->
-    <div class="firstLastClass">
-
-      <!-- FIRSTNAME -->
-      <div class="firstnameClass">
-        <label class="lbl" for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
-        <input class="textField form-control" type="text" id="firstname" formControlName="firstname" >
-      </div>
-
-      <!-- LASTNAME -->
-      <div class="lastnameClass">
-        <label class="lbl" for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
-        <input class="textField form-control" type="text" id="lastname" formControlName="lastname" >
-      </div>
-
-    </div>
-
-    <!-- PASSWORDS -->
-    <div class="passwordsClass">
-
-      <!-- PASSWORD -->
-      <div class="passwordClass">
-        <label class="lbl" for="password" [ngClass]="{errorClass:showError && invalidField('password')}">Password</label>
-        <input class="form-control" type="text" id="password" formControlName="password" >
-      </div>
-
-      <!-- CONFIRM PASSWORD -->
-      <div class="confirmPasswordClass">
-        <label class="lbl" for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
-        <input class="textField form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
-      </div>
-
-    </div>
-
-    <!-- CONTACT INFO -->
-    <div class="contactInfoClass">
-
-      <!-- EMAIL -->
-      <div class="emailClass">
-        <label class="lbl" for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
-        <input class="textField form-control" type="text" id="email" formControlName="email" >
-        <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email Exists</p>
-      </div>
-
-      <!-- PHONE NUMBER -->
-      <div class="phoneNumberClass">
-        <label class="lbl" for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
-        <input class="textField form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
-      </div>
-
-    </div>
-
-    <button class="btn btn btn-success btn-raised submitClass" (click)="submitForm()">Sign-Up</button>
 
   </div>
 
-  <!-- MAP -->
-  <app-map class="mapClass" [isInteractive]="true" [latitude]="extractLatitude()" [longitude]="extractLongitude()"
-           (mapAddress)="getMapsAddress($event)"></app-map>
+  <!-- RESIDENCE -->
+  <div class="row rowMargin">
 
+    <!-- STREET NAME -->
+    <div class="col-6">
+      <label class="fieldLabel" for="address" [ngClass]="{errorClass:showError && invalidField('addressStreet')}">Street Name</label>
+      <app-geo-location id="address" [addressName]="extractAddressName()"
+                        (geoAddress)="getGeolocationAddress($event)"
+                        (geoState)="updateBarsState($event)"></app-geo-location>
+    </div>
+
+
+    <!-- STREET NUMBER -->
+    <div class="col-6">
+      <label class="fieldLabel" for="streetNumber" [ngClass]="{errorClass:showError && invalidField('streetNumber')}">Street Number</label>
+      <input class="textField form-control" type="text" id="streetNumber" formControlName="streetNumber" >
+    </div>
+
+  </div>
+
+  <!-- EXTENDED RESIDENCE -->
+  <div class="row rowMargin">
+
+    <!-- COUNTRY -->
+    <div class="col-6">
+      <label class="fieldLabel" for="country" [ngClass]="{errorClass:showError && invalidField('country')}">Country</label>
+      <input class="textField form-control" type="text" id="country" formControlName="country" >
+    </div>
+
+    <!-- ZIP CODE -->
+    <div class="col-6">
+      <label class="fieldLabel" for="zip" [ngClass]="{errorClass:showError && invalidField('zipCode')}">Postal Code</label>
+      <input class="textField form-control" type="text" id="zip" formControlName="zipCode" >
+    </div>
+
+  </div>
+
+  <!-- FIRSTNAME / LASTNAME -->
+  <div class="row rowMargin">
+
+    <!-- FIRSTNAME -->
+    <div class="col-6">
+      <label class="fieldLabel" for="firstname" [ngClass]="{errorClass:showError && invalidField('firstname')}">First Name</label>
+      <input class="textField form-control" type="text" id="firstname" formControlName="firstname" >
+    </div>
+
+    <!-- LASTNAME -->
+    <div class="col-6">
+      <label class="fieldLabel" for="lastname" [ngClass]="{errorClass:showError && invalidField('lastname')}">Last Name</label>
+      <input class="textField form-control" type="text" id="lastname" formControlName="lastname" >
+    </div>
+
+  </div>
+
+  <!-- PASSWORDS -->
+  <div class="row rowMargin">
+
+    <!-- PASSWORD -->
+    <div class="col-6">
+      <label class="fieldLabel" for="password" [ngClass]="{errorClass:showError && invalidField('password')}">Password</label>
+      <input class="textField form-control" type="text" id="password" formControlName="password" >
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="col-6">
+      <label class="fieldLabel" for="confirmPassword" [ngClass]="{errorClass:showError && invalidField('confirmPassword')}">Confirm Password</label>
+      <input class="textField form-control" type="text" id="confirmPassword" formControlName="confirmPassword" >
+    </div>
+
+  </div>
+
+  <!-- CONTACT INFO -->
+  <div class="row rowMargin">
+
+    <!-- EMAIL -->
+    <div class="col-6">
+      <label class="fieldLabel" for="email" [ngClass]="{errorClass:showError && invalidField('email')}">Email</label>
+      <input class="textField form-control" type="text" id="email" formControlName="email" >
+      <p class="errorMessage" *ngIf="this.registerForm.pristine && this.errorCode==='UE_004'">Email Exists</p>
+    </div>
+
+    <!-- PHONE NUMBER -->
+    <div class="col-6">
+      <label class="fieldLabel" for="phoneNumber" [ngClass]="{errorClass:showError && invalidField('phoneNumber')}">Phone</label>
+      <input class="textField form-control" type="text" id="phoneNumber" formControlName="phoneNumber">
+    </div>
+
+  </div>
+
+  <div class="mapWrapper">
+    <app-map class="mapClass" [isInteractive]="true" [latitude]="extractLatitude()" [longitude]="extractLongitude()" (mapAddress)="getMapsAddress($event)"></app-map>
+  </div>
+
+
+  <button class="btn btn btn-success btn-raised submitClass" (click)="submitForm()">Sign-Up</button>
 
 </div>
+
+
+
+

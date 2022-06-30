@@ -68,16 +68,17 @@
 .nameField{
   font-size: small;
   word-break: break-all;
-  max-height: 40px;
+  min-height: 40px;
   overflow-y: auto;
 }
 
 .descriptionField{
   font-size: small;
   word-break: break-all;
-  max-height: 100px;
+  min-height: 100px;
   overflow-y: auto;
 }
+
 
 .highestBidField{
   font-size: small;

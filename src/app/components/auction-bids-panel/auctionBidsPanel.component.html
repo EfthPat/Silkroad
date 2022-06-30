@@ -1,85 +1,92 @@
-
 <search-bar></search-bar>
 
 <div class="auctionBids row">
 
 
-  <div class="sticky col">
-
+  <div class="auction container">
 
     <!-- IMAGES -->
-    <div class="images row">
+    <div class="images">
 
       <!-- IMAGE -->
       <img class="image" src="{{serverLink}}{{serverParameter}}/{{auctionID}}/{{images[activeImage]}}">
 
       <!-- NEXT IMAGE -->
-      <button class="page-link nextImage fa fa-angle-right" (click)="getNextImage()"></button>
+      <button class="page-link nextImage fa fa-angle-right fa-2x" (click)="getNextImage()"></button>
 
       <!-- PREVIOUS IMAGE -->
-      <button class="page-link previousImage fa fa-angle-left" (click)="getPreviousImage()"></button>
+      <button class="page-link previousImage fa fa-angle-left fa-2x" (click)="getPreviousImage()"></button>
 
     </div>
 
-    <div class="group row">
-      <div class="team split">
-        <label class="stickyLabel" for="stickyName">Name</label>
-        <p id="stickyName" class="stickyText">{{this.name}}</p>
+    <!-- NAME FIELD -->
+    <div class="row">
+      <div class="col">
+        <label for="name" class="fieldLabel">Name</label>
+        <p class="nameField form-control" id="name">{{this.name}}</p>
       </div>
-
-      <div class="team split" *ngIf="this.buyPrice">
-        <label class="stickyLabel" for="stickyBuyPrice">Buy Price</label>
-        <p id="stickyBuyPrice" class="stickyText">{{this.buyPrice}} $</p>
-      </div>
-
     </div>
 
-    <div class="group row">
-
-      <div class="team split">
-        <label class="stickyLabel" for="stickyBids">Total Bids</label>
-        <p id="stickyBids" class="stickyText">{{this.totalBids}}</p>
+    <!-- DESCRIPTION -->
+    <div class="row">
+      <div class="col">
+        <label for="description" class="fieldLabel">Description</label>
+        <p class="form-control descriptionField" id="description">{{this.description}}</p>
       </div>
-
-      <div class="team split">
-        <label class="stickyLabel" for="stickyHighest">Highest Bid</label>
-        <p id="stickyHighest" class="stickyText">{{this.utilService.reformatNumber(this.highestBid)}} $</p>
-      </div>
-
     </div>
 
-    <div class="group row">
+    <div class="row">
 
-      <div class="team split">
-        <label class="stickyLabel" for="stickyStart">Start Date</label>
-        <p id="stickyStart" class="stickyText">{{this.startDate}}</p>
-      </div>
-
-      <div class="team split">
-        <label class="stickyLabel" for="stickyEnd">Due Date</label>
-        <p id="stickyEnd" class="stickyText">{{this.endDate}}</p>
+      <div class="col" *ngIf="this.buyPrice">
+        <label for="buyPrice" class="fieldLabel">Buy Price</label>
+        <p class="buyPriceField form-control" id="buyPrice">${{this.buyPrice}}</p>
       </div>
 
     </div>
 
 
-    <div class="group row">
-      <div class="team spread">
-        <label class="stickyLabel" for="stickyAddress">Address</label>
-        <p id="stickyAddress" class="stickyText">{{this.address}}</p>
+    <div class="row">
+      <div class="col-6">
+        <label for="totalBids" class="fieldLabel">Total Bids</label>
+        <p class="totalBidsField form-control" id="totalBids">{{this.totalBids}}</p>
+      </div>
+
+      <div class="col-6">
+        <label for="currentBid" class="fieldLabel">{{this.currentBidTitle}}</label>
+        <p class="currentBidField form-control" id="currentBid">${{this.currentBid}}</p>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <label for="startDate" class="fieldLabel">Start Date</label>
+        <p class="startDateField form-control" id="startDate">{{this.startDate}}</p>
+      </div>
+
+      <div class="col-6">
+        <label for="dueDate" class="fieldLabel">Due Date</label>
+        <p class="dueDateField form-control" id="dueDate">${{this.endDate}}</p>
+      </div>
+
+    </div>
+
+    <!-- LOCATION -->
+    <div class="row">
+      <div class="col">
+        <label for="location" class="fieldLabel">Location</label>
+        <p class="form-control locationField" id="location">{{this.address}}</p>
       </div>
     </div>
 
-    <div class="group row">
-      <div class="team spread">
-        <label class="stickyLabel" for="stickyDescr">Description</label>
-        <p id="stickyDescr" class="stickyText">{{this.description}}</p>
-      </div>
-    </div>
+
+
 
   </div>
 
-  <div class="other col">
+
+  <div class="other">
 
     <!-- EACH CARD -->
     <mat-card class="card" *ngFor="let thumbnail of this.auctionBids; let i=index">
@@ -136,9 +143,10 @@
 
       </div>
 
+    </div>
+
+
   </div>
 
-
 </div>
 
-</div>

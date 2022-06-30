@@ -27,6 +27,8 @@ export class AuctionBidsPanelComponent implements OnInit {
   activeImage: number
   buyPrice: number
   address: string
+  currentBidTitle: string
+  currentBid: number
 
   auctionBids: AuctionBid[]
   username : string
@@ -40,6 +42,10 @@ export class AuctionBidsPanelComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private requestService : RequestService,
               private authService : AuthService, public utilService: UtilService) {
+
+    this.currentBidTitle = ""
+    this.currentBid = 0
+
 
     this.serverLink = serverLinks[0]
     this.serverParameter = serverParameters.mediaParameter
@@ -78,6 +84,16 @@ export class AuctionBidsPanelComponent implements OnInit {
         this.description = response.description
         this.images = response.images
         this.buyPrice = response.buyPrice
+
+        if(this.totalBids==0) {
+          this.currentBidTitle = "First Bid"
+          this.currentBid = response.firstBid
+        }else {
+          this.currentBidTitle = "Highest Bid"
+          this.currentBid = response.highestBid
+        }
+
+
 
         this.address = response.address.streetName+" "+response.address.streetNumber+", "+
           response.address.zipCode+", "+response.address.location

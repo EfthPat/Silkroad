@@ -36,11 +36,18 @@ export class ViewAuctionComponent implements OnInit {
   latitude: number
   longitude: number
 
+  dynamicBidLabel: string
+  dynamicBidValue: number
+
   images: any[]
   activeImage: number
 
   constructor(private requestService: RequestService, private router: Router, private route: ActivatedRoute,
               public utilService: UtilService, private authService: AuthService, private dialog: MatDialog) {
+
+
+    this.dynamicBidLabel = ""
+    this.dynamicBidValue = 0
 
     this.serverLink=serverLinks[0]
     this.serverParameter = serverParameters.mediaParameter
@@ -61,6 +68,7 @@ export class ViewAuctionComponent implements OnInit {
       name: new FormControl(''),
       description: new FormControl(''),
       highestBid: new FormControl(''),
+      firstBid: new FormControl(''),
       buyPrice: new FormControl(''),
       endDate: new FormControl(''),
       address: new FormControl(''),
@@ -96,7 +104,8 @@ export class ViewAuctionComponent implements OnInit {
         this.auctionForm.get('name')?.setValue(response.name)
         this.auctionForm.get('description')?.setValue(response.description)
         // set as 'highest bid' the maximum of highestBid and firstBid
-        this.auctionForm.get('highestBid')?.setValue(response.firstBid > response.highestBid ? response.firstBid : response.highestBid)
+        this.auctionForm.get('highestBid')?.setValue(response.highestBid)
+        this.auctionForm.get('firstBid')?.setValue(response.firstBid)
         response.buyPrice ? this.auctionForm.get('buyPrice')?.setValue(response.buyPrice) :
           this.auctionForm.get('buyPrice')?.setValue('N/A')
         this.auctionForm.get('endDate')?.setValue(this.utilService.reformatDate(response.endDate))
@@ -118,7 +127,18 @@ export class ViewAuctionComponent implements OnInit {
         // get auction's images
         this.images = response.images
 
-        //console.table(response)
+
+        if(this.auctionForm.get('highestBid')?.value >= this.auctionForm.get('firstBid')?.value)
+        {
+          this.dynamicBidValue = this.auctionForm.get('highestBid')?.value
+          this.dynamicBidLabel = "Highest Bid"
+        }
+        else
+        {
+          this.dynamicBidValue = this.auctionForm.get('firstBid')?.value
+          this.dynamicBidLabel = "First Bid"
+        }
+
 
 
         // A visitor can bid on an auction IFF:
@@ -179,6 +199,34 @@ export class ViewAuctionComponent implements OnInit {
 
     if (this.auctionForm.get('bid')?.invalid)
       return
+
+    let submittedBid = this.auctionForm.get('bid')?.value
+    let firstBid = this.auctionForm.get('firstBid')?.value
+    let highestBid = this.auctionForm.get('highestBid')?.value
+
+    let bidValid: boolean = false
+
+    if(highestBid==0 && submittedBid>=firstBid)
+      bidValid = true
+
+    else if (highestBid!=0 && submittedBid>highestBid)
+      bidValid = true
+
+
+    if(!bidValid)
+    {
+      this.auctionForm.get('bid')?.setErrors({invalidBidValue: true})
+      return
+    }
+
+
+
+
+
+
+
+
+
 
     // if user wants to bid on the auction, create a confirmation dialog
     let dialogConfig = new MatDialogConfig();

@@ -2,7 +2,7 @@
 
 export const formExpressions = {
 
-  price : "^[0-9]*(.?[0-9]{1,2})$",
+  price : "^([0-9]+\\.?[0-9]{0,2}|\\.[0-9]{1,2})$",
   zipCode: "^\\d{5}(?:[-\\s]\\d{4})?$",
   streetNumber: "^\\w{1,3}(( |-)\\w{1,3})?$",
   country: "[.a-z A-Z]{2,}",

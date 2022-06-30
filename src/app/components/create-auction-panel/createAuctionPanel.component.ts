@@ -174,13 +174,16 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   }
 
+
+
+
   buyNowValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
     if (control.get('firstBid')?.value && control.get('buyNow')?.value) {
       let firstBid = Number(control.get('firstBid')?.value)
       let buyNow = Number(control.get('buyNow')?.value)
 
-      if (!isNaN(firstBid) && !isNaN(buyNow) && !(firstBid < buyNow)) {
+      if (!isNaN(firstBid) && !isNaN(buyNow) && firstBid >= buyNow) {
         control.get('buyNow')?.setErrors({invalidValue: true})
         return {invalidValue: true}
       }
@@ -336,6 +339,26 @@ export class CreateAuctionPanelComponent implements OnInit {
 
     if (!(this.auctionForm.valid && this.geolocationValid && this.dateValid && this.selectedCategories.length))
       return
+
+    let validPriceCombination: boolean = false
+    let firstBid = this.auctionForm.get('firstBid')!.value
+    let buyNowValue : string = this.auctionForm.get('buyNow')?.value
+
+    if(Number(firstBid)>0 && buyNowValue.length==0)
+      validPriceCombination = true
+    else if(Number(firstBid)>0 && Number(buyNowValue)>0 && Number(buyNowValue)>Number(firstBid))
+      validPriceCombination = true
+
+
+    if(!validPriceCombination)
+    {
+
+      this.auctionForm.get('firstBid')?.setErrors({invalidValue: true})
+      this.auctionForm.get('buyNow')?.setErrors({invalidValue: true})
+
+      return
+    }
+
 
     // if user wants to update an old auction or create a new one, create a confirmation dialog
     let dialogConfig = new MatDialogConfig();

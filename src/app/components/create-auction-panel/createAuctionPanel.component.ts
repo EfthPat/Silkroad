@@ -8,7 +8,7 @@ import {RequestService} from "../../services/request.service";
 import {formExpressions} from "../../constants/regularExpressions";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
-import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
+import {ApprovalDialogComponent} from "../approval-dialog/approvalDialog.component";
 import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
@@ -486,7 +486,7 @@ export class CreateAuctionPanelComponent implements OnInit {
     }
 
     // open the dialog
-    let dialogRef = this.dialog.open(AuctionDeletionDialog, dialogConfig);
+    let dialogRef = this.dialog.open(ApprovalDialogComponent, dialogConfig);
 
     // get user's reply
     dialogRef.afterClosed().subscribe(

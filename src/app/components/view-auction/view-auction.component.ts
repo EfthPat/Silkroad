@@ -6,7 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {Bid} from "../../interfaces/Bid";
 import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
+import {ApprovalDialogComponent} from "../approval-dialog/approvalDialog.component";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {serverLinks, serverParameters} from "../../constants/server";
 import {endpoints} from "../../constants/pageLinks";
@@ -237,7 +237,7 @@ export class ViewAuctionComponent implements OnInit {
     }
 
     // open the dialog
-    let dialogRef = this.dialog.open(AuctionDeletionDialog, dialogConfig);
+    let dialogRef = this.dialog.open(ApprovalDialogComponent, dialogConfig);
 
     // get dialog's reply after it's closed
     dialogRef.afterClosed().subscribe(

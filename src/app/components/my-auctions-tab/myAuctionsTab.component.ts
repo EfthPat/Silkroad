@@ -5,7 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {UtilService} from "../../services/util.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {AuctionDeletionDialog} from "../auction-deletion-dialog/auctionDeletionDialog";
+import {ApprovalDialogComponent} from "../approval-dialog/approvalDialog.component";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {endpoints} from "../../constants/pageLinks";
 import {serverLinks, serverParameters} from "../../constants/server";
@@ -124,11 +124,11 @@ export class MyAuctionsTabComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      message: "Do you want to delete this auction?"
+      message: "Delete Auction?"
     }
 
     // open the dialog
-    let dialogRef = this.dialog.open(AuctionDeletionDialog, dialogConfig);
+    let dialogRef = this.dialog.open(ApprovalDialogComponent, dialogConfig);
 
     // get dialog's reply after it's closed
     dialogRef.afterClosed().subscribe(

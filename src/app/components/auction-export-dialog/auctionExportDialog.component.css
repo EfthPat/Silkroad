@@ -15,8 +15,17 @@
   width: 100%;
 }
 
-.formatClass{
 
+#sd{
+  font-size: small;
+}
+
+#ed{
+  font-size: small;
+}
+
+label{
+  font-size: small;
 }
 
 #ddm{
@@ -26,7 +35,6 @@
 
 .exportButtonClass{
   margin-top:20%;
-  border-radius: 10px;
   width: 100%;
 }
 

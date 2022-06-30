@@ -2,17 +2,17 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-auction-deletion-dialog',
-  templateUrl: './auctionDeletionDialog.html',
-  styleUrls: ['./auctionDeletionDialog.css']
+  selector: 'app-approval-dialog',
+  templateUrl: './approvalDialog.component.html',
+  styleUrls: ['./approvalDialog.component.css']
 })
-export class AuctionDeletionDialog implements OnInit {
+export class ApprovalDialogComponent implements OnInit {
 
   message: string
   toDelete: boolean
 
 
-  constructor(private dialogRef: MatDialogRef<AuctionDeletionDialog>, @Inject(MAT_DIALOG_DATA) data : any) {
+  constructor(private dialogRef: MatDialogRef<ApprovalDialogComponent>, @Inject(MAT_DIALOG_DATA) data : any) {
     data && data.message ? this.message = data.message : this.message = "Are you sure?"
     this.toDelete = false
   }

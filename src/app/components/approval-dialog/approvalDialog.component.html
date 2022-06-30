@@ -6,8 +6,8 @@
   <!-- BUTTONS -->
   <div class="buttonsClass">
     <!-- APPROVE DELETION -->
-    <button class="btn btn-success approveClass" (click)="getUserReply(true)">Yes</button>
+    <button mat-stroked-button color="primary" class="approveClass" (click)="getUserReply(true)">Yes</button>
     <!-- APPROVE DELETION -->
-    <div class="btn btn-danger rejectClass" (click)="getUserReply(false)">No</div>
+    <button mat-stroked-button color="warn" class="rejectClass" (click)="getUserReply(false)">No</button>
   </div>
 </div>

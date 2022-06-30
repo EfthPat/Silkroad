@@ -5,22 +5,21 @@
 }
 
 .messageClass{
-
+  font-weight: bold;
+  font-size: x-large;
+  letter-spacing: 0.2em;
 }
 
 .buttonsClass{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
 }
 
 .approveClass{
-  border-radius: 10px;
-  width: 30%;
+  width: 49%;
 }
 
 .rejectClass{
-  border-radius: 10px;
-  width: 30%;
-
+  width: 49%;
+  margin-left: 1%;
 }

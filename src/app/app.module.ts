@@ -41,7 +41,7 @@ import {CreateMessageComponent} from "./components/create-message-panel/createMe
 import {AuctionBidsPanelComponent} from "./components/auction-bids-panel/auctionBidsPanel.component";
 import {AuctionExportDialogComponent} from "./components/auction-export-dialog/auctionExportDialog.component";
 import {UtilService} from "./services/util.service";
-import {AuctionDeletionDialog} from "./components/auction-deletion-dialog/auctionDeletionDialog";
+import {ApprovalDialogComponent} from "./components/approval-dialog/approvalDialog.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -80,10 +80,10 @@ import {
     CreateMessageComponent,
     AuctionBidsPanelComponent,
     AuctionExportDialogComponent,
-    AuctionDeletionDialog,
     ImageSliderComponent,
     AlertDialogComponent,
     DateTimePickerComponent,
+    ApprovalDialogComponent
   ],
   // MODULES
   imports: [

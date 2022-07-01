@@ -38,43 +38,134 @@
 </div>
 
 
-<div class="cards" style="border: 1px green solid">
 
-  <mat-card class="card" *ngFor="let thumbnail of this.auctionBids; let i=index">
 
-    <div class="group row">
+<!--
+<div>
 
-      <div class="team split">
-        <label class="stickyLabel" for="bidder">Bidder</label>
-        <p id="bidder" class="stickyText">{{thumbnail.bidder}}</p>
+  <div class="cards" style="border: 1px green solid">
+
+    <mat-card class="card" *ngFor="let thumbnail of this.auctionBids; let i=index">
+
+      <div class="group row">
+
+        <div class="team split">
+          <label class="stickyLabel" for="bidder">Bidder</label>
+          <p id="bidder" class="stickyText">{{thumbnail.bidder}}</p>
+        </div>
+
+        <div class="team split">
+          <label class="stickyLabel" for="rating">Bidder Rating</label>
+          <p id="rating" class="stickyText">{{this.utilService.reformatNumber(thumbnail.bidderRating)}}</p>
+        </div>
+
       </div>
 
-      <div class="team split">
-        <label class="stickyLabel" for="rating">Bidder Rating</label>
-        <p id="rating" class="stickyText">{{this.utilService.reformatNumber(thumbnail.bidderRating)}}</p>
+
+      <div class="group row">
+
+        <div class="team split">
+          <label class="stickyLabel" for="bid">Bid</label>
+          <p id="bid" class="stickyText">${{this.utilService.reformatNumber(thumbnail.amount)}}</p>
+        </div>
+
+        <div class="team split">
+          <label class="stickyLabel" for="date">Submission Date</label>
+          <p id="date" class="stickyText">{{this.utilService.reformatDate(thumbnail.submissionDate)}}</p>
+        </div>
+
       </div>
+
+    </mat-card>
+
+
+
+
+
+  </div>
+
+
+
+
+  <div class="pagination">
+
+    <div class="pageBar">
+
+      &lt;!&ndash; PREVIOUS PAGE BUTTON &ndash;&gt;
+      <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+              [disabled]="this.pageIndex<=1">&laquo;
+      </button>
+
+      &lt;!&ndash; PAGE VALUE BUTTON &ndash;&gt;
+      <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+
+      &lt;!&ndash; NEXT PAGE BUTTON &ndash;&gt;
+      <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
+              [disabled]="this.pageIndex>=this.totalPages">
+        &raquo;
+      </button>
 
     </div>
 
-
-    <div class="group row">
-
-      <div class="team split">
-        <label class="stickyLabel" for="bid">Bid</label>
-        <p id="bid" class="stickyText">${{this.utilService.reformatNumber(thumbnail.amount)}}</p>
-      </div>
-
-      <div class="team split">
-        <label class="stickyLabel" for="date">Submission Date</label>
-        <p id="date" class="stickyText">{{this.utilService.reformatDate(thumbnail.submissionDate)}}</p>
-      </div>
-
-    </div>
-
-  </mat-card>
-
+  </div>
 </div>
+-->
 
+
+<div style="margin: 1% 1% 0 1%">
+
+
+  <table class="table" style="font-size: small">
+
+
+    <thead>
+    <tr>
+      <th scope="col">Bidder</th>
+      <th scope="col">Bidder Rating</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Submission Date</th>
+    </tr>
+    </thead>
+
+
+
+    <tbody>
+
+    <tr *ngFor="let submittedBid of this.auctionBids; let i=index" >
+      <td>{{submittedBid.bidder}}</td>
+      <td>{{submittedBid.bidderRating}}</td>
+      <td>{{submittedBid.amount}}</td>
+      <td>{{this.utilService.reformatDate(submittedBid.submissionDate)}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+  <div class="pagination">
+
+    <div class="pageBar">
+
+      <!-- PREVIOUS PAGE BUTTON -->
+      <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+              [disabled]="this.pageIndex<=1">&laquo;
+      </button>
+
+      <!-- PAGE VALUE BUTTON -->
+      <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
+
+      <!-- NEXT PAGE BUTTON -->
+      <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
+              [disabled]="this.pageIndex>=this.totalPages">
+        &raquo;
+      </button>
+
+    </div>
+
+  </div>
+</div>
 
 <!--
 <div class="auctionBids row">

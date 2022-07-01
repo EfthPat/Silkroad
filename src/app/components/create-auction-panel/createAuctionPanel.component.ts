@@ -366,8 +366,6 @@ export class CreateAuctionPanelComponent implements OnInit {
 
     this.submitCommitted = true
 
-    console.log("Submission Committed")
-
     if (!(this.auctionForm.valid && this.geolocationValid && this.dateValid && this.selectedCategories.length))
       return
 
@@ -375,7 +373,7 @@ export class CreateAuctionPanelComponent implements OnInit {
     let firstBid = this.auctionForm.get('firstBid')!.value
     let buyNowValue: string | null = this.auctionForm.get('buyNow')?.value
 
-    if (Number(firstBid) > 0 && buyNowValue?.length == 0)
+    if (Number(firstBid) > 0 && (buyNowValue===null || buyNowValue?.length == 0))
       validPriceCombination = true
     else if (Number(firstBid) > 0 && Number(buyNowValue) > 0 && Number(buyNowValue) > Number(firstBid))
       validPriceCombination = true
@@ -383,6 +381,8 @@ export class CreateAuctionPanelComponent implements OnInit {
     if (!validPriceCombination) {
       this.auctionForm.get('firstBid')?.setErrors({invalidValue: true})
       this.auctionForm.get('buyNow')?.setErrors({invalidValue: true})
+
+      console.log("")
 
       return
     }

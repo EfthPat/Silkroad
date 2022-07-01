@@ -2,55 +2,6 @@
   box-sizing: border-box;
 }
 
-.images{
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  justify-content: center;
-  width: 100%;
-  aspect-ratio: 3;
-  padding: 0;
-  margin: 0;
-  height: 23vh;
-}
-
-.image{
-  height: 100%;
-  width: 50%;
-  padding: 0;
-  margin: 0;
-}
-
-.nextImage{
-  color: black;
-  border: rgba(128, 128, 128, 0.12) 1px solid;
-  position: absolute;
-  font-size: large;
-  width: 25%;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  top: 0;
-  box-shadow: none;
-  background: transparent;
-  right: 0;
-}
-
-.previousImage{
-  color: black;
-  border: rgba(128, 128, 128, 0.12) 1px solid;
-  background: transparent;
-  position: absolute;
-  font-size: large;
-  width: 25%;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  top: 0;
-  box-shadow: none;
-  left: 0;
-}
-
 .nameField{
   font-size: small;
   word-break: break-all;
@@ -164,6 +115,8 @@
   border: 1px red solid;
   font-size: small;
   text-align: center;
+  width: 98%;
+  margin: 1% 0 0 1%;
 }
 
 .bidHead{
@@ -175,16 +128,16 @@
   height: 50px;
 }
 
-.omegaWrapper{
+.pageWrapper{
   margin: 0;
-  border: 1px solid pink;
   min-height: 95vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
 .pagination{
-  height: 5vh;
-  border: 1px green solid;
+  height: 4.8vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -211,16 +164,22 @@
   text-align: center;
   font-size: medium;
   font-weight: bold;
-
+  border: none;
 }
 
 .pageValue{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 33%;
   text-align: center;
-  font-size: medium;
+  font-size: small;
   font-weight: bold;
+  border: none;
+
 }
+
 
 .nextPage{
   height: 100%;
@@ -228,4 +187,6 @@
   text-align: center;
   font-size: medium;
   font-weight: bold;
+  border: none;
+
 }

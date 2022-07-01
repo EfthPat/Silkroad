@@ -215,6 +215,8 @@ export class CreateAuctionPanelComponent implements OnInit {
   buyNowValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
     if (control.get('firstBid')?.value && control.get('buyNow')?.value) {
+
+
       let firstBid = Number(control.get('firstBid')?.value)
       let buyNow = Number(control.get('buyNow')?.value)
 
@@ -224,7 +226,9 @@ export class CreateAuctionPanelComponent implements OnInit {
       }
 
       // if both values are valid, reenitialize buyNow's value to recalculate its validation
-      control.get('buyNow')?.setValue(buyNow)
+      if(!isNaN(buyNow))
+        control.get('buyNow')?.setValue(buyNow)
+
     }
 
     return null

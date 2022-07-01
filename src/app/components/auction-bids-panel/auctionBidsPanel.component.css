@@ -199,14 +199,14 @@
 
 .pageBar{
   width: 100%;
+  height: 100%;
   border: none;
   display: flex;
   flex-direction: row;
-  height: max-content;
 }
 
 .previousPage{
-  height: 30px;
+  height: 100%;
   width: 33%;
   text-align: center;
   font-size: medium;
@@ -215,7 +215,7 @@
 }
 
 .pageValue{
-  height: 30px;
+  height: 100%;
   width: 33%;
   text-align: center;
   font-size: medium;
@@ -223,7 +223,7 @@
 }
 
 .nextPage{
-  height: 30px;
+  height: 100%;
   width: 33%;
   text-align: center;
   font-size: medium;

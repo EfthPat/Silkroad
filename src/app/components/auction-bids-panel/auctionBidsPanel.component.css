@@ -112,7 +112,6 @@
 
 
 .customTable{
-  border: 1px red solid;
   font-size: small;
   text-align: center;
   width: 98%;
@@ -135,6 +134,16 @@
   flex-direction: column;
 }
 
+.auctionWrapper{
+  margin: 1% 1% 0 1%
+}
+
+.stickyLabel{
+  font-size: medium;
+  font-weight: bold;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
 
 .pagination{
   height: 4.8vh;
@@ -143,11 +152,6 @@
   justify-content: center;
   margin: 0;
   width: 100%;
-}
-
-.stickyLabel{
-  font-size: medium;
-  font-weight: bold;
 }
 
 .pageBar{
@@ -180,7 +184,6 @@
 
 }
 
-
 .nextPage{
   height: 100%;
   width: 33%;
@@ -188,5 +191,4 @@
   font-size: medium;
   font-weight: bold;
   border: none;
-
 }

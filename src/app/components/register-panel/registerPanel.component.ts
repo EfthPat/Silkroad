@@ -6,6 +6,7 @@ import {endpoints} from "../../constants/pageLinks";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {formExpressions} from "../../constants/regularExpressions";
+import {successMessages} from "../../constants/customMessages";
 
 @Component({
   selector: 'app-register-panel',
@@ -93,7 +94,7 @@ export class RegisterPanelComponent implements OnInit {
           let dialogConfig = new MatDialogConfig();
           dialogConfig.autoFocus = true;
           dialogConfig.data = {
-            message: "Sign-up completed! Approval Pending"
+            message: successMessages.signUpSuccessful
           }
 
           let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)

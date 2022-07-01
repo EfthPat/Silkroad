@@ -186,7 +186,7 @@ input{
 .cardContent{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   height: 100%;
   width: 75%;
   padding:0;
@@ -199,14 +199,18 @@ input{
   overflow: hidden;
   text-overflow: ellipsis;
   width: 95%;
-  padding: 0 0 1% 0;
-  font-size: x-large;
+  padding: 0 1% 0 0;
+  font-size: large;
   font-weight: 600;
-  margin: 2% 0 0 2%;
+  margin: 0 0 0 2%;
 }
 
 .auctionName:hover{
   cursor: pointer;
+}
+
+.bid{
+  margin: 0 0 0 2%;
 }
 
 .highestBid{
@@ -214,10 +218,8 @@ input{
   overflow: hidden;
   text-overflow: ellipsis;
   width: 95%;
-  padding: 0 0 1% 0;
-  font-size: medium;
-  margin: 0 0 0 2%;
-  font-weight: 400;
+  padding: 0;
+  margin: 0;
 }
 
 .countryField{
@@ -225,16 +227,14 @@ input{
   overflow: hidden;
   text-overflow: ellipsis;
   width: 95%;
-  padding: 0 0 1% 0;
-  margin: 5% 0 0 2%;
-  font-weight: 500;
-  font-size: medium;
+  padding: 0;
+  margin: 0 0 0 2%;
 }
 
 .textLabel{
-  margin: 2.5% 0 0 2%;
+  margin: 0 0 0 0;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
 }
 
 

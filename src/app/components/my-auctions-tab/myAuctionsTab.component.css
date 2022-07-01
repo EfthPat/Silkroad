@@ -124,10 +124,10 @@
 }
 
 .auctionName {
-  font-size: x-large;
-  font-weight: 600;
+  font-size: large;
+  font-weight: bold;
   padding: 0 1%;
-  margin: 0;
+  margin: 0.5% 0 0.5% 0;
   height: 2em;
   white-space: nowrap;
   overflow: hidden;

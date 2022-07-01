@@ -222,6 +222,9 @@ export class CreateAuctionPanelComponent implements OnInit {
         control.get('buyNow')?.setErrors({invalidValue: true})
         return {invalidValue: true}
       }
+
+      // if both values are valid, reenitialize buyNow's value to recalculate its validation
+      control.get('buyNow')?.setValue(buyNow)
     }
 
     return null

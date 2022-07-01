@@ -24,7 +24,6 @@ export class AuctionBrowsingPanelComponent implements OnInit {
   pageIndex: number
   totalPages: number
 
-  // query variables
   dfltMinPrice!: number
   dfltMaxPrice!: number
   dfltLocation!: string
@@ -32,7 +31,6 @@ export class AuctionBrowsingPanelComponent implements OnInit {
   dfltQuery!: string
   dfltBuyNow!: boolean
 
-  // U.I. variables
   location: string
   priceRangeForm: FormGroup
 
@@ -41,12 +39,9 @@ export class AuctionBrowsingPanelComponent implements OnInit {
 
     this.serverLink = serverLinks[0]
     this.serverParameter = serverParameters.mediaParameter
-
     this.browsingAuctionThumbnails = this.imageLinks = []
-
     this.pageSize = 6
     this.pageIndex = this.totalPages = 0
-
 
     this.resetParameters()
 
@@ -64,8 +59,7 @@ export class AuctionBrowsingPanelComponent implements OnInit {
   resetParameters(): void {
     this.dfltMinPrice = 0
     this.dfltMaxPrice = -1
-    this.dfltLocation = "Any"
-    this.dfltCategory = "Any"
+    this.dfltLocation = this.dfltCategory = "Any"
     this.dfltQuery = ""
     this.dfltBuyNow = false
   }
@@ -217,14 +211,9 @@ export class AuctionBrowsingPanelComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
-
-
     // every time URL changes
     this.route.queryParams.subscribe(
       () => {
-
 
         // reset the search-bar parameters
         this.resetParameters()
@@ -234,10 +223,7 @@ export class AuctionBrowsingPanelComponent implements OnInit {
         this.priceRangeForm.get('maxPrice')?.setValue('')
         this.location=''
 
-
         let queryParameters = this.route.snapshot.queryParams
-
-        // query, category, min-price, max-price, location, buyNow
 
         if(queryParameters['query'])
           this.dfltQuery = decodeURIComponent(queryParameters['query'].trim())
@@ -263,18 +249,13 @@ export class AuctionBrowsingPanelComponent implements OnInit {
         if(queryParameters['buy-now'] && queryParameters['buy-now']==="true" )
           this.dfltBuyNow=true
 
-
         this.getBrowsingAuctions(this.pageSize, 1, this.dfltMinPrice, this.dfltMaxPrice, this.dfltLocation,
           this.dfltCategory, this.dfltQuery, this.dfltBuyNow)
-
-
 
       }
     )
 
   }
-
-
 
 }
 

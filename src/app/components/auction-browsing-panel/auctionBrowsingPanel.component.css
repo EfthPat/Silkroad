@@ -1,10 +1,5 @@
 * {
   box-sizing: border-box;
-
-}
-
-body{
-
 }
 
 .row{
@@ -18,7 +13,6 @@ body{
 }
 
 .browse{
-  /* BROWSE HEIGHT + SEARCH BAR HEIGHT = 100VH */
   min-height: 93vh;
   margin: 1% 0 0;
 }
@@ -42,7 +36,6 @@ body{
 
 input{
   font-size: small;
-
 }
 
 .buyNowText{
@@ -67,8 +60,8 @@ input{
   margin: 1% 0 0;
 }
 
-.minPrice, .maxPrice{
-  border: gray 1.3px solid;
+.minPrice{
+  border: gray 1px solid;
   height: 30px;
   width: 40%;
   margin: 0 0 0 0;
@@ -79,6 +72,13 @@ input{
 }
 
 .maxPrice{
+  border: gray 1px solid;
+  height: 30px;
+  width: 40%;
+  border-radius: 4px;
+  text-align: center;
+  outline: none;
+  padding: 0 1%;
   margin-left: 10%;
 }
 
@@ -88,7 +88,7 @@ input{
 }
 
 .region{
-  border: gray 1.3px solid;
+  border: gray 1px solid;
   height: 30px;
   width: 90%;
   margin: 1% 0 0;
@@ -107,8 +107,7 @@ input{
   font-size: small;
 }
 
-.cardsPagination{
-  /* HERE */
+.cardsAndPagination{
   border-left: rgba(128, 128, 128, 0.22) 1px solid;
   min-height: 100%;
   width: 80%;
@@ -143,7 +142,6 @@ input{
   max-width: 25%;
   padding: 0;
   margin: 0;
-
 }
 
 .image{
@@ -153,7 +151,21 @@ input{
   margin: 0;
 }
 
-.nextImage ,.previousImage{
+.nextImage{
+  height: 100%;
+  width: 15%;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background:transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+
+.previousImage{
   height: 100%;
   width: 15%;
   box-shadow: none;
@@ -164,13 +176,6 @@ input{
   padding: 0;
   margin: 0;
   color: black;
-}
-
-.nextImage{
-  right: 0;
-}
-
-.previousImage{
   left: 0;
 }
 
@@ -183,53 +188,46 @@ input{
   padding:0;
   margin: 0;
   overflow: hidden;
-
 }
 
-
-.customGroup{
-  justify-content: center;
-}
-
-.auctionName, .highestBid, .countryField{
+.auctionName{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 95%;
   padding: 0 0 1% 0;
-}
-
-.auctionName{
   font-size: x-large;
   font-weight: 600;
   margin: 2% 0 0 2%;
 }
 
-
-.textLabel{
-  margin: 2.5% 0 0 2%;
-  font-weight: bold;
-  font-size: large;
-}
-
 .highestBid{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  padding: 0 0 1% 0;
   font-size: medium;
   margin: 0 0 0 2%;
   font-weight: 400;
 }
 
 .countryField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  padding: 0 0 1% 0;
   margin: 5% 0 0 2%;
   font-weight: 500;
   font-size: medium;
 }
 
-.location{
-  font-weight: 500;
+.textLabel{
+  margin: 2.5% 0 0 2%;
+  font-weight: bold;
+  font-size: large;
 }
-
-
-/* ------------------------------------------------------------------------------------------------------------------ */
 
 .pagination{
   justify-content: center;
@@ -245,18 +243,27 @@ input{
   margin: 0.3%;
 }
 
-.previousPage ,.pageValue, .nextPage{
+.previousPage{
   background: rgba(168, 165, 165, 0.09);
   text-align: center;
   width: 20%;
   box-shadow: none;
+  border: gray 1px solid;
 }
 
-.previousPage, .nextPage{
+.nextPage{
+  background: rgba(168, 165, 165, 0.09);
+  text-align: center;
+  width: 20%;
+  box-shadow: none;
   border: gray 1px solid;
 }
 
 .pageValue{
+  background: rgba(168, 165, 165, 0.09);
+  text-align: center;
+  width: 20%;
+  box-shadow: none;
   border: none;
   border-top: gray 1px solid;
   border-bottom: gray 1px solid;

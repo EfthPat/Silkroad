@@ -2,15 +2,14 @@
   box-sizing: border-box;
 }
 
-
-.loginPage{
+.loginPage {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
 }
 
-.loginRegisterGroup{
+.loginRegisterGroup {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -19,11 +18,11 @@
   justify-content: center;
 }
 
-input{
+input {
   font-size: medium;
 }
 
-.loginGroup{
+.loginGroup {
   margin-top: -5%;
   display: flex;
   flex-direction: column;
@@ -32,14 +31,14 @@ input{
   width: 23%;
 }
 
-.loginTitleClass{
+.loginTitle {
   font-size: x-large;
   text-align: center;
   width: 50%;
   margin: 0;
 }
 
-.separator{
+.separator {
   border: gray solid 1px;
   border-radius: 10px;
   padding: 0;
@@ -48,13 +47,13 @@ input{
 }
 
 
-.usernameClass{
+.username {
   min-height: 30px;
   width: 100%;
   margin-top: 3%;
 }
 
-.usernameInputClass{
+.usernameInput {
   padding-left: 5%;
   height: 100%;
   width: 100%;
@@ -62,7 +61,7 @@ input{
   border: gray solid 1px;
 }
 
-.passwordClass{
+.password {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -70,7 +69,7 @@ input{
   margin-top: 3%;
 }
 
-.passwordTextClass{
+.passwordText {
   min-height: 30px;
   padding: 0 5%;
   height: 100%;
@@ -79,15 +78,7 @@ input{
   outline: none;
 }
 
-.passwordIconClass{
-  width: 25%;
-  padding: 0;
-  background-color: white;
-  border: none;
-  border-left: rgba(128, 128, 128, 0.43) solid 1px;
-}
-
-.errorMessageClass{
+.errorMessage {
   color: red;
   padding: 0;
   margin-top: 3%;
@@ -95,7 +86,7 @@ input{
   font-size: 1.5em;
 }
 
-.loginButtonClass{
+.loginButton {
   min-height: 23px;
   width: 80%;
   padding: 0;
@@ -103,44 +94,24 @@ input{
   margin-top: 5%;
 }
 
-.loginButtonClass:hover{
-  background: #c2d3d3;
-}
-
-.loginButtonClass:active{
-  background: #87bdbd;
-}
-
-
-.registerGroup{
+.registerGroup {
   display: flex;
   flex-direction: column;
   margin-top: 1%;
 }
 
-.registerClass{
+.register {
   font-size: medium;
-  padding : 0;
+  padding: 0;
   margin: 0;
 }
 
-.continueAsGuestClass{
+.continueAsGuest {
   font-size: medium;
   width: 100%;
-  padding : 0;
+  padding: 0;
   margin-top: 3%;
   margin-bottom: 0;
   text-align: center;
 }
-
-
-
-
-
-
-
-
-
-
-
 

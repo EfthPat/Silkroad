@@ -83,8 +83,6 @@ export class RegisterPanelComponent implements OnInit {
       // pack user's data
       let userInfo = this.extractUserInfo()
 
-      console.log("INFO : ", userInfo)
-
       // send a signup request to the server with user's data
       this.requestService.registerUser(userInfo).subscribe(
         // if the server responded successfully
@@ -109,7 +107,6 @@ export class RegisterPanelComponent implements OnInit {
         // if the signup request failed
         error => {
 
-          console.log("SIGNUP FAILED :", error.error.code)
           this.showError = true
           this.registerForm.markAsPristine()
           this.errorCode = error.error.code

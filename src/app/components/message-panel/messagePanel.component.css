@@ -2,14 +2,14 @@
   box-sizing: border-box;
 }
 
-.inboxGroup{
+.inbox {
   display: flex;
   flex-direction: row;
   height: 100%;
   width: 100%;
 }
 
-.ipGroup{
+.inboxAndPagination {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,14 +18,14 @@
   border-left: rgba(128, 128, 128, 0.58) 1px solid;
 }
 
-.cardsGroup{
+.cards {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.stickyCardClass{
+.stickyCard {
   height: 10vh;
   width: 98%;
   margin: 0.5%;
@@ -33,7 +33,7 @@
   flex-direction: row;
 }
 
-.cardClass {
+.card {
   height: 10vh;
   width: 98%;
   margin: 0.5%;
@@ -43,47 +43,53 @@
 }
 
 
-.messageSenderClass, .messageRecipientClass, .messageReceiverClass{
+.messageSender {
+  width: 20%;
+  margin: 0;
+  font-size: small;
+  padding-top: 0.4%;
+}
+
+.messageRecipient {
+  width: 20%;
+  margin: 0;
+  font-size: small;
+  padding-top: 0.4%;
+}
+
+.messageReceiver {
   width: 20%;
   margin: 0;
   font-size: small;
 }
 
-
-.messageSubjectClass{
+.messageSubject {
   width: 70%;
-  padding: 0.5% 1%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: small;
   margin: 0;
+  padding: 0.4% 1%;
 }
 
-.messageSenderClass, .messageRecipientClass, .messageSubjectClass{
-  padding-top: 0.4%;
-}
-
-.deleteButton{
+.deleteButton {
   font-size: small;
 }
 
-.cardButtonClass{
-
+.cardButton {
   width: 10%;
   height: 50%;
   margin-left: -3%;
   outline: none !important;
 }
 
-.notReadClass{
+.notRead {
   font-weight: bolder;
   font-size: small;
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
-
-.paginationClass{
+.pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -92,8 +98,7 @@
   width: 100%;
 }
 
-.paginationBarClass{
-  background-color: #c9d2d2;
+.paginationBar {
   overflow: hidden;
   text-align: center;
   display: flex;
@@ -104,17 +109,18 @@
   align-items: center;
 }
 
-.previousPageClass{
+.previousPage {
   height: 100%;
   width: 30%;
 }
 
-.pageValueClass{
+.pageValue {
   height: 100%;
   width: 40%;
 }
 
-.nextPageClass{
+.nextPage {
   height: 100%;
   width: 30%;
 }
+

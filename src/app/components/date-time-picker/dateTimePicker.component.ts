@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./dateTimePicker.component.css']
 
 })
-export class DateTimePickerComponent implements OnInit{
+export class DateTimePickerComponent implements OnInit {
 
   picker: any;
 
@@ -14,21 +14,19 @@ export class DateTimePickerComponent implements OnInit{
 
   dateTime: number[];
 
-  @Output() dateTimeEmitter :  EventEmitter<number[]>;
-
+  @Output() dateTimeEmitter: EventEmitter<number[]>;
 
 
   constructor() {
 
-    // YY , MM , DD , HR, MN, SC, MS
     this.dateTime = new Array<number>(7);
-
     this.dateTimeEmitter = new EventEmitter<number[]>();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  updateDateTime() : void {
+  updateDateTime(): void {
 
 
     this.dateTime[0] = this.dateTimeValue!.getFullYear()
@@ -42,7 +40,6 @@ export class DateTimePickerComponent implements OnInit{
     this.dateTimeEmitter.emit(this.dateTime)
 
   }
-
 
 
 }

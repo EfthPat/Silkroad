@@ -16,7 +16,6 @@ export class AuctionBidsPanelComponent implements OnInit {
 
   serverLink: string
   serverParameter: string
-
   name: string
   totalBids: number
   highestBid: number
@@ -29,13 +28,9 @@ export class AuctionBidsPanelComponent implements OnInit {
   address: string
   currentBidTitle: string
   currentBid: number
-
   auctionBids: AuctionBid[]
   username : string
   auctionID : number
-
-
-
   pageSize: number
   pageIndex: number
   totalPages: number
@@ -46,11 +41,9 @@ export class AuctionBidsPanelComponent implements OnInit {
     this.currentBidTitle = ""
     this.currentBid = 0
 
-
     this.serverLink = serverLinks[0]
     this.serverParameter = serverParameters.mediaParameter
 
-    // auction's basic info
     this.name = this.startDate = this. endDate = this.description = this.address = ""
     this.totalBids = this.highestBid = this.buyPrice = 0
     this.images= []
@@ -60,11 +53,8 @@ export class AuctionBidsPanelComponent implements OnInit {
     this.auctionBids = []
     this.auctionID = this.route.snapshot.params['auctionID']
 
-
-    // pagination
     this.pageSize = 6
-    this.pageIndex = 0
-    this.totalPages = 0
+    this.pageIndex = this.totalPages = 0
 
   }
 
@@ -93,19 +83,14 @@ export class AuctionBidsPanelComponent implements OnInit {
           this.currentBid = response.highestBid
         }
 
-
-
         this.address = response.address.streetName+" "+response.address.streetNumber+", "+
           response.address.zipCode+", "+response.address.location
-
-
 
         console.log(response)
       }
       ,
       // if auction fetching failed
-      error => {
-        console.log("AUCTION-FETCHING FAILED :", error)
+      () => {
         this.router.navigate([endpoints.browse])
       }
     )
@@ -118,17 +103,13 @@ export class AuctionBidsPanelComponent implements OnInit {
       response => {
 
 
-        // fill the auction bid array
         this.auctionBids = response.objects
-        // update total pages
         this.totalPages = response.totalPages
-        //update page index
         pageIndex>this.totalPages ? this.pageIndex = this.totalPages : this.pageIndex = pageIndex
 
       },
-      // if bids weren't fetched, redirect user back to home-navigation-panel page
-      error => {
-      console.log("AUCTION-BIDS FAILED :",error)
+      // if bids weren't fetched, redirect user back to browsing page
+      () => {
         this.router.navigate([endpoints.browse])
       }
 

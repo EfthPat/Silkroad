@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {roles} from "../../constants/roles";
 import {endpoints} from "../../constants/pageLinks";
+import {errorMessages} from "../../constants/customMessages";
+import {userExceptions} from "../../constants/serverErrors";
 
 @Component({
   selector: 'app-login-navigation-panel',
@@ -20,23 +22,19 @@ export class LoginPanelComponent implements OnInit {
 
     this.errorMessage = ""
     this.showError = false
-
     this.loginForm = new FormGroup(
       {
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
       }
     )
-
   }
-
 
   login(): void {
 
-
     // if user didn't insert username or password, print an error message
     if (this.loginForm.invalid) {
-      this.errorMessage = "Missing Username or Password"
+      this.errorMessage = errorMessages.loginInfoMissing
       this.showError = true
       this.loginForm.markAsPristine()
     }
@@ -47,7 +45,6 @@ export class LoginPanelComponent implements OnInit {
 
       // send a login-navigation-panel post-request to the server with user's form values
       this.authService.login(username, password).subscribe(
-
         // if the server responded successfully
         response => {
 
@@ -61,7 +58,7 @@ export class LoginPanelComponent implements OnInit {
           this.authService.storeUserInfo(username, jwt)
 
           // if user is an admin-navigation-panel, then redirect admin-navigation-panel to admin-navigation-panel tab
-          if(this.authService.getUserRole()===roles[2]) {
+          if (this.authService.getUserRole() === roles[2]) {
             this.router.navigate([endpoints.users])
           }
           // otherwise, redirect user to homepage
@@ -72,27 +69,23 @@ export class LoginPanelComponent implements OnInit {
         // if an error occurred
         error => {
 
-          console.log("LOGIN FAILED :",error)
-
           // then, either user isn't approved yet
-          if (error.error.code==="UE_006") {
-            this.errorMessage = "Approval Pending"
-          }
+          if (error.error.code === userExceptions.USER_NOT_APPROVED)
+            this.errorMessage = errorMessages.approvalPending
           // or username / password was incorrect
-          else {
-            this.errorMessage = "Invalid Username or Password"
-          }
+          else
+            this.errorMessage = errorMessages.loginInfoInvalid
 
           this.showError = true
           this.loginForm.reset()
         }
       )
 
-
     }
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

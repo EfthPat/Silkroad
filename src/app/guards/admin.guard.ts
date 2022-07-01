@@ -16,7 +16,6 @@ export class AdminGuard implements CanActivate {
 
     let userRole = this.authService.getUserRole()
 
-    // if user is an admin-navigation-panel
     if (userRole === roles[2])
       return true;
 

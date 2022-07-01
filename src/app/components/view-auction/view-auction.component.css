@@ -1,10 +1,10 @@
 
-.auction{
+.auction {
   padding: 0;
   margin-top: 1%;
 }
 
-.imagesWrapper{
+.imagesWrapper {
   border: rgba(128, 128, 128, 0.24) 1px solid;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
   margin: 2% 0 0 0;
 }
 
-.images{
+.images {
   position: relative;
   margin-right: 1%;
   width: 100%;
@@ -22,16 +22,15 @@
   justify-content: center;
 }
 
-.image{
-  border-top: none;
-  border-bottom: none;
+.image {
+  border-top: 1px rgba(128, 128, 128, 0.25) solid;
+  border-bottom: 1px rgba(128, 128, 128, 0.25) solid;
   margin: 0 5%;
   height: 100%;
   width: 30%;
 }
 
-
-.nextImage{
+.nextImage {
   border: rgba(128, 128, 128, 0.12) 1px solid;
   right: 0;
   position: absolute;
@@ -45,7 +44,7 @@
   background: transparent;
 }
 
-.previousImage{
+.previousImage {
   border: rgba(128, 128, 128, 0.12) 1px solid;
   position: absolute;
   font-size: x-large;
@@ -60,19 +59,19 @@
 
 }
 
-.fieldLabel{
+.fieldLabel {
   font-weight: bold;
   font-size: medium;
 }
 
-.nameField{
+.nameField {
   font-size: small;
   word-break: break-all;
   min-height: 40px;
   overflow-y: auto;
 }
 
-.descriptionField{
+.descriptionField {
   font-size: small;
   word-break: break-all;
   min-height: 100px;
@@ -80,38 +79,37 @@
 }
 
 
-.highestBidField{
+.highestBidField {
   font-size: small;
 }
 
-.buyPriceField{
+.buyPriceField {
   font-size: small;
 }
 
-.sellerField{
+.sellerField {
   font-size: small;
 }
 
-.sellerRatingField{
+.sellerRatingField {
   font-size: small;
 }
 
-.dueDateField{
-  font-size: small;
-  overflow-y: auto;
-}
-
-.locationField{
+.dueDateField {
   font-size: small;
   overflow-y: auto;
 }
 
+.locationField {
+  font-size: small;
+  overflow-y: auto;
+}
 
-.bidError{
+.bidError {
   color: red;
 }
 
-.mapWrapper{
+.mapWrapper {
   border: rgba(128, 128, 128, 0.17) 1px solid;
   height: 20vh;
   width: 100%;
@@ -119,7 +117,6 @@
   margin: 1% 0 0.5% 0;
 }
 
-
-.bidGroup{
-  font-size:  small;
+.bidGroup {
+  font-size: small;
 }

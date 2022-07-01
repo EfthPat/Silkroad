@@ -1,5 +1,5 @@
 
-.messageDialogClass{
+.messageDialog{
   width: 65vh;
   height: fit-content;
   padding: 0;
@@ -10,7 +10,6 @@
   font-size: medium;
   font-weight: bold;
 }
-
 
 .otherUser{
   font-size: medium;
@@ -26,8 +25,6 @@
   word-break: break-all;
   overflow-y: auto;
 }
-
-
 
 .content{
   font-size: small;

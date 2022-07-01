@@ -3,6 +3,7 @@ import {RequestService} from "../../services/request.service";
 import {AuthService} from "../../services/auth.service";
 import {endpoints} from "../../constants/pageLinks";
 import {roles} from "../../constants/roles";
+import {searchOptions, buttonOptions} from "../../constants/navigation";
 
 @Component({
   selector: 'search-bar',
@@ -11,56 +12,37 @@ import {roles} from "../../constants/roles";
 })
 export class SearchBarComponent implements OnInit {
 
-  roleSet : any
-
+  roleSet: any
   dynamicButtonTitle: string
   dynamicButtonOptions: string[]
   adminOption: string
   userRole: string
   username: string
-  @Input() invisible: boolean
   categories: string[]
-
-  // UI variables
-  // "Shop by Category" dropdown's name
   shopByCategory: string
-  // search-bar-dropdown's name
+  @Input() invisible: boolean
   @Input() category: string
   @Input() query: string
 
   constructor(private requestService: RequestService, private authService: AuthService) {
 
     this.roleSet = roles
-    this.username = ""
+    this.username = this.query = ""
     this.invisible = false
-    this.query = ""
-
-    this.dynamicButtonOptions = [
-      "My Bids",
-      "My Purchases",
-      "My Auctions",
-      "My Messages"
-    ]
-
+    this.dynamicButtonOptions = searchOptions
     // Administration tab - admin-navigation-panel
-    this.adminOption = "Administration"
-
+    this.adminOption = buttonOptions.administration
     this.userRole = this.authService.getUserRole()
-
-    this.userRole === roles[0] ? this.dynamicButtonTitle = "Login" : this.dynamicButtonTitle = this.authService.getUsername()!
-
+    this.userRole === roles[0] ? this.dynamicButtonTitle = buttonOptions.login : this.dynamicButtonTitle = this.authService.getUsername()!
     this.categories = []
-
-    // UI variables
-    this.category = "Categories"
-    this.shopByCategory = "Shop By Category"
+    this.category = buttonOptions.categories
+    this.shopByCategory = buttonOptions.shopByCategory
 
   }
 
   getCategories(): void {
     this.requestService.getCategories().subscribe(
       categories => {
-
         this.categories = categories
       }
     )
@@ -77,18 +59,16 @@ export class SearchBarComponent implements OnInit {
 
     let query = encodeURI(auctionText.trim())
 
-    let url = endpoints.browse+"?category="+encodeURIComponent(requestedCategory)
-    if(query)
-      url += "&query="+encodeURIComponent(query)
+    let url = endpoints.browse + "?category=" + encodeURIComponent(requestedCategory)
+    if (query)
+      url += "&query=" + encodeURIComponent(query)
 
     location.replace(url)
   }
 
-
   categoryShopping(requestedCategory: string): void {
-    location.replace(endpoints.browse+"?category="+encodeURIComponent(requestedCategory))
+    location.replace(endpoints.browse + "?category=" + encodeURIComponent(requestedCategory))
   }
-
 
   tabRedirect(option: any): void {
 
@@ -111,7 +91,7 @@ export class SearchBarComponent implements OnInit {
     else if (option === "logout") {
       this.authService.logout()
       this.userRole = roles[0]
-      this.dynamicButtonTitle="Login"
+      this.dynamicButtonTitle = "Login"
       location.replace(endpoints.browse)
     }
 
@@ -120,6 +100,5 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories()
   }
-
 
 }

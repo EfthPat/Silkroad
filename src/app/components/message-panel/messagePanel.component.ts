@@ -33,11 +33,8 @@ export class MessagePanelComponent implements OnInit {
 
     // if we 're in outbox,'true' is passed as a parameter, and for message-navigation-panel 'false'
     this.sent = this.route.snapshot.data[0]
-
-    // pagination
     this.pageSize = 6
-    this.pageIndex = 0
-    this.totalPages = 0
+    this.pageIndex = this.totalPages = 0
 
   }
 
@@ -73,7 +70,7 @@ export class MessagePanelComponent implements OnInit {
 
       },
       // if message fetching failed
-      error => {}
+      () => {}
 
     )
 
@@ -90,8 +87,6 @@ export class MessagePanelComponent implements OnInit {
 
   }
 
-
-  // wrapper
   deleteMessages() : void{
     if(this.toDelete.length)
       this.delMsgs(0)
@@ -138,9 +133,9 @@ export class MessagePanelComponent implements OnInit {
     this.messageThumbnails[index].read = true
     this.requestService.readMessage(this.username,this.messageThumbnails[index].id).subscribe(
       // if message was read successfully
-      response =>{},
+      () =>{},
       // if message couldn't be read
-      error => {}
+      () => {}
     )
   }
 

@@ -1,6 +1,6 @@
-<div class="geoClass">
+<div class="geolocation">
 
-  <input id="address" class="inputClass form-control" type="text" [formControl]="this.locationField"
+  <input id="address" class="customInput form-control" type="text" [formControl]="this.locationField"
          [matAutocomplete]="inputText" (keyup.enter)="updateMap(-1)"
          (keyup)="getSuggestedLocations($event)">
 

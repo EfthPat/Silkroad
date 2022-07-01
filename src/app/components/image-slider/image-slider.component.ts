@@ -7,8 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ImageSliderComponent implements OnInit {
 
-  @Input() link : string
-  @Input() images : any[]
+  @Input() link: string
+  @Input() images: any[]
   activeImage = 0
 
   constructor() {
@@ -17,9 +17,6 @@ export class ImageSliderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("lol")
-    console.log(this.link)
-    console.log(this.images)
   }
 
   getNextImage(): void {
@@ -31,7 +28,6 @@ export class ImageSliderComponent implements OnInit {
     if (this.images.length)
       this.activeImage > 0 ? this.activeImage-- : this.activeImage = this.images.length - 1
   }
-
 
 
 }

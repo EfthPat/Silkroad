@@ -11,7 +11,8 @@ import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 import {serverLinks, serverParameters} from "../../constants/server";
 import {endpoints} from "../../constants/pageLinks";
 import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
-
+import {errorMessages, successMessages} from "../../constants/customMessages";
+import {formExpressions} from "../../constants/regularExpressions";
 
 @Component({
   selector: 'app-view-auction',
@@ -45,21 +46,14 @@ export class ViewAuctionComponent implements OnInit {
   constructor(private requestService: RequestService, private router: Router, private route: ActivatedRoute,
               public utilService: UtilService, private authService: AuthService, private dialog: MatDialog) {
 
-
     this.dynamicBidLabel = ""
     this.dynamicBidValue = 0
-
-    this.serverLink=serverLinks[0]
+    this.serverLink = serverLinks[0]
     this.serverParameter = serverParameters.mediaParameter
-
     this.isBiddable = false
-
     this.latitude = 37.9838
     this.longitude = 23.7275
-
-    // UPDATED FROM URL
     this.auctionID = this.route.snapshot.params['auctionID']
-
     this.auctionVersion = 0
     this.bidCommitted = false
 
@@ -76,7 +70,7 @@ export class ViewAuctionComponent implements OnInit {
       sellerRating: new FormControl(''),
 
       // needed for bidding
-      bid: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*(.?[0-9]+)$")])
+      bid: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)])
 
     }, {validators: this.bidValidator})
 
@@ -88,13 +82,10 @@ export class ViewAuctionComponent implements OnInit {
     this.activeImage = 0
   }
 
-
   getAuction(auctionID: number) {
     this.requestService.getAuction(auctionID).subscribe(
       // if the auction was fetched successfully
       response => {
-
-        console.log(response)
 
         // get auction's latitude / longitude
         this.latitude = response.address.coordinates.latitude
@@ -112,34 +103,23 @@ export class ViewAuctionComponent implements OnInit {
         this.auctionForm.get('seller')?.setValue(response.seller)
         this.auctionForm.get('sellerRating')?.setValue(response.sellerRating)
 
-
-        // !
-        let fullAddress = response.address.streetName+" "+response.address.streetNumber
-          +", "+response.address.zipCode+", "+response.address.location
+        let fullAddress = response.address.streetName + " " + response.address.streetNumber
+          + ", " + response.address.zipCode + ", " + response.address.location
 
         this.auctionForm.get('address')?.setValue(fullAddress)
 
-        console.log(this.auctionForm.get('address')?.value)
-
-        // get auction's version for bidding
         this.auctionVersion = response.version
 
-        // get auction's images
         this.images = response.images
 
 
-        if(this.auctionForm.get('highestBid')?.value >= this.auctionForm.get('firstBid')?.value)
-        {
+        if (this.auctionForm.get('highestBid')?.value >= this.auctionForm.get('firstBid')?.value) {
           this.dynamicBidValue = this.auctionForm.get('highestBid')?.value
           this.dynamicBidLabel = "Highest Bid"
-        }
-        else
-        {
+        } else {
           this.dynamicBidValue = this.auctionForm.get('firstBid')?.value
           this.dynamicBidLabel = "First Bid"
         }
-
-
 
         // A visitor can bid on an auction IFF:
         // he is not a guest, and
@@ -157,10 +137,10 @@ export class ViewAuctionComponent implements OnInit {
 
         let errorMessage
 
-        if(error.error.code===auctionExceptions.AUCTION_NOT_FOUND)
-          errorMessage = "Whoops! Auction not found!"
+        if (error.error.code === auctionExceptions.AUCTION_NOT_FOUND)
+          errorMessage = errorMessages.auctionNotFound
         else
-          errorMessage = "Auction couldn't be loaded!"
+          errorMessage = errorMessages.auctionNotLoaded
 
         let dialogConfig = new MatDialogConfig();
         dialogConfig.autoFocus = true;
@@ -171,7 +151,7 @@ export class ViewAuctionComponent implements OnInit {
 
         // open the dialog
         this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-          ()=>{
+          () => {
             this.router.navigate([endpoints.browse])
           }
         )
@@ -206,27 +186,17 @@ export class ViewAuctionComponent implements OnInit {
 
     let bidValid: boolean = false
 
-    if(highestBid==0 && submittedBid>=firstBid)
+    if (highestBid == 0 && submittedBid >= firstBid)
       bidValid = true
 
-    else if (highestBid!=0 && submittedBid>highestBid)
+    else if (highestBid != 0 && submittedBid > highestBid)
       bidValid = true
 
 
-    if(!bidValid)
-    {
+    if (!bidValid) {
       this.auctionForm.get('bid')?.setErrors({invalidBidValue: true})
       return
     }
-
-
-
-
-
-
-
-
-
 
     // if user wants to bid on the auction, create a confirmation dialog
     let dialogConfig = new MatDialogConfig();
@@ -250,8 +220,7 @@ export class ViewAuctionComponent implements OnInit {
           let buyPrice = this.auctionForm.get('buyPrice')?.value
 
           let maxBid = false
-          if (buyPrice !== 'N/A' && (+bidValue) >= (+buyPrice))
-          {
+          if (buyPrice !== 'N/A' && (+bidValue) >= (+buyPrice)) {
             maxBid = true
             bidValue = buyPrice
           }
@@ -262,20 +231,24 @@ export class ViewAuctionComponent implements OnInit {
             // if bid was successful
             () => {
 
-              if(maxBid)
-              {
+              if (maxBid) {
                 let bid = this.utilService.reformatNumber(+bidValue)
 
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction won for "+bid.toString()+"$ ! Contact Seller!"
+                  message: "Auction won for " + bid.toString() + "$ ! Contact Seller!"
                 }
 
                 this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-                  ()=>{
+                  () => {
                     this.router.navigate([endpoints.send],
-                      {queryParams: {recipient: this.auctionForm.get('seller')?.value, title: this.auctionForm.get('name')?.value}})
+                      {
+                        queryParams: {
+                          recipient: this.auctionForm.get('seller')?.value,
+                          title: this.auctionForm.get('name')?.value
+                        }
+                      })
                     return
                   }
                 )
@@ -285,7 +258,7 @@ export class ViewAuctionComponent implements OnInit {
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
               dialogConfig.data = {
-                message: "Bid succeeded!"
+                message: successMessages.bidSucceeded
               }
 
               this.dialog.open(AlertDialogComponent, dialogConfig)
@@ -295,11 +268,6 @@ export class ViewAuctionComponent implements OnInit {
               // get the updated auction
               this.getAuction(this.auctionID)
 
-              let element = document.getElementById('alert')
-              element!.classList.remove('success')
-              setTimeout(()=>{element!.classList.add('success')}, 1)
-
-
             },
             // if bid failed
             error => {
@@ -307,16 +275,14 @@ export class ViewAuctionComponent implements OnInit {
               let reload = true
               let errorMessage
 
-              if(error.error.code == auctionExceptions.AUCTION_MODIFIED_OR_EXPIRED)
-                errorMessage = "Bid failed! Auction is either modified or expired!"
-              else if(error.error.code == bidExceptions.BID_HIGHER_BID_EXISTS)
-                errorMessage = "Bid failed! Another user outbid you!"
-              else if(error.error.code == auctionExceptions.AUCTION_NOT_FOUND)
-              {
+              if (error.error.code == auctionExceptions.AUCTION_MODIFIED_OR_EXPIRED)
+                errorMessage = errorMessages.auctionModified
+              else if (error.error.code == bidExceptions.BID_HIGHER_BID_EXISTS)
+                errorMessage = errorMessages.userOutbid
+              else if (error.error.code == auctionExceptions.AUCTION_NOT_FOUND) {
                 reload = false
-                errorMessage = "Whoops! Auction not found!"
+                errorMessage = errorMessages.auctionNotFound
               }
-
 
               let dialogConfig = new MatDialogConfig();
               dialogConfig.autoFocus = true;
@@ -325,9 +291,9 @@ export class ViewAuctionComponent implements OnInit {
               }
 
               this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-                ()=>{
+                () => {
 
-                  if(reload)
+                  if (reload)
                     window.location.reload()
                   else
                     this.router.navigate([endpoints.home])
@@ -335,17 +301,11 @@ export class ViewAuctionComponent implements OnInit {
                   return
                 }
               )
-
-
             }
           )
-
-
         }
       }
     )
-
-
   }
 
   getNextImage(): void {
@@ -353,16 +313,12 @@ export class ViewAuctionComponent implements OnInit {
     if (totalImages)
       this.activeImage = (this.activeImage + 1) % totalImages
 
-    console.log(this.activeImage)
-
   }
 
   getPreviousImage(): void {
     let totalImages = this.images.length
     if (totalImages)
       this.activeImage > 0 ? this.activeImage-- : this.activeImage = totalImages - 1
-
-    console.log(this.activeImage)
   }
 
   ngOnInit(): void {

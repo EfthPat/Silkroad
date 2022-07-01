@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
-import {AdmininstrationPanelComponent} from "./components/admininstration-panel/admininstrationPanel.component";
+import {AdministrationPanelComponent} from "./components/administration-panel/administrationPanel.component";
 import {AuctionBrowsingPanelComponent} from "./components/auction-browsing-panel/auctionBrowsingPanel.component";
-import {UserInformationPanel} from "./components/user-information-panel/userInformationPanel";
+import {UserInformationPanelComponent} from "./components/user-information-panel/userInformationPanel.component";
 import {MyAuctionsTabComponent} from "./components/my-auctions-tab/myAuctionsTab.component";
 import {MyPurchasesTabComponent} from "./components/my-purchases-tab/myPurchasesTab.component";
 import {MyBidsTabComponent} from "./components/my-bids-tab/myBidsTab.component";
@@ -30,12 +30,12 @@ const routes: Routes = [
   // PANEL/ADMINISTRATION/USERS
   {path: endpoints.users, component: NavigationPanelComponent, canActivate: [AdminGuard],
     children: [
-      {path: '', component: AdmininstrationPanelComponent, outlet: 'administration'}
+      {path: '', component: AdministrationPanelComponent, outlet: 'administration'}
     ]
   },
 
   // PANEL/ADMINISTRATION/USERS --> ADMINISTRATION/USERS/:USERNAME
-  {path: 'administration/users/:username', component: UserInformationPanel, canActivate: [AdminGuard]},
+  {path: 'administration/users/:username', component: UserInformationPanelComponent, canActivate: [AdminGuard]},
 
 
   // PANEL/MESSAGES/INBOX

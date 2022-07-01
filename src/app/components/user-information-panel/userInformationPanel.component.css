@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin-top: 4%
+}
+
+.customLabel {
+  font-size: medium;
+}
+
+.customText {
+  font-size: small;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.userLabel {
+  font-size: medium;
+  margin: 0 0 4% 0.5%;
+}
+
+.approveButton {
+  width: 100%;
+  margin: 8% 0 0;
+  padding: 1%;
+  font-size: 120%;
+  font-weight: bold;
+  border-radius: 4px;
+  color: white !important;
+}
+

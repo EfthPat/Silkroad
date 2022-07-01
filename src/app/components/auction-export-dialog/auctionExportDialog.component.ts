@@ -24,8 +24,7 @@ export class AuctionExportDialogComponent implements OnInit {
     this.submitCommitted = false
     this.inJSONformat = true
     this.exportFormat = "JSON"
-    this.startDate = ""
-    this.endDate = ""
+    this.startDate = this.endDate = ""
     this.startDateValues = []
     this.endDateValues = []
     this.startDateValid = false
@@ -62,7 +61,7 @@ export class AuctionExportDialogComponent implements OnInit {
 
       },
       // if auctions failed to be exported
-      error => {}
+      () => {}
     )
 
     // close dialog

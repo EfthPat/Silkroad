@@ -6,34 +6,24 @@ import {UtilService} from "../../services/util.service";
 
 @Component({
   selector: 'app-admin-navigation-panel',
-  templateUrl: './admininstrationPanel.component.html',
-  styleUrls: ['./admininstrationPanel.component.css']
+  templateUrl: './administrationPanel.component.html',
+  styleUrls: ['./administrationPanel.component.css']
 })
-export class AdmininstrationPanelComponent implements OnInit {
+export class AdministrationPanelComponent implements OnInit {
 
   userThumbnails: UserThumbnail[]
-
-  // pagination
   pageSize: number
   pageIndex: number
   totalPages: number
-
-  // query variables
   userApproval: string
 
   // UI variables
   constructor(public utilService: UtilService, private requestService: RequestService, private router: Router) {
 
     this.userThumbnails = []
-
-    // pagination
     this.pageSize = 6
-    this.pageIndex = 0
-    this.totalPages = 0
-
-    // query variables
+    this.pageIndex = this.totalPages = 0
     this.userApproval = ""
-
 
   }
 
@@ -52,20 +42,14 @@ export class AdmininstrationPanelComponent implements OnInit {
       this.getUserThumbnails(this.pageSize, this.pageIndex - 1, this.userApproval)
   }
 
-  // get the user thumbnails to populate the page
   getUserThumbnails(pageSize: number, pageIndex: number, userApproval: string): void {
 
     this.requestService.getUserThumbnails(pageSize, pageIndex, userApproval).subscribe(
       response => {
 
-        // fill the user thumbnail array
         this.userThumbnails = response.objects
-
-        // update total pages
         this.totalPages = response.totalPages
-
-        //update page index
-        pageIndex>this.totalPages ? this.pageIndex = this.totalPages : this.pageIndex = pageIndex
+        pageIndex > this.totalPages ? this.pageIndex = this.totalPages : this.pageIndex = pageIndex
 
       }
     )
@@ -75,8 +59,7 @@ export class AdmininstrationPanelComponent implements OnInit {
   userInfo(index: number): void {
 
     let username = this.userThumbnails[index].username
-
-    this.router.navigate(['administration/users',username])
+    this.router.navigate(['administration/users', username])
 
     return
   }

@@ -1,27 +1,27 @@
 <div class="adminPage">
 
   <!-- FILTERS -->
-  <div class="filtersGroup">
+  <div class="filters">
 
     <p class="userLabel">Approval Status</p>
-    <div class="userStateClass">
-      <mat-radio-button class="buttonClass" (click)="submitFilter('')"><p class="buttonTitle">All</p></mat-radio-button>
-      <mat-radio-button class="buttonClass" (click)="submitFilter('no')"><p class="buttonTitle">Pending</p>
+    <div class="userApproval">
+      <mat-radio-button class="customButton" (click)="submitFilter('')"><p class="buttonTitle">All</p></mat-radio-button>
+      <mat-radio-button class="customButton" (click)="submitFilter('no')"><p class="buttonTitle">Pending</p>
       </mat-radio-button>
-      <mat-radio-button class="buttonClass" (click)="submitFilter('yes')"><p class="buttonTitle">Approved</p>
+      <mat-radio-button class="customButton" (click)="submitFilter('yes')"><p class="buttonTitle">Approved</p>
       </mat-radio-button>
     </div>
 
   </div>
 
   <!-- USERS + PAGINATION -->
-  <div class="cpGroup">
+  <div class="cardsAndPagination">
 
 
     <!-- CARDS -->
-    <div class="cardsGroup">
+    <div class="cards">
 
-      <mat-card class="cardClass" *ngFor="let thumbnail of this.userThumbnails; let i=index">
+      <mat-card class="card" *ngFor="let thumbnail of this.userThumbnails; let i=index">
 
         <mat-card-title class="username">{{thumbnail.username}}</mat-card-title>
 
@@ -39,21 +39,21 @@
 
 
     <!-- PAGINATION -->
-    <div class="paginationClass">
+    <div class="pagination">
 
-      <div class="paginationBarClass">
+      <div class="paginationBar">
 
         <!-- PREVIOUS PAGE BUTTON -->
-        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+        <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex<=1">&laquo;
         </button>
 
         <!-- PAGE VALUE BUTTON -->
-        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}}
+        <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}}
           / {{this.totalPages}}</div>
 
         <!-- NEXT PAGE BUTTON -->
-        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
+        <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex>=this.totalPages">
           &raquo;
         </button>

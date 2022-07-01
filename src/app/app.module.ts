@@ -14,11 +14,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {GeoLocationComponent} from './components/geo-location/geo-location.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {AdmininstrationPanelComponent} from './components/admininstration-panel/admininstrationPanel.component';
+import {AdministrationPanelComponent} from './components/administration-panel/administrationPanel.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {UserInformationPanel} from './components/user-information-panel/userInformationPanel';
+import {UserInformationPanelComponent} from './components/user-information-panel/userInformationPanel.component';
 import {MyAuctionsTabComponent} from './components/my-auctions-tab/myAuctionsTab.component';
 import {MyPurchasesTabComponent} from './components/my-purchases-tab/myPurchasesTab.component';
 import {MyBidsTabComponent} from './components/my-bids-tab/myBidsTab.component';
@@ -30,7 +30,6 @@ import {RegisterPanelComponent} from './components/register-panel/registerPanel.
 import {HomePanelComponent} from './components/home-panel/homePanel.component';
 import {AuthService} from "./services/auth.service";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
-import {ErrorInterceptor} from "./interceptors/error.interceptor";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
 import {MaterialModule} from "./material.module";
 import {NgSelectModule} from "@ng-select/ng-select";
@@ -65,8 +64,8 @@ import {
     CreateAuctionPanelComponent,
     MapComponent,
     GeoLocationComponent,
-    AdmininstrationPanelComponent,
-    UserInformationPanel,
+    AdministrationPanelComponent,
+    UserInformationPanelComponent,
     MyAuctionsTabComponent,
     MyPurchasesTabComponent,
     MyBidsTabComponent,
@@ -117,8 +116,7 @@ import {
     AuthService,
     UtilService,
     DataService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [MessageDialogComponent]

@@ -21,7 +21,6 @@
   margin: 0;
 }
 
-
 .nextImage{
   color: black;
   border: rgba(128, 128, 128, 0.12) 1px solid;
@@ -52,21 +51,12 @@
   left: 0;
 }
 
-.nextImage:hover, .previousImage:hover{
-  background: rgba(134, 131, 131, 0.09);
-}
-
-.nextImage:active, .previousImage:active{
-  background: rgba(117, 112, 112, 0.09);
-}
-
 .nameField{
   font-size: small;
   word-break: break-all;
   min-height: 40px;
   overflow-y: auto;
 }
-
 
 .buyPriceField{
   font-size: small;
@@ -90,12 +80,10 @@
   overflow-y: auto;
 }
 
-
 .locationField{
   font-size: small;
   overflow-y: auto;
 }
-
 
 .descriptionField{
   font-size: small;
@@ -104,17 +92,11 @@
   overflow-y: auto;
 }
 
-/**/
-
 .auctionBids{
-
   margin: 0;
   min-height: 94vh;
   justify-content: center;
-
 }
-
-
 
 .group{
   max-width: 100%;
@@ -132,29 +114,17 @@
 }
 
 .stickyText{
-
   padding: 0 0.4%;
   margin: 0;
-
   width: fit-content;
-
   font-size: medium;
-
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.spread{
-  max-width: 98%;
-}
-
 .split{
   max-width: 46%;
-}
-
-.fix{
-  width: max-content;
 }
 
 .auction{
@@ -208,17 +178,3 @@
   text-align: center;
   font-size: medium;
 }
-
-
-
-
-.sticky{
-  padding: 0 0 1% 0;
-  margin: 1.5% 1% 1%;
-  width: 39%;
-}
-
-
-
-
-

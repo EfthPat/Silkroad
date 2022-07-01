@@ -25,10 +25,10 @@
   </div>
 
   <!-- DESCRIPTION -->
-  <div class="row" >
+  <div class="row">
     <div class="col">
       <label for="description" class="fieldLabel">Description</label>
-      <p  class="form-control descriptionField" id="description">{{this.auctionForm.get('description')?.value}}</p>
+      <p class="form-control descriptionField" id="description">{{this.auctionForm.get('description')?.value}}</p>
     </div>
 
   </div>
@@ -40,15 +40,17 @@
     <div class="col-6">
       <div class="form-group">
         <label for="highestBid" class="fieldLabel">{{this.dynamicBidLabel}}</label>
-        <p class="form-control highestBidField" id="highestBid">${{this.utilService.reformatNumber(this.dynamicBidValue)}}</p>
+        <p class="form-control highestBidField" id="highestBid">
+          ${{this.utilService.reformatNumber(this.dynamicBidValue)}}</p>
       </div>
     </div>
 
     <!-- BUY NOW -->
     <div class="col-6">
-      <div class="form-group" *ngIf="this.auctionForm.get('buyPrice')?.value!=='N/A'" >
+      <div class="form-group" *ngIf="this.auctionForm.get('buyPrice')?.value!=='N/A'">
         <label for="buyPrice" class="fieldLabel">Buy-Now</label>
-        <p class="form-control buyPriceField" id="buyPrice">${{this.utilService.reformatNumber(this.auctionForm.get('buyPrice')?.value)}}</p>
+        <p class="form-control buyPriceField" id="buyPrice">
+          ${{this.utilService.reformatNumber(this.auctionForm.get('buyPrice')?.value)}}</p>
       </div>
     </div>
 
@@ -66,9 +68,10 @@
 
 
     <div class="col-6">
-      <div class="form-group" >
+      <div class="form-group">
         <label for="sellerRating" class="fieldLabel">Seller Rating</label>
-        <p class="sellerRatingField form-control" id="sellerRating">{{this.utilService.reformatNumber(this.auctionForm.get('sellerRating')?.value)}}</p>
+        <p class="sellerRatingField form-control"
+           id="sellerRating">{{this.utilService.reformatNumber(this.auctionForm.get('sellerRating')?.value)}}</p>
       </div>
     </div>
 
@@ -88,7 +91,7 @@
 
     <!-- LOCATION -->
     <div class="col-6">
-      <div class="form-group" >
+      <div class="form-group">
         <label for="location" class="fieldLabel">Location</label>
         <p class="locationField form-control" id="location">{{this.auctionForm.get('address')?.value}}</p>
       </div>
@@ -99,7 +102,9 @@
   <div class="input-group mb-3" *ngIf="this.isBiddable" [formGroup]="this.auctionForm" (keyup.enter)="bid()">
     <input type="text" class="form-control bidGroup" placeholder="Amount" aria-label="Amount" formControlName="bid">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary bidGroup" type="button" [ngClass]="{'bidError': this.bidCommitted && this.auctionForm.get('bid')?.invalid}" (click)="bid()">Bid</button>
+      <button class="btn btn-outline-secondary bidGroup" type="button"
+              [ngClass]="{'bidError': this.bidCommitted && this.auctionForm.get('bid')?.invalid}" (click)="bid()">Bid
+      </button>
     </div>
   </div>
 

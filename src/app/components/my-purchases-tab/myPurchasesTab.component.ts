@@ -4,7 +4,7 @@ import {RequestService} from "../../services/request.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {UtilService} from "../../services/util.service";
-import {serverLinks,serverParameters} from "../../constants/server";
+import {serverLinks, serverParameters} from "../../constants/server";
 import {endpoints} from "../../constants/pageLinks";
 
 @Component({
@@ -14,8 +14,8 @@ import {endpoints} from "../../constants/pageLinks";
 })
 export class MyPurchasesTabComponent implements OnInit {
 
-  serverLink : string
-  serverParameter : string
+  serverLink: string
+  serverParameter: string
 
   purchaseThumbnails: PurchaseThumbnail[]
   imageLinks: any[]
@@ -70,13 +70,14 @@ export class MyPurchasesTabComponent implements OnInit {
 
       },
       // if an error occurred
-      error => {}
+      () => {
+      }
     )
   }
 
   purchaseInfo(index: number) {
     let selection = window.getSelection()
-    if(selection?.toString().length)
+    if (selection?.toString().length)
       return
     let auctionID = this.purchaseThumbnails[index].id
     this.router.navigate(['auctions', auctionID, 'view'])

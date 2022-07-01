@@ -1,0 +1,79 @@
+<search-bar></search-bar>
+<div class="container">
+  <div class="row">
+
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="username" style="font-weight: bold;">Username</label>
+        <p class="customText form-control" id="username">{{this.userForm.get('username')!.value}}</p>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="tin" style="font-weight: bold;">TIN</label>
+        <p class="customText form-control" id="tin">{{this.userForm.get('tin')!.value}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="first-name" style="font-weight: bold;">First Name</label>
+        <p class="customText form-control" id="first-name">{{this.userForm.get('firstname')!.value}}</p>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="last-name" style="font-weight: bold;">Last Name</label>
+        <p class="customText form-control" id="last-name">{{this.userForm.get('lastname')!.value}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="email" style="font-weight: bold;">E-Mail</label>
+        <p class="customText form-control" id="email">{{this.userForm.get('email')!.value}}</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="phone" style="font-weight: bold;">Phone</label>
+        <p class="customText form-control" id="phone">{{this.userForm.get('phone')!.value}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="form-group">
+        <label class="customLabel" for="country" style="font-weight: bold;">Country</label>
+        <p class="customText form-control" id="country">{{this.userForm.get('country')!.value}}</p>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="form-group">
+        <label class="customLabel" for="zipcode" style="font-weight: bold;">Zip Code</label>
+        <p class="customText form-control" id="zipcode">{{this.userForm.get('zipCode')!.value}}</p>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <label class="customLabel" for="location">Location</label>
+        <p class="customText form-control" id="location">
+          {{this.userForm.get('streetName')!.value}}, {{this.userForm.get('streetNumber')!.value}}</p>
+
+      </div>
+    </div>
+  </div>
+
+  <a class="approveButton col btn btn-success btn-raised" [hidden]="!this.showApproval"
+     (click)="approveUser()">Approve</a>
+</div>

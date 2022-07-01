@@ -12,7 +12,8 @@ import {ApprovalDialogComponent} from "../approval-dialog/approvalDialog.compone
 import {DateTimePickerComponent} from "../date-time-picker/dateTimePicker.component";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {auctionExceptions, bidExceptions} from "../../constants/serverErrors";
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import {errorMessages, successMessages} from "../../constants/customMessages";
 
 @Component({
   selector: 'app-create-auction-panel',
@@ -21,14 +22,12 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class CreateAuctionPanelComponent implements OnInit {
 
-  dropdownSettings : any
-
+  dropdownSettings: any
   auctionID: number
   updateAuction: boolean
   submitCommitted: boolean
   geolocationValid: boolean
   dateValid: boolean
-  // updated by Map and Geolocation components
   address: any
   auctionForm: FormGroup
   imageFiles: File[]
@@ -38,9 +37,7 @@ export class CreateAuctionPanelComponent implements OnInit {
   constructor(private mapService: MapService, private requestService: RequestService, private router: Router,
               private route: ActivatedRoute, private authService: AuthService, private dialog: MatDialog) {
 
-
-
-      this.dropdownSettings = {
+    this.dropdownSettings = {
       singleSelection: false,
       idField: 'categoryID',
       textField: 'categoryName',
@@ -50,10 +47,7 @@ export class CreateAuctionPanelComponent implements OnInit {
       allowSearchFilter: true
     };
 
-
-
-
-  this.auctionID = 1
+    this.auctionID = 1
     this.updateAuction = false
     this.submitCommitted = false
     this.geolocationValid = false
@@ -71,7 +65,6 @@ export class CreateAuctionPanelComponent implements OnInit {
         description: new FormControl('', [Validators.required]),
         firstBid: new FormControl('', [Validators.required, Validators.pattern(formExpressions.price)]),
         buyNow: new FormControl('', [Validators.pattern(formExpressions.price)]),
-
         zipCode: new FormControl('', [Validators.required, Validators.pattern(formExpressions.zipCode)]),
         endDate: new FormControl('', [Validators.required]),
         streetNumber: new FormControl('', [Validators.required, Validators.pattern(formExpressions.streetNumber)]),
@@ -83,75 +76,27 @@ export class CreateAuctionPanelComponent implements OnInit {
 
   }
 
-
   addCategory(category: any) {
-
     this.selectedCategories.push(category)
-
-    let array = []
-    for( let i =0 ; i < this.selectedCategories.length; ++i)
-    {
-      let object = this.selectedCategories[i]
-      let catname = object.categoryName
-      array.push(catname)
-    }
-    console.log(array)
-
-
   }
 
   addCategories(categories: any) {
     this.selectedCategories = categories
-
-    let array = []
-    for( let i =0 ; i < this.selectedCategories.length; ++i)
-    {
-      let object = this.selectedCategories[i]
-      let catname = object.categoryName
-      array.push(catname)
-    }
-    console.log(array)
-
   }
 
   removeCategory(category: any) {
 
-
-
-
-    for(let i = 0 ; i < this.selectedCategories.length; i++)
-    {
-      if(this.selectedCategories[i].categoryID==category.categoryID)
-      {
-        this.selectedCategories.splice(i,1)
+    for (let i = 0; i < this.selectedCategories.length; i++) {
+      if (this.selectedCategories[i].categoryID == category.categoryID) {
+        this.selectedCategories.splice(i, 1)
         break
       }
-
     }
-
-    let array = []
-    for( let i =0 ; i < this.selectedCategories.length; ++i)
-    {
-      let object = this.selectedCategories[i]
-      let catname = object.categoryName
-      array.push(catname)
-    }
-    console.log(array)
 
   }
 
   clearCategories() {
     this.selectedCategories = []
-
-    let array = []
-    for( let i =0 ; i < this.selectedCategories.length; ++i)
-    {
-      let object = this.selectedCategories[i]
-      let catname = object.categoryName
-      array.push(catname)
-    }
-    console.log(array)
-
   }
 
   ngOnInit(): void {
@@ -179,14 +124,13 @@ export class CreateAuctionPanelComponent implements OnInit {
 
           if (username !== response.seller)
             this.redirectUser()
-          else if(response.expired || response.totalBids > 0)
-          {
+          else if (response.expired || response.totalBids > 0) {
 
             let errorMessage
-            if(response.expired)
-              errorMessage = "Expired auctions can't be updated!"
+            if (response.expired)
+              errorMessage = errorMessages.expiredAuction
             else
-              errorMessage = "Auctions with at least 1 bid can't be updated!"
+              errorMessage = errorMessages.bidAuction
 
             let dialogConfig = new MatDialogConfig();
             dialogConfig.autoFocus = true;
@@ -194,8 +138,8 @@ export class CreateAuctionPanelComponent implements OnInit {
               message: errorMessage
             }
 
-            let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(()=>{
-              this.router.navigate(['auctions',this.auctionID,'bids'])
+            let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(() => {
+              this.router.navigate(['auctions', this.auctionID, 'bids'])
             })
 
             return
@@ -235,7 +179,6 @@ export class CreateAuctionPanelComponent implements OnInit {
         },
         // if the auction couldn't be fetched
         error => {
-          console.log("AUCTION COULDN'T BE UPDATED :", error)
           this.redirectUser()
         }
       )
@@ -252,9 +195,8 @@ export class CreateAuctionPanelComponent implements OnInit {
       response => {
 
         this.categories = []
-        for (let i = 0 ; i < response.length ; i++)
-        {
-          let item = {categoryID: i+1, categoryName: response[i]}
+        for (let i = 0; i < response.length; i++) {
+          let item = {categoryID: i + 1, categoryName: response[i]}
 
           this.categories.push(item)
         }
@@ -262,17 +204,13 @@ export class CreateAuctionPanelComponent implements OnInit {
 
       },
       // if categories couldn't be fetched
-      error => {
-        console.log("CATEGORIES COULDN'T BE FETCHED!", error)
+      () => {
         this.redirectUser()
 
       }
     )
 
   }
-
-
-
 
   buyNowValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
@@ -330,18 +268,13 @@ export class CreateAuctionPanelComponent implements OnInit {
         addressName = this.address.address.road
       } else if (this.address.address.name) {
         addressName = this.address.address.name
-      }
-      else if (this.address.address.town) {
+      } else if (this.address.address.town) {
         addressName = this.address.address.town
-      }
-      else if (this.address.address.city) {
+      } else if (this.address.address.city) {
         addressName = this.address.address.city
-      }
-      else if (this.address.address.municipality) {
+      } else if (this.address.address.municipality) {
         addressName = this.address.address.municipality
-      }
-      else
-      {
+      } else {
         addressName = this.address.display_name
       }
     }
@@ -407,7 +340,7 @@ export class CreateAuctionPanelComponent implements OnInit {
   // DATETIME LISTENER
   getDateTime(dateTime: any): void {
 
-    let newDate = new Date(dateTime[0],dateTime[1],dateTime[2],dateTime[3],dateTime[4],dateTime[5],dateTime[6])
+    let newDate = new Date(dateTime[0], dateTime[1], dateTime[2], dateTime[3], dateTime[4], dateTime[5], dateTime[6])
 
     this.auctionForm.get('endDate')?.setValue(newDate.toISOString())
 
@@ -422,17 +355,14 @@ export class CreateAuctionPanelComponent implements OnInit {
 
     this.imageFiles = []
     // store all the user-selected images in an image array
-    for (let imageFile of event.target.files)
-    {
-      if(imageFile.type==="image/png" || imageFile.type==="image/jpeg")
+    for (let imageFile of event.target.files) {
+      if (imageFile.type === "image/png" || imageFile.type === "image/jpeg")
         this.imageFiles.push(imageFile)
     }
 
   }
 
   submitForm(): void {
-
-
 
     this.submitCommitted = true
 
@@ -443,34 +373,28 @@ export class CreateAuctionPanelComponent implements OnInit {
 
     let validPriceCombination: boolean = false
     let firstBid = this.auctionForm.get('firstBid')!.value
-    let buyNowValue : string | null = this.auctionForm.get('buyNow')?.value
+    let buyNowValue: string | null = this.auctionForm.get('buyNow')?.value
 
-
-
-    if(Number(firstBid)>0 && buyNowValue?.length==0)
+    if (Number(firstBid) > 0 && buyNowValue?.length == 0)
       validPriceCombination = true
-    else if(Number(firstBid)>0 && Number(buyNowValue)>0 && Number(buyNowValue)>Number(firstBid))
+    else if (Number(firstBid) > 0 && Number(buyNowValue) > 0 && Number(buyNowValue) > Number(firstBid))
       validPriceCombination = true
 
-
-    if(!validPriceCombination)
-    {
-
+    if (!validPriceCombination) {
       this.auctionForm.get('firstBid')?.setErrors({invalidValue: true})
       this.auctionForm.get('buyNow')?.setErrors({invalidValue: true})
 
       return
     }
 
-
     // if user wants to update an old auction or create a new one, create a confirmation dialog
     let dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
 
-    let submit : string = this.updateAuction ? "Update" : "Post"
+    let submit: string = this.updateAuction ? "Update" : "Post"
 
     dialogConfig.data = {
-      message: submit+" this auction?"
+      message: submit + " this auction?"
     }
 
     // open the dialog
@@ -527,7 +451,7 @@ export class CreateAuctionPanelComponent implements OnInit {
           }
 
           let categoryNames = []
-          for(let category of this.selectedCategories)
+          for (let category of this.selectedCategories)
             categoryNames.push(category.categoryName)
 
           // create the body of the auction
@@ -553,30 +477,27 @@ export class CreateAuctionPanelComponent implements OnInit {
             }
           }
 
-
           // insert the auction body as a string
           fullAuction.append('auction', new Blob([JSON.stringify(auction)], {type: "application/json"}))
 
-          if(this.imageFiles.length>0)
-          {
+          if (this.imageFiles.length > 0) {
             for (let imageFile of this.imageFiles)
               fullAuction.append('images', imageFile)
           }
 
           if (this.updateAuction) {
             this.requestService.updateAuction(fullAuction, this.auctionID).subscribe(
-
               // if the auction was updated successfully
               (response) => {
 
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was updated successfully!"
+                  message: successMessages.auctionUpdated
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-                  ()=>{
+                  () => {
                     this.redirectUser()
                     return
                   }
@@ -590,12 +511,11 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let jumpToAuction = true
                 let errorMessage
 
-                if(error.error.code==auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
-                  errorMessage = "Auctions with at least 1 bid can't be updated!"
-                else
-                {
+                if (error.error.code == auctionExceptions.AUCTION_HAS_BID_OR_EXPIRED)
+                  errorMessage = errorMessages.bidAuction
+                else {
                   jumpToAuction = false
-                  message: "Auction update failed!"
+                  message: errorMessages.updateFailed
                 }
 
                 let dialogConfig = new MatDialogConfig();
@@ -605,10 +525,10 @@ export class CreateAuctionPanelComponent implements OnInit {
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-                  ()=>{
+                  () => {
 
-                    if(jumpToAuction)
-                      this.router.navigate(['auctions',this.auctionID,'bids'])
+                    if (jumpToAuction)
+                      this.router.navigate(['auctions', this.auctionID, 'bids'])
                     else
                       this.router.navigate([endpoints.browse])
 
@@ -618,18 +538,17 @@ export class CreateAuctionPanelComponent implements OnInit {
             )
           } else {
             this.requestService.createAuction(fullAuction).subscribe(
-
               // if the auction was created successfully
               (response) => {
 
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction was created successfully!"
+                  message: successMessages.auctionCreated
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig).afterClosed().subscribe(
-                  ()=>{
+                  () => {
                     this.redirectUser()
                     return
                   }
@@ -643,7 +562,7 @@ export class CreateAuctionPanelComponent implements OnInit {
                 let dialogConfig = new MatDialogConfig();
                 dialogConfig.autoFocus = true;
                 dialogConfig.data = {
-                  message: "Auction creation failed!"
+                  message: errorMessages.creationFailed
                 }
 
                 let dialogRef = this.dialog.open(AlertDialogComponent, dialogConfig)

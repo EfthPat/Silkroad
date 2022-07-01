@@ -1,26 +1,23 @@
-
-<div class="newMessageClass" [formGroup]="this.messageForm">
+<div class="newMessage" [formGroup]="this.messageForm">
 
   <!-- RECIPIENT -->
-  <div class="recipientClass">
-    <label for="rcp" class="lbl" [ngClass]="{'errorClass': this.submitCommitted && this.messageForm.get('recipient')?.invalid}">Recipient</label>
-    <input id="rcp" class="form-control" formControlName="recipient">
+  <div class="recipient">
+    <label for="recipient" class="customLabel"
+           [ngClass]="{'error': this.submitCommitted && this.messageForm.get('recipient')?.invalid}">Recipient</label>
+    <input id="recipient" class="form-control" formControlName="recipient">
   </div>
 
   <!-- SUBJECT -->
-  <div class="subjectClass">
-    <label for="sbj" class="lbl" [ngClass]="{'errorClass': this.submitCommitted && this.messageForm.get('title')?.invalid}">Subject</label>
-    <input id="sbj" class="form-control" formControlName="title">
+  <div class="subject">
+    <label for="subject" class="customLabel"
+           [ngClass]="{'error': this.submitCommitted && this.messageForm.get('title')?.invalid}">Subject</label>
+    <input id="subject" class="form-control" formControlName="title">
   </div>
 
   <!-- BODY -->
+  <textarea class="body form-control" formControlName="body"
+            [ngClass]="{'errorOutline': this.submitCommitted && this.messageForm.get('body')?.invalid}"></textarea>
 
-  <textarea class="bodyClass form-control" formControlName="body"
-            [ngClass]="{'errClass': this.submitCommitted && this.messageForm.get('body')?.invalid}"></textarea>
-
-  <button id="sendButton" class="btn btn-outline-primary sendButtonClass" (click)="sendMessage()">Send
-  </button>
-
-
+  <button id="sendButton" class="btn btn-outline-primary sendButton" (click)="sendMessage()">Send</button>
 
 </div>

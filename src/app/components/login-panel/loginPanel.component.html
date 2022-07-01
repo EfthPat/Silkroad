@@ -7,36 +7,38 @@
     <div class="loginGroup" [formGroup]="this.loginForm">
 
       <!-- TITLE -->
-      <h4 class="loginTitleClass">Welcome!</h4>
+      <h4 class="loginTitle">Welcome!</h4>
 
       <!-- SEPARATOR -->
       <hr class="separator">
 
       <!-- USERNAME -->
-      <div class="usernameClass">
-        <input class="usernameInputClass" type="text" placeholder="Username" formControlName="username" (keyup.enter)="login()">
+      <div class="username">
+        <input class="usernameInput" type="text" placeholder="Username" formControlName="username"
+               (keyup.enter)="login()">
       </div>
 
       <!-- PASSWORD -->
-      <div class="passwordClass">
-        <input class="passwordTextClass" type="password" placeholder="Password" formControlName="password" (keyup.enter)="login()">
+      <div class="password">
+        <input class="passwordText" type="password" placeholder="Password" formControlName="password"
+               (keyup.enter)="login()">
       </div>
 
       <!-- ERROR MESSAGE -->
-      <p class="errorMessageClass" [hidden] = "!this.showError || !this.loginForm.pristine">
+      <p class="errorMessage" [hidden]="!this.showError || !this.loginForm.pristine">
         {{this.errorMessage}}
       </p>
 
       <!-- LOGIN BUTTON -->
-      <button mat-stroked-button color="primary" class="loginButtonClass" (click)="login()">Login</button>
+      <button mat-stroked-button color="primary" class="loginButton" (click)="login()">Login</button>
 
     </div>
 
     <!-- REGISTER -->
     <div class="registerGroup">
 
-      <p class="registerClass">New User? <a routerLink="/register">Sign-Up</a></p>
-      <p class="continueAsGuestClass"><a routerLink="/browse">Continue as Guest</a></p>
+      <p class="register">New User? <a routerLink="/register">Sign-Up</a></p>
+      <p class="continueAsGuest"><a routerLink="/browse">Continue as Guest</a></p>
 
     </div>
 

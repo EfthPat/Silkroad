@@ -17,11 +17,10 @@ export class NavigationPanelComponent implements OnInit, OnChanges {
   userRole: string
   activeElement: number
   _activeElement: number
-  endpointSet : any
+  endpointSet: any
 
   constructor(private dialog: MatDialog, private authService: AuthService, private route: ActivatedRoute, private router: Router) {
 
-    //
     this.endpointSet = endpoints
 
     this.activeElement = this._activeElement = 0
@@ -73,27 +72,26 @@ export class NavigationPanelComponent implements OnInit, OnChanges {
   export(): void {
 
     let dialogConfig = new MatDialogConfig();
-
     dialogConfig.autoFocus = true;
-
     this.dialog.open(AuctionExportDialogComponent, dialogConfig);
 
   }
 
-  changeUrl(event : MatTabChangeEvent): void{
+  changeUrl(event: MatTabChangeEvent): void {
 
-    if(event.index==0)
+    if (event.index == 0)
       this.router.navigate([endpoints.myBids])
-    else if(event.index==1)
+    else if (event.index == 1)
       this.router.navigate([endpoints.send])
     else
       this.router.navigate([endpoints.users])
 
-
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  ngOnChanges(): void {}
+  ngOnChanges(): void {
+  }
 
 }

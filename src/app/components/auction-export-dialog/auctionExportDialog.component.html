@@ -1,35 +1,33 @@
 
-<div class="exportClass">
+<div class="export">
 
   <!-- FORMAT -->
-  <div class="formatClass">
-    <label for="ddm">Export Format</label>
-    <div id="ddm" class="dropdown">
-      <button id="dd" class="btn btn-light dropdown-toggle optionsButtonClass" data-toggle="dropdown">{{this.exportFormat}}</button>
-      <div class="dropdown-menu ddmClass">
+  <div>
+    <label for="dropdownMenu">Export Format</label>
+    <div id="dropdownMenu" class="dropdown">
+      <button class="btn btn-light dropdown-toggle" data-toggle="dropdown">{{this.exportFormat}}</button>
+      <div class="dropdown-menu">
         <div class="dropdown-item" (click)="setExportFormat('JSON')">JSON</div>
         <div class="dropdown-item" (click)="setExportFormat('XML')">XML</div>
       </div>
     </div>
   </div>
 
-  <hr class="dividerClass">
+  <hr class="divider">
 
   <!-- START DATE -->
   <div class="dateTime">
-    <label for="sd" [ngClass]="{'errorClass': this.submitCommitted && !this.startDateValid}">Start Date</label>
-    <date-time-picker id="sd" (dateTimeEmitter)="getDateTime($event,true)"></date-time-picker>
+    <label for="startDate" [ngClass]="{'error': this.submitCommitted && !this.startDateValid}">Start Date</label>
+    <date-time-picker id="startDate" (dateTimeEmitter)="getDateTime($event,true)"></date-time-picker>
   </div>
-
 
   <!-- END DATE -->
   <div class="dateTime">
-    <label for="ed" [ngClass]="{'errorClass': this.submitCommitted  && !this.endDateValid}">End Date</label>
-    <date-time-picker id="ed" (dateTimeEmitter)="getDateTime($event,false)"></date-time-picker>
+    <label for="endDate" [ngClass]="{'error': this.submitCommitted  && !this.endDateValid}">End Date</label>
+    <date-time-picker id="endDate" (dateTimeEmitter)="getDateTime($event,false)"></date-time-picker>
   </div>
 
-
   <!-- EXPORT BUTTON-->
-  <button mat-stroked-button color="primary" class="exportButtonClass" (click)="submit()">Export</button>
+  <button mat-stroked-button color="primary" class="exportButton" (click)="submit()">Export</button>
 
 </div>

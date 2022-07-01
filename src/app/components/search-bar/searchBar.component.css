@@ -2,13 +2,13 @@
   box-sizing: border-box;
 }
 
-.searchBar{
+.searchBar {
   display: flex;
   flex-direction: row;
   justify-content: start;
 }
 
-.home{
+.home {
   display: flex;
   flex-direction: row;
   padding: 0 1%;
@@ -19,59 +19,53 @@
   font-size: small;
 }
 
-
-
-
-
-
-.hideSection{
+.hideSection {
   visibility: hidden;
 }
 
-
-.homeText{
+.homeText {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.homeButton{
+.homeButton {
   padding: 0;
   margin: 0 0 0 15px;
   color: blue;
   outline: none;
 }
 
-.homeButton:focus, .homeButton:active{
+.homeButton:focus, .homeButton:active {
   outline: none;
   box-shadow: none;
 }
 
-.shopByCategoryDropdownClass{
+.shopByCategoryDropdown {
   margin: 1% 0 0 0;
   outline: none;
   transition: none;
 }
 
-.dropdownButtonClass{
+.dropdownButton {
   font-size: small;
 }
 
-.dropdownMenuOption{
+.dropdownMenuOption {
   font-size: small;
 }
 
-.textCategoriesSearchClass{
+.textCategoriesSearch {
   margin: 1% 8% 0;
   display: flex;
   flex-direction: row;
 }
 
-.searchTextClass{
+.searchText {
   height: 100%;
 }
 
-.textClass{
+.text {
   height: 100%;
   outline: none !important;
   transition: none !important;
@@ -82,7 +76,7 @@
   font-size: small;
 }
 
-.categoriesDropdownClass{
+.categoriesDropdown {
   height: 100%;
   outline: none !important;
   transition: none !important;
@@ -91,7 +85,7 @@
   font-size: small;
 }
 
-.categoriesButtonClass{
+.categoriesButton {
   font-size: small;
   height: 100%;
   outline: none !important;
@@ -99,36 +93,32 @@
   background: transparent;
 }
 
-.searchButtonClass{
+.searchButton {
   height: 100%;
   outline: none !important;
   border: black solid 1px;
 }
 
-.srchbtnClass{
+.searchBtn {
   background: transparent;
   height: 100%;
   font-size: small;
 }
 
-.dynamicCategoryClass{
+.dynamicCategory {
   margin-top: 1%;
   display: flex;
   flex-direction: row;
   border: black solid 1px;
 }
 
-.optionsClass{
-
-}
-
-.optionsButtonClass{
+.optionsButton {
   height: 100%;
   background: transparent;
   font-size: small;
 }
 
-.sellButton{
+.sellButton {
   border: none;
   border-right: black solid 1px;
   border-left: black solid 1px;
@@ -137,28 +127,17 @@
   width: 45px;
 }
 
-.logoutClass{
-
-}
-
-.logoutButtonClass{
+.logoutButton {
   background: transparent;
   border: none;
   height: 100%;
   font-size: small;
 }
 
-.loginClass{
 
-}
-
-.loginButtonClass{
+.loginButton {
   height: 100%;
   background: transparent;
   font-size: small;
-}
-
-.ddmClass{
-
 }
 

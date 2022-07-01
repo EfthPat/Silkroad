@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RequestService} from "../../services/request.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -13,23 +13,23 @@ import {AuthService} from "../../services/auth.service";
 export class CreateMessageComponent implements OnInit {
 
   alerted: boolean
-  username : string
-  messageForm : FormGroup
-  submitCommitted : boolean
+  username: string
+  messageForm: FormGroup
+  submitCommitted: boolean
 
-  constructor(private requestService : RequestService, private authService : AuthService, private route : ActivatedRoute) {
+  constructor(private requestService: RequestService, private authService: AuthService, private route: ActivatedRoute) {
 
     this.alerted = false
     this.username = this.authService.getUsername()!
     this.submitCommitted = false
 
     let receiver = this.route.snapshot.queryParams['recipient']
-    if(receiver==undefined)
-      receiver=''
+    if (receiver == undefined)
+      receiver = ''
 
     let title = this.route.snapshot.queryParams['title']
-    if(title==undefined)
-      title=''
+    if (title == undefined)
+      title = ''
 
 
     this.messageForm = new FormGroup(
@@ -42,35 +42,32 @@ export class CreateMessageComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  sendMessage() : void {
+  sendMessage(): void {
 
     this.submitCommitted = true
 
-    if(this.messageForm.invalid)
+    if (this.messageForm.invalid)
       return
 
-    let newMessage : CustomMessage = {
+    let newMessage: CustomMessage = {
       title: this.messageForm.get('title')?.value,
       body: this.messageForm.get('body')?.value,
       recipient: this.messageForm.get('recipient')?.value
     }
 
-    this.requestService.sendMessage(this.username,newMessage).subscribe(
+    this.requestService.sendMessage(this.username, newMessage).subscribe(
       // if message was sent successfully
-      response => {
+      () => {
       },
       // if message wasn't sent
-      error =>{}
+      () => {
+      }
     )
-
-    let element = document.getElementById('alert')
-    element!.classList.remove('success')
-    setTimeout(()=>{element!.classList.add('success')}, 1)
-
+    
   }
-
 
 
 }

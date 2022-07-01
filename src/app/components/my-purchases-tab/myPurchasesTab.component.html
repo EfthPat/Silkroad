@@ -1,74 +1,48 @@
-<div class="myPurchasesClass">
-
+<div class="myPurchases">
   <!-- PURCHASES + PAGINATION -->
-  <div class="ppGroup">
-
+  <div class="purchasesAndPagination">
     <!-- CARDS -->
-    <div class="cardsGroup">
-
+    <div class="cards">
       <!-- CARD -->
-      <mat-card class="cardClass" *ngFor="let thumbnail of this.purchaseThumbnails; let i=index">
-
+      <mat-card class="card" *ngFor="let thumbnail of this.purchaseThumbnails; let i=index">
         <!-- CARD IMAGE -->
-        <div class="cardImageClass">
+        <div class="cardImage">
           <!-- IMAGE -->
-          <img class="imageClass" (click)="purchaseInfo(i)"
+          <img class="image" (click)="purchaseInfo(i)"
                src="{{this.serverLink}}{{this.serverParameter}}/{{thumbnail.id}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
-          <button class="page-link nextImageClass fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
+          <button class="page-link nextImage fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link previousImageClass fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
+          <button class="page-link previousImage fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
         </div>
-
-
         <!-- CONTENT -->
-        <div class="cardContentClass">
-
-          <mat-card-title class="card-title auctionNameField" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
-
+        <div class="cardContent">
+          <mat-card-title class="card-title auctionNameField"
+                          (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
           <label class="textLabel" for="priceField">Cost</label>
-          <mat-card-content id="priceField" class="priceField" (click)="purchaseInfo(i)">${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
-
+          <mat-card-content id="priceField" class="priceField" (click)="purchaseInfo(i)">
+            ${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
           <!-- CONTACT SELLER BUTTON -->
-          <button mat-stroked-button color="primary" class="contactButton" (click)="contactSeller(i)">Contact Seller</button>
-
-
+          <button mat-stroked-button color="primary" class="contactButton" (click)="contactSeller(i)">Contact Seller
+          </button>
         </div>
-
-
-
       </mat-card>
-
-
     </div>
-
     <!-- PAGINATION -->
-    <div class="paginationClass">
-
-      <div class="paginationBarClass">
-
+    <div class="pagination">
+      <div class="paginationBar">
         <!-- PREVIOUS PAGE BUTTON -->
-        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+        <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex<=1">&laquo;
         </button>
-
         <!-- PAGE VALUE BUTTON -->
-        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
-
+        <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}} / {{this.totalPages}}</div>
         <!-- NEXT PAGE BUTTON -->
-        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
+        <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex>=this.totalPages">
           &raquo;
         </button>
-
       </div>
-
-
-
-
     </div>
-
   </div>
-
-
 </div>

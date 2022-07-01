@@ -1,30 +1,21 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-
-.tabGroup{
-
-}
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-.activityGroup{
+.activityGroup {
   display: flex;
   flex-direction: row;
   min-height: 93vh;
 }
 
-.activityCategoriesGroup{
+.activityCategoriesGroup {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 16%;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-.bidsCategoryClass{
+.bidsCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -33,16 +24,7 @@
 
 }
 
-.purchasesCategoryClass{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0;
-  margin: 2%;
-  min-height: 100%;
-}
-
-.auctionsCategoryClass{
+.purchasesCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -51,27 +33,35 @@
   min-height: 100%;
 }
 
-.activityContentClass{
+.auctionsCategory {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  margin: 2%;
+  min-height: 100%;
+}
+
+.activityContent {
   height: 100%;
   width: 84%;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------ */
 
-.messagesGroup{
+.messagesGroup {
   display: flex;
   flex-direction: row;
   min-height: 93vh;
 }
 
-.messageCategoriesGroup{
+.messageCategoriesGroup {
   display: flex;
   flex-direction: column;
   width: 15%;
   min-height: 100%;
 }
 
-.inboxCategoryClass{
+.inboxCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -79,7 +69,7 @@
   margin: 2%;
 }
 
-.outboxCategoryClass{
+.outboxCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -88,7 +78,7 @@
 }
 
 
-.newMessageCategoryClass{
+.newMessageCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -96,32 +86,30 @@
   margin: 2%;
 }
 
-.messageContentClass{
+.messageContent {
   min-height: 100%;
   width: 85%;
 }
 
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-.administrationGroup{
+.administrationGroup {
   display: flex;
   flex-direction: row;
   min-height: 93vh;
 }
 
-.administrationCategoriesGroup{
+.administrationCategoriesGroup {
   display: flex;
   flex-direction: column;
   width: 15%;
   min-height: 100%;
 }
 
-.administrationContentClass{
+.administrationContent {
   min-height: 100%;
   width: 85%;
 }
 
-.usersCategoryClass{
+.usersCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -131,7 +119,7 @@
   margin-right: 2%;
 }
 
-.exportCategoryClass{
+.exportCategory {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -141,7 +129,7 @@
   outline: none;
 }
 
-.activeElement{
+.activeElement {
   background: #d5e7ee;
   border: rgba(128, 128, 128, 0.45) 1px solid;
 }

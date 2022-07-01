@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RequestService} from "../../services/request.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import * as $ from 'jquery'
 import {UtilService} from "../../services/util.service";
 
 @Component({
@@ -13,18 +12,14 @@ import {UtilService} from "../../services/util.service";
 export class HomePanelComponent implements OnInit {
 
   position: number
-
   showRecommendations: boolean
-
   recommendations: any[]
-  // each recommendation has an active-image index : 0 , 1, .. images-1
   activeImages: number[]
 
   constructor(private requestService: RequestService, private authService: AuthService,
               private router: Router, public utilService: UtilService) {
 
     this.position = 0
-    // show recommendations only to users and admins
     this.showRecommendations = false
     this.recommendations = []
     this.activeImages = []
@@ -36,23 +31,16 @@ export class HomePanelComponent implements OnInit {
       recommendations => {
 
 
-        for (let recommendation of recommendations)
-        {
+        for (let recommendation of recommendations) {
           this.recommendations.push(recommendation)
           this.activeImages.push(0)
         }
 
-
-
         this.showRecommendations = !(this.authService.getUserRole() === "GUEST" || this.recommendations.length == 0);
-
-
-        console.log("Recommendations :",recommendations)
 
       },
       // if recommendations weren't fetched
-      error => {
-        console.log("RECOMMENDATION FETCHING FAILED :", error)
+      () => {
       }
     )
 
@@ -69,11 +57,7 @@ export class HomePanelComponent implements OnInit {
     let totalImages = this.recommendations[index].images.length
     // if the recommendation has any images
     if (totalImages)
-    {
-      console.log("TOTAL IMAGES :",totalImages)
-      console.log("ACTIVE IMAGE :",this.activeImages[index])
       this.activeImages[index] = (this.activeImages[index] + 1) % totalImages
-    }
   }
 
   getPreviousImage(index: number): void {
@@ -83,15 +67,11 @@ export class HomePanelComponent implements OnInit {
     let totalImages = this.recommendations[index].images.length
     // if the recommendation has any images
     if (totalImages)
-    {
-      console.log("TOTAL IMAGES :",totalImages)
-      console.log("ACTIVE IMAGE :",this.activeImages[index])
       this.activeImages[index] > 0 ? this.activeImages[index]-- : this.activeImages[index] = totalImages - 1
-    }
 
   }
 
-  viewRecommendation(index : number) {
+  viewRecommendation(index: number) {
     this.router.navigate(['auctions', this.recommendations[index].id, 'view'])
   }
 
@@ -101,54 +81,47 @@ export class HomePanelComponent implements OnInit {
 
 
     // if there's an odd number of recommendations
-    if(left)
-    {
+    if (left) {
 
-      if (this.position + 1 + 1 <= (this.recommendations.length / 2) && (Math.abs(this.position-1)!=(this.recommendations.length / 2))) {
+      if (this.position + 1 + 1 <= (this.recommendations.length / 2) && (Math.abs(this.position - 1) != (this.recommendations.length / 2))) {
         this.position++
-      }
-      else if(this.position + 0.5 + 1 <= (this.recommendations.length / 2)) {
-        this.position+=0.5
-      }
-      else {
+      } else if (this.position + 0.5 + 1 <= (this.recommendations.length / 2)) {
+        this.position += 0.5
+      } else {
 
         // bounce
         element!.style.transition = 'transform 0.3s'
-        this.position+=0.04
+        this.position += 0.04
         element!.style.transform = `translateX( ${(50) * this.position}% )`
 
-        setTimeout(()=>{
+        setTimeout(() => {
           element!.style.transition = 'transform 0.3s'
-          this.position-=0.04
+          this.position -= 0.04
           element!.style.transform = `translateX( ${(50) * this.position}% )`
-        },300)
+        }, 300)
 
         return
 
       }
 
-    }
-    else{
+    } else {
 
-      if(Math.abs(this.position - 1 - 1) <= (this.recommendations.length / 2) && (this.position+1!=this.recommendations.length / 2) )
-      {
+      if (Math.abs(this.position - 1 - 1) <= (this.recommendations.length / 2) && (this.position + 1 != this.recommendations.length / 2)) {
         this.position--
-      }
-      else if(Math.abs(this.position - 0.5 - 1) <= (this.recommendations.length / 2)){
-        this.position-=0.5
-      }
-      else{
+      } else if (Math.abs(this.position - 0.5 - 1) <= (this.recommendations.length / 2)) {
+        this.position -= 0.5
+      } else {
 
         // bounce
         element!.style.transition = 'transform 0.3s'
-        this.position-=0.04
+        this.position -= 0.04
         element!.style.transform = `translateX( ${(50) * this.position}% )`
 
-        setTimeout(()=>{
+        setTimeout(() => {
           element!.style.transition = 'transform 0.3s'
-          this.position+=0.04
+          this.position += 0.04
           element!.style.transform = `translateX( ${(50) * this.position}% )`
-        },300)
+        }, 300)
 
         return
       }

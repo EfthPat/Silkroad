@@ -74,7 +74,7 @@
   margin: 0;
 }
 
-.nextImage, .previousImage{
+.nextImage{
   height: 100%;
   width: 25%;
   position: absolute;
@@ -84,15 +84,20 @@
   border: none;
   background: transparent;
   font-size: large;
-
-}
-
-.nextImage{
   right: 0;
   color: black;
 }
 
 .previousImage{
+  height: 100%;
+  width: 25%;
+  position: absolute;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-size: large;
   left: 0;
   color: black;
 }
@@ -106,7 +111,7 @@
   width: 100%;
 }
 
-.slideLeftButton, .slideRightButton{
+.slideLeftButton{
   position: absolute;
   top: 40%;
   height: 50px;
@@ -116,25 +121,39 @@
   background: rgba(128, 128, 128, 0.76);
   border-radius: 50%;
   border: none;
-}
-
-.slideLeftButton:hover, .slideRightButton:hover{
-  background: rgba(128, 128, 128, 0.19);
-}
-
-.slideLeftButton:active, .slideRightButton:active{
-  background: rgba(128, 128, 128, 0.72);
-}
-
-.slideLeftButton{
   left: 0.2%;
 }
 
 .slideRightButton{
+  position: absolute;
+  top: 40%;
+  height: 50px;
+  width:50px;
+  z-index: 2;
+  font-size: large;
+  background: rgba(128, 128, 128, 0.76);
+  border-radius: 50%;
+  border: none;
   right: 0.2%;
 }
 
-.cardName, .highestBid, .location{
+.slideLeftButton:hover {
+  background: rgba(128, 128, 128, 0.19);
+}
+
+.slideRightButton:hover {
+  background: rgba(128, 128, 128, 0.19);
+}
+
+.slideLeftButton:active{
+  background: rgba(128, 128, 128, 0.72);
+}
+
+.slideRightButton:active{
+  background: rgba(128, 128, 128, 0.72);
+}
+
+.cardName{
   width: 100%;
   text-align: center;
   white-space: nowrap;
@@ -144,10 +163,24 @@
   margin: 1% 0;
 }
 
-.cardName{
-
+.highestBid{
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1%;
+  margin: 1% 0;
 }
 
 .location{
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1%;
+  margin: 1% 0;
   font-weight: bold;
 }
+

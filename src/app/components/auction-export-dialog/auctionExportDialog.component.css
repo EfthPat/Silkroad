@@ -1,5 +1,5 @@
 
-.exportClass{
+.export{
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -11,16 +11,15 @@
   margin-top: 12%;
 }
 
-.dividerClass{
+.divider{
   width: 100%;
 }
 
-
-#sd{
+#startDate{
   font-size: small;
 }
 
-#ed{
+#endDate{
   font-size: small;
 }
 
@@ -28,17 +27,16 @@ label{
   font-size: small;
 }
 
-#ddm{
+#dropdownMenu{
   margin-top:5%;
   margin-left: 10%;
 }
 
-.exportButtonClass{
+.exportButton{
   margin-top:20%;
   width: 100%;
 }
 
-
-.errorClass {
+.error{
   color: red;
 }

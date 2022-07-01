@@ -31,13 +31,9 @@ export class MapComponent implements OnInit {
   constructor(private mapService: MapService) {
 
     this.mapAddress = new EventEmitter<any>()
-
     this.latitude = 51.5072
     this.longitude = 0.1276
-
     this.isInteractive = false
-
-
     this.tile = mapLinks[0]
     this.zoom = 14
     this.marker = new Marker([this.latitude, this.longitude])
@@ -54,7 +50,6 @@ export class MapComponent implements OnInit {
 
     // add the marker into the map
     this.marker.addTo(this.map)
-
 
     // if the map is interactive, create a (click) event
     if (this.isInteractive) {
@@ -75,12 +70,9 @@ export class MapComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-
     this.marker.setLatLng([this.latitude, this.longitude])
-
     if (this.map !== undefined)
       this.map.setView([this.latitude, this.longitude])
-
   }
 
   // given a (LAT,LON) pair, update the address
@@ -92,9 +84,7 @@ export class MapComponent implements OnInit {
       response => {
         // emit the new address to any interested parent component
         this.mapAddress.emit(response)
-
       }
     )
   }
-
 }

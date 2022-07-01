@@ -11,7 +11,6 @@ export class ApprovalDialogComponent implements OnInit {
   message: string
   toDelete: boolean
 
-
   constructor(private dialogRef: MatDialogRef<ApprovalDialogComponent>, @Inject(MAT_DIALOG_DATA) data : any) {
     data && data.message ? this.message = data.message : this.message = "Are you sure?"
     this.toDelete = false

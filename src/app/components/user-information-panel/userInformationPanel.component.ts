@@ -7,10 +7,10 @@ import {UtilService} from "../../services/util.service";
 
 @Component({
   selector: 'app-user-information-panel',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./userInformationPanel.css']
+  templateUrl: './userInformationPanel.component.html',
+  styleUrls: ['./userInformationPanel.component.css']
 })
-export class UserInformationPanel implements OnInit {
+export class UserInformationPanelComponent implements OnInit {
 
   userForm: FormGroup
   showApproval: boolean
@@ -77,7 +77,7 @@ export class UserInformationPanel implements OnInit {
 
       },
       // if an error occurred, redirect admin-navigation-panel to previous page
-      error => {
+      () => {
         this.redirectAdmin()
       }
     )
@@ -86,10 +86,10 @@ export class UserInformationPanel implements OnInit {
   // approve the said user's registration request and redirect admin-navigation-panel to previous page
   approveUser(): void {
     this.requestService.approveUser(this.userForm.get('username')?.value).subscribe(
-      response => {
+      () => {
         this.redirectAdmin()
       },
-      error => {
+      () => {
         this.redirectAdmin()
       }
     )

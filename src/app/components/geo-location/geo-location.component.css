@@ -1,9 +1,9 @@
 
-.geoClass{
+.geolocation{
   width: 100%;
 }
 
-.inputClass{
+.customInput{
   width: 100%;
   background: rgba(0, 0, 255, 0.11);
   font-size: small;

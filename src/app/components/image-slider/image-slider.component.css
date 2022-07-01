@@ -1,5 +1,4 @@
 
-
 .imageSlider{
   display: flex;
   flex-direction: row;
@@ -9,9 +8,7 @@
   margin: 0;
   box-shadow: 1px 1px gray;
   border: gray 1px solid;
-
 }
-
 
 .image{
   height: 100%;
@@ -19,7 +16,7 @@
   border: none;
 }
 
-.nextImage, .previousImage{
+.nextImage{
   height: 100%;
   width: 10%;
   box-shadow: none;
@@ -27,12 +24,17 @@
   top: 0;
   background:  #e3fff0;
   border: none;
-}
-
-.nextImage{
   right: 0;
 }
 
 .previousImage{
+  height: 100%;
+  width: 10%;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  background:  #e3fff0;
+  border: none;
   left: 0;
 }
+

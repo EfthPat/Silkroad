@@ -1,26 +1,20 @@
-<div class="myBidsClass">
-
+<div class="myBids">
   <!-- BIDS + PAGINATION -->
-  <div class="bpGroup">
-
+  <div class="bidsAndPagination">
     <!-- CARDS -->
-    <div class="cardsGroup">
-
+    <div class="cards">
       <!-- CARD -->
-      <mat-card class="cardClass" *ngFor="let thumbnail of this.bidThumbnails; let i=index">
-
-
+      <mat-card class="card" *ngFor="let thumbnail of this.bidThumbnails; let i=index">
         <!-- CARD IMAGE -->
-        <div class="cardImageClass">
+        <div class="cardImage">
           <!-- IMAGE -->
-          <img class="imageClass" (click)="moreInfo(i)"
+          <img class="image" (click)="moreInfo(i)"
                src="{{this.serverLink}}{{this.serverParameter}}/{{thumbnail.auctionID}}/{{thumbnail.images[imageLinks[i]]}}">
           <!-- NEXT IMAGE -->
-          <button class="page-link nextImageClass fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
+          <button class="page-link nextImage fa fa-angle-right fa-2x" (click)="getNextImage(i)"></button>
           <!-- PREVIOUS IMAGE -->
-          <button class="page-link previousImageClass fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
+          <button class="page-link previousImage fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
         </div>
-
 
         <div class="cardContent">
 
@@ -30,62 +24,41 @@
           <!-- DATE-->
           <div class="date">
             <label for="dateField" class="textLabel">Date</label>
-            <mat-card-content id="dateField" class="dateField">{{utilService.reformatDate(thumbnail.submissionDate)}}</mat-card-content>
+            <mat-card-content id="dateField"
+                              class="dateField">{{utilService.reformatDate(thumbnail.submissionDate)}}</mat-card-content>
           </div>
 
           <!-- BID -->
           <div class="bid">
             <label for="highestBid" class="textLabel">Amount</label>
-
-            <mat-card-content id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.amount)}}</mat-card-content>
-
+            <mat-card-content id="highestBid" class="highestBid">
+              ${{this.utilService.reformatNumber(thumbnail.amount)}}</mat-card-content>
           </div>
-
-
-
-
-
-
         </div>
-
-
-
-        <!-- CARD CONTENT -->
-        <!--<div class="cardContentClass" (click)="moreInfo(i)">
-          <mat-card-title class="auctionNameClass">{{thumbnail.auctionName}}</mat-card-title>
-          <mat-card-subtitle class="submissionDateClass">On {{utilService.reformatDate(thumbnail.submissionDate)}}</mat-card-subtitle>
-          <mat-dialog-content class="amountClass">You bid {{this.utilService.reformatNumber(thumbnail.amount)}} $</mat-dialog-content>
-        </div>-->
-
       </mat-card>
 
     </div>
 
     <!-- PAGINATION -->
-    <div class="paginationClass">
+    <div class="pagination">
 
-      <div class="paginationBarClass">
+      <div class="paginationBar">
 
         <!-- PREVIOUS PAGE BUTTON -->
-        <button class="page-link previousPageClass" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
+        <button class="page-link previousPage" (click)="getPreviousPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex<=1">&laquo;
         </button>
 
         <!-- PAGE VALUE BUTTON -->
-        <div class="page-link pageValueClass" [hidden]="this.totalPages<1">{{this.pageIndex}}
+        <div class="page-link pageValue" [hidden]="this.totalPages<1">{{this.pageIndex}}
           / {{this.totalPages}}</div>
 
         <!-- NEXT PAGE BUTTON -->
-        <button class="page-link nextPageClass" (click)="getNextPage()" [hidden]="this.totalPages<1"
+        <button class="page-link nextPage" (click)="getNextPage()" [hidden]="this.totalPages<1"
                 [disabled]="this.pageIndex>=this.totalPages">
           &raquo;
         </button>
-
       </div>
-
-
     </div>
-
   </div>
-
 </div>

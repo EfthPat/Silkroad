@@ -138,8 +138,7 @@ export class GeoLocationComponent implements OnInit {
       }
       ,
       // error
-      error => {
-        console.log("GETTING SUGGESTED LOCATIONS FAILED :", error)
+      () => {
       }
     )
   }
@@ -167,8 +166,6 @@ export class GeoLocationComponent implements OnInit {
         this.locationField.setErrors(null)
         this.geoAddress.emit(this.suggestedLocations[i])
         this.geoState.emit(true)
-
-        console.log("LOCATION :",this.locationField.value)
         return
       }
 

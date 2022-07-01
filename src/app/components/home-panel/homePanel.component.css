@@ -30,6 +30,8 @@
 }
 
 
+
+
 .slider{
   border: rgba(128, 128, 128, 0.31) 1px solid;
   overflow: hidden;
@@ -67,6 +69,7 @@
   width: 100%;
   justify-content: center;
 }
+
 
 .image{
   height: 100%;

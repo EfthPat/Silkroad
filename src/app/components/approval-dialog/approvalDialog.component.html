@@ -1,13 +1,8 @@
-
-<div class="deleteDialogClass">
-  <!-- MESSAGE -->
-  <h1 class="messageClass">{{message}}</h1>
-  <hr>
-  <!-- BUTTONS -->
-  <div class="buttonsClass">
-    <!-- APPROVE DELETION -->
-    <button mat-stroked-button color="primary" class="approveClass" (click)="getUserReply(true)">Yes</button>
-    <!-- APPROVE DELETION -->
-    <button mat-stroked-button color="warn" class="rejectClass" (click)="getUserReply(false)">No</button>
+<div class="approvalDialog">
+  <h1 mat-card-title>Confirm</h1>
+  <div class="message">{{this.message}}</div>
+  <div class="options">
+    <button mat-button (click)="this.getUserReply(false)">Cancel</button>
+    <button mat-button (click)="this.getUserReply(true)">Proceed</button>
   </div>
 </div>

@@ -1,37 +1,14 @@
 
-.alertDialog{
+.approvalDialog{
+  min-width: 25vw;
+}
+
+.message{
+  font-size: medium;
+}
+
+.options{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: rgba(128, 128, 128, 0.18) 1px solid;
-  border-radius: 5px;
-  width: 55vh;
-  height: 25vh;
-  margin: 0;
-  position: relative;
+  flex-direction: row;
+  justify-content: end;
 }
-
-.alertMessage{
-  font-size: large;
-  width: 100%;
-  text-align: center;
-  padding: 0 3%;
-  margin: 15% 0 0;
-}
-
-.alertButtonArea{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  margin: 5% 0 0 0;
-  position: absolute;
-  bottom: 0;
-}
-
-.acceptButton{
-  width: 70%;
-}
-

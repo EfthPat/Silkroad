@@ -15,17 +15,34 @@
           <!-- PREVIOUS IMAGE -->
           <button class="page-link previousImage fa fa-angle-left fa-2x" (click)="getPreviousImage(i)"></button>
         </div>
+
+
+
+
         <!-- CONTENT -->
         <div class="cardContent">
-          <mat-card-title class="card-title auctionNameField"
-                          (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
-          <label class="textLabel" for="priceField">Cost</label>
-          <mat-card-content id="priceField" class="priceField" (click)="purchaseInfo(i)">
-            ${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
+
+
+          <mat-card-title class="card-title auctionNameField" (click)="purchaseInfo(i)">{{thumbnail.name}}</mat-card-title>
+
+          <div class="cost">
+            <label class="textLabel" for="priceField">Cost</label>
+            <mat-card-content id="priceField" class="priceField">
+              ${{this.utilService.reformatNumber(thumbnail.cost)}}</mat-card-content>
+          </div>
+
+
+
+
           <!-- CONTACT SELLER BUTTON -->
-          <button mat-stroked-button color="primary" class="contactButton" (click)="contactSeller(i)">Contact Seller
-          </button>
+          <button mat-stroked-button color="primary" class="contactButton" (click)="contactSeller(i)">Contact Seller</button>
+
+
         </div>
+
+
+
+
       </mat-card>
     </div>
     <!-- PAGINATION -->

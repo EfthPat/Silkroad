@@ -1,10 +1,9 @@
-<div class="alertDialog">
 
-  <p class="alertMessage">{{this.message}}</p>
 
-  <div class="alertButtonArea">
-    <button mat-stroked-button color="primary" class="acceptButton" (click)="escape()">OK</button>
+<div class="approvalDialog">
+  <h1 mat-card-title>Report</h1>
+  <div class="message">{{this.message}}</div>
+  <div class="options">
+    <button mat-button (click)="this.escape()">Ok</button>
   </div>
-
-
 </div>

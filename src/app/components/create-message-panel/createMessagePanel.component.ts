@@ -65,7 +65,7 @@ export class CreateMessageComponent implements OnInit {
     this.requestService.sendMessage(this.username, newMessage).subscribe(
       // if message was sent successfully
       () => {
-        this.toastService.success({detail: successMessages.messageDetail, summary:successMessages.messageSummary, duration: 10000})
+        this.toastService.success({detail: successMessages.messageDetail, summary:successMessages.messageSummary, duration: 1500})
       },
       // if message wasn't sent
       () => {

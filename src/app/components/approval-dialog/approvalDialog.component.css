@@ -1,25 +1,14 @@
 
-.deleteDialogClass{
-  display: flex;
-  flex-direction: column;
+.approvalDialog{
+  min-width: 25vw;
 }
 
-.messageClass{
-  font-weight: bold;
-  font-size: x-large;
-  letter-spacing: 0.2em;
+.message{
+  font-size: medium;
 }
 
-.buttonsClass{
+.options{
   display: flex;
   flex-direction: row;
-}
-
-.approveClass{
-  width: 49%;
-}
-
-.rejectClass{
-  width: 49%;
-  margin-left: 1%;
+  justify-content: end;
 }

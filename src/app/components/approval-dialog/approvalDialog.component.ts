@@ -9,18 +9,18 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 export class ApprovalDialogComponent implements OnInit {
 
   message: string
-  toDelete: boolean
+  userApproved: boolean
 
   constructor(private dialogRef: MatDialogRef<ApprovalDialogComponent>, @Inject(MAT_DIALOG_DATA) data : any) {
     data && data.message ? this.message = data.message : this.message = "Are you sure?"
-    this.toDelete = false
+    this.userApproved = false
   }
 
   ngOnInit(): void {}
 
-  getUserReply(toDelete: boolean) : void{
-    this.toDelete = toDelete
-    this.dialogRef.close(this.toDelete)
+  getUserReply(userApproved: boolean) : void{
+    this.userApproved = userApproved
+    this.dialogRef.close(this.userApproved)
   }
 
 }

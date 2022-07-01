@@ -84,6 +84,10 @@
   border: rgba(207, 211, 208, 0.29) 1px solid;
 }
 
+.cardImage:hover{
+  cursor: pointer;
+}
+
 .image {
   height: 100%;
   width: 80%;
@@ -129,6 +133,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+}
+
+.auctionName:hover{
+  cursor: pointer;
 }
 
 .endDate {
@@ -187,54 +195,74 @@
 .deleteButton {
   margin: 1% 0 0 0;
   width: 49%;
-  height: 37px;
+  height: 35px;
 }
 
 .updateButton {
   margin: 1% 0 0 1%;
   width: 49%;
-  height: 37px;
+  height: 35px;
 }
 
-.pagination {
+.cardText {
+  font-size: 120%;
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+.pagination{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   align-content: center;
   width: 100%;
-  margin: 2% 0 0.5% 0;
+  margin: 0.5% 0 0 0;
 }
 
-.paginationBar {
-  background-color: #c9d2d2;
+.paginationBar{
+  background-color: transparent;
   overflow: hidden;
   text-align: center;
   display: flex;
   flex-direction: row;
   height: 100%;
-  width: 30%;
+  width: 99%;
   justify-content: center;
   align-items: center;
 }
 
-.previousPage {
+.previousPage{
   height: 100%;
-  width: 30%;
+  width: 33%;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  border: none;
 }
 
-.pageValue {
+.pageValue{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
-  width: 40%;
+  width: 33%;
+  text-align: center;
   font-size: small;
-
+  font-weight: bold;
+  border: none;
 }
 
-.nextPage {
+.nextPage{
   height: 100%;
-  width: 30%;
+  width: 33%;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  border: none;
 }
 
-.cardText {
-  font-size: 120%;
-}
+
+

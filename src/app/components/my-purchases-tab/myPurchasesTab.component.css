@@ -47,6 +47,10 @@
   width: 25%;
 }
 
+.cardImage:hover{
+  cursor: pointer;
+}
+
 .image{
   height: 100%;
   width: 70%;
@@ -86,30 +90,19 @@
 
 }
 
-.purchaseName, .costC, .seller, .contactButton{
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0!important;
-  padding: 0.5% 1% 0 3%;
 
-}
-
-.auctionNameField, .priceField{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .auctionNameField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 0 0 0 2%;
   font-size: large;
   font-weight: bold;
 }
 
-.contactButton {
-  margin-bottom: 0 !important;
+.auctionNameField:hover{
+  cursor:pointer;
 }
 
 .textLabel{
@@ -119,15 +112,22 @@
 }
 
 .priceField{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0 0 0 2%;
-
 }
 
 .contactButton{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.5% 1% 0 3%;
   width: 98%;
   margin: 0 0 0 2%;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------- */
 
 .pagination{
   display: flex;
@@ -136,35 +136,49 @@
   align-items: flex-start;
   align-content: center;
   width: 100%;
-  margin: 2% 0 0.5% 0;
+  margin: 0.5% 0 0 0;
 }
 
 .paginationBar{
-  background-color: #c9d2d2;
+  background-color: transparent;
   overflow: hidden;
   text-align: center;
   display: flex;
   flex-direction: row;
   height: 100%;
-  width: 30%;
+  width: 99%;
   justify-content: center;
   align-items: center;
 }
 
 .previousPage{
   height: 100%;
-  width: 30%;
+  width: 33%;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  border: none;
 }
 
 .pageValue{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
-  width: 40%;
+  width: 33%;
+  text-align: center;
   font-size: small;
+  font-weight: bold;
+  border: none;
 }
 
 .nextPage{
   height: 100%;
-  width: 30%;
+  width: 33%;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  border: none;
 }
 
 

@@ -72,6 +72,10 @@ export class HomePanelComponent implements OnInit {
   }
 
   viewRecommendation(index: number) {
+
+
+
+
     this.router.navigate(['auctions', this.recommendations[index].id, 'view'])
   }
 

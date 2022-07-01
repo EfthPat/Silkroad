@@ -128,7 +128,6 @@
   margin: 0 0 0 2%;
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
 
 .pagination{
   display: flex;
@@ -137,6 +136,7 @@
   align-items: flex-start;
   align-content: center;
   width: 100%;
+  margin: 2% 0 0.5% 0;
 }
 
 .paginationBar{
@@ -159,6 +159,7 @@
 .pageValue{
   height: 100%;
   width: 40%;
+  font-size: small;
 }
 
 .nextPage{

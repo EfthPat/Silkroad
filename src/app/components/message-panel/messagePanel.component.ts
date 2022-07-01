@@ -5,6 +5,9 @@ import {AuthService} from "../../services/auth.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {MessageDialogComponent} from "../message-dialog/message-dialog.component";
 import {ActivatedRoute} from "@angular/router";
+import {NgToastService} from'ng-angular-popup';
+import {successMessages} from "../../constants/customMessages";
+
 
 @Component({
   selector: 'app-message-navigation-panel',
@@ -25,7 +28,7 @@ export class MessagePanelComponent implements OnInit {
   totalPages: number
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog, private requestService: RequestService,
-              private authService : AuthService) {
+              private authService : AuthService,  private toastService : NgToastService) {
 
     this.toDelete = []
     this.username = this.authService.getUsername()!
@@ -88,22 +91,28 @@ export class MessagePanelComponent implements OnInit {
   }
 
   deleteMessages() : void{
+
     if(this.toDelete.length)
-      this.delMsgs(0)
+      this.delMsgs(0, 0)
   }
 
   // delete messages recursively to ensure callbacks are called in order
-  delMsgs(index : number) : void{
+  delMsgs(index : number, deletedMessages : number) : void{
 
     if(index<this.toDelete.length)
     {
       if(this.toDelete[index])
-        this.requestService.deleteMessage(this.username,this.messageThumbnails[index].id).subscribe(() =>{this.delMsgs(index+1)})
+        this.requestService.deleteMessage(this.username,this.messageThumbnails[index].id).subscribe(() =>{this.delMsgs(index+1,deletedMessages+1)})
       else
-        this.delMsgs(index+1)
+        this.delMsgs(index+1, deletedMessages)
     }
     else
+    {
       this.getMessages(this.username,1,this.pageSize,this.sent)
+      if(deletedMessages>0)
+        this.toastService.success({detail: successMessages.messageDetail, summary:successMessages.messageDeleteSummary, duration: 1500})
+
+    }
 
   }
 

@@ -20,5 +20,8 @@ export const successMessages = {
   auctionUpdated: "Auction was updated successfully!",
   auctionCreated: "Auction was created successfully!",
   auctionDeleted: "Auction deleted successfully!",
-  bidSucceeded: "Bid succeeded!"
+  bidSucceeded: "Bid succeeded!",
+  messageDetail: "Confirmation",
+  messageSummary: "Message Sent!",
+  messageDeleteSummary: "Deletion successful!"
 }

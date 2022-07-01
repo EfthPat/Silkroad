@@ -44,7 +44,7 @@
           <label class="textLabel" for="endDate">Due Date</label>
           <mat-card-content id="endDate" class="endDate"
                             (click)="auctionInfo(i)">{{utilService.reformatDate(thumbnail.endDate)}}</mat-card-content>
-          <label class="textLabel" for="location">Highest Bid</label>
+          <label class="textLabel" for="location">From</label>
           <mat-card-content id="location" class="location">
             ${{thumbnail.highestBid > thumbnail.firstBid ? thumbnail.highestBid : thumbnail.firstBid}}</mat-card-content>
 

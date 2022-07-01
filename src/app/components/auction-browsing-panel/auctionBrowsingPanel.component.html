@@ -82,13 +82,13 @@
           <h5 class="auctionName card-title" (click)="auctionInfo(i)">{{thumbnail.name}}</h5>
 
           <!-- HIGHEST BID -->
-          <label for="highestBid" class="textLabel card-title">Highest Bid</label>
+          <label for="highestBid" class="textLabel card-title">From</label>
 
           <p id="highestBid" class="highestBid">${{this.utilService.reformatNumber(thumbnail.highestBid>thumbnail.firstBid
             ? thumbnail.highestBid : thumbnail.firstBid)}}</p>
 
           <!-- COUNTRY -->
-          <p class="countryField">From {{thumbnail.country}}!</p>
+          <p class="countryField">Located in {{thumbnail.country}}!</p>
 
         </div>
 

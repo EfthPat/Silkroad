@@ -4,6 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomMessage} from "../../interfaces/CustomMessage";
 import {AuthService} from "../../services/auth.service";
+import {NgToastService} from'ng-angular-popup';
+import {successMessages} from "../../constants/customMessages";
 
 @Component({
   selector: 'app-create-message-panel',
@@ -17,7 +19,9 @@ export class CreateMessageComponent implements OnInit {
   messageForm: FormGroup
   submitCommitted: boolean
 
-  constructor(private requestService: RequestService, private authService: AuthService, private route: ActivatedRoute) {
+  constructor(private requestService: RequestService, private authService: AuthService,
+              private toastService : NgToastService,
+              private route: ActivatedRoute) {
 
     this.alerted = false
     this.username = this.authService.getUsername()!
@@ -61,12 +65,16 @@ export class CreateMessageComponent implements OnInit {
     this.requestService.sendMessage(this.username, newMessage).subscribe(
       // if message was sent successfully
       () => {
+        this.toastService.success({detail: successMessages.messageDetail, summary:successMessages.messageSummary, duration: 10000})
       },
       // if message wasn't sent
       () => {
       }
     )
-    
+
+
+
+
   }
 
 

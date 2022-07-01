@@ -53,6 +53,7 @@ import {
   NgxMatNativeDateModule,
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
+import {NgToastModule} from "ng-angular-popup";
 
 @NgModule({
 
@@ -108,7 +109,8 @@ import {
     MatInputModule,
     NgxMatTimepickerModule,
     NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    NgToastModule
   ],
   // SERVICES , INTERCEPTORS
   providers: [

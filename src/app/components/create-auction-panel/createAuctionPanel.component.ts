@@ -382,8 +382,6 @@ export class CreateAuctionPanelComponent implements OnInit {
       this.auctionForm.get('firstBid')?.setErrors({invalidValue: true})
       this.auctionForm.get('buyNow')?.setErrors({invalidValue: true})
 
-      console.log("")
-
       return
     }
 

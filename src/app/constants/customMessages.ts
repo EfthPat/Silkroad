@@ -6,7 +6,7 @@ export const errorMessages = {
   creationFailed: "Creation of the auction was unsuccessful!",
   expiredOrBid: "Auction did expire or has at least one bid!",
   auctionNotFound: "Auction was not found!",
-  auctionNotLoaded: "Auction can not be loaded!",
+  auctionNotLoaded: "Auction cannot be loaded!",
   loginInfoMissing: "Missing Username or Password!",
   loginInfoInvalid: "Invalid Username or Password!",
   approvalPending: "Approval Pending!",

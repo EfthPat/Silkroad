@@ -115,8 +115,7 @@
 <div style="margin: 1% 1% 0 1%">
 
 
-  <table class="table" style="font-size: small">
-
+  <table class="table" style="font-size: small; text-align: center">
 
     <thead>
     <tr>
@@ -134,7 +133,7 @@
     <tr *ngFor="let submittedBid of this.auctionBids; let i=index" >
       <td>{{submittedBid.bidder}}</td>
       <td>{{submittedBid.bidderRating}}</td>
-      <td>{{submittedBid.amount}}</td>
+      <td>${{submittedBid.amount}}</td>
       <td>{{this.utilService.reformatDate(submittedBid.submissionDate)}}</td>
     </tr>
 

@@ -61,7 +61,7 @@ input{
 }
 
 .minPrice{
-  border: gray 1px solid;
+  border: rgba(0, 0, 0, 0.14) solid 1px;
   height: 30px;
   width: 40%;
   margin: 0 0 0 0;
@@ -72,7 +72,7 @@ input{
 }
 
 .maxPrice{
-  border: gray 1px solid;
+  border: rgba(0, 0, 0, 0.14) solid 1px;
   height: 30px;
   width: 40%;
   border-radius: 4px;
@@ -88,7 +88,7 @@ input{
 }
 
 .region{
-  border: gray 1px solid;
+  border: rgba(0, 0, 0, 0.14) solid 1px;
   height: 30px;
   width: 90%;
   margin: 1% 0 0;

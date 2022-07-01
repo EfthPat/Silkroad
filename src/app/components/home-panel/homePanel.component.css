@@ -35,6 +35,7 @@
   overflow: hidden;
   position: relative;
   height: 50%;
+  max-height: 40vh;
   width: 70%;
   margin: 0.5% 0 0 0;
   justify-content: center;
@@ -69,14 +70,14 @@
 
 .image{
   height: 100%;
-  width: 50%;
+  width:45%;
   padding: 0;
   margin: 0;
 }
 
 .nextImage{
   height: 100%;
-  width: 25%;
+  width: 27.5%;
   position: absolute;
   bottom: 0;
   padding: 0;
@@ -90,7 +91,7 @@
 
 .previousImage{
   height: 100%;
-  width: 25%;
+  width: 27.5%;
   position: absolute;
   bottom: 0;
   padding: 0;

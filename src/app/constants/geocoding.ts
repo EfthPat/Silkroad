@@ -13,5 +13,5 @@ export const geocodingKeys = [
   // key #1
   "pk.2191e0641f3fafa3e3cce39591faf310"
   // key #2
-  
+
 ]

@@ -31,7 +31,6 @@ import {HomePanelComponent} from './components/home-panel/homePanel.component';
 import {AuthService} from "./services/auth.service";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {ViewAuctionComponent} from "./components/view-auction/view-auction.component";
-import {MaterialModule} from "./material.module";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {MessagePanelComponent} from "./components/message-panel/messagePanel.component";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -42,7 +41,6 @@ import {AuctionExportDialogComponent} from "./components/auction-export-dialog/a
 import {UtilService} from "./services/util.service";
 import {ApprovalDialogComponent} from "./components/approval-dialog/approvalDialog.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {ImageSliderComponent} from "./components/image-slider/image-slider.component";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {DataService} from "./services/data.service";
 import {AlertDialogComponent} from "./components/alert-dialog/alert-dialog.component";
@@ -57,7 +55,7 @@ import {NgToastModule} from "ng-angular-popup";
 
 @NgModule({
 
-  // COMPONENTS, DIRECTIVES, PIPES ..
+  // COMPONENTS
   declarations: [
     AppComponent,
     AuctionBrowsingPanelComponent,
@@ -80,7 +78,6 @@ import {NgToastModule} from "ng-angular-popup";
     CreateMessageComponent,
     AuctionBidsPanelComponent,
     AuctionExportDialogComponent,
-    ImageSliderComponent,
     AlertDialogComponent,
     DateTimePickerComponent,
     ApprovalDialogComponent
@@ -100,7 +97,6 @@ import {NgToastModule} from "ng-angular-popup";
     MatButtonModule,
     MatTabsModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
     NgSelectModule,
     MatDialogModule,
@@ -126,4 +122,3 @@ import {NgToastModule} from "ng-angular-popup";
 export class AppModule {
 }
 
-// ng serve --ssl true --ssl-key ./ssl/localhost-key.pem --ssl-cert ./ssl/localhost.pem

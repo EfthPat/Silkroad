@@ -349,7 +349,7 @@ export class CreateAuctionPanelComponent implements OnInit {
 
         let newDate = new Date(dateTime[0], dateTime[1], dateTime[2], dateTime[3], dateTime[4], dateTime[5], dateTime[6])
 
-        let receivedDate = this.auctionForm.get('endDate')?.setValue(newDate.toISOString())
+        this.auctionForm.get('endDate')?.setValue(newDate.toISOString())
 
         // check if the selected date is valid
         this.dateValid = this.auctionForm.get('endDate')?.value >= new Date().toISOString();

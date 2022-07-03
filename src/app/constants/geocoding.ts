@@ -10,8 +10,9 @@ export const geocodingLinks = [
 ]
 
 export const geocodingKeys = [
-  // key #1
+  // current key
+  "pk.48a73ae665bee61996f92137029f6a70",
+  // emergency key
   "pk.2191e0641f3fafa3e3cce39591faf310"
-  // key #2
 
 ]

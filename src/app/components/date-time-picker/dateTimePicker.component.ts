@@ -37,6 +37,8 @@ export class DateTimePickerComponent implements OnInit {
     this.dateTime[5] = this.dateTimeValue!.getUTCSeconds()
     this.dateTime[6] = this.dateTimeValue!.getUTCMilliseconds()
 
+    console.log("PICKER EMITTING :",this.dateTime)
+
     this.dateTimeEmitter.emit(this.dateTime)
 
   }
